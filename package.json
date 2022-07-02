@@ -1,0 +1,14 @@
+{
+  "name": "rpg-bot",
+  "version": "1.0.0",
+  "description": "RPG Bot - Fiverr Project",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "ElThomas",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^13.8.1"
+  }
+}

@@ -17,7 +17,7 @@ client.aliases = new Discord.Collection();
 ['commands', 'cooldowns'].forEach((x) => (client[x] = new Discord.Collection()));
 
 // EXECUTE LES COMMANDES (MODULE FS)
-fs.readdir('./commandes/', (err, files) => {
+fs.readdir('./commands/', (err, files) => {
    if (err) console.log(err);
    //removes period to get command name
    let jsfile = files.filter((f) => f.split('.').pop() === 'js');
@@ -27,7 +27,7 @@ fs.readdir('./commandes/', (err, files) => {
    }
    //registers commands
    jsfile.forEach((f, i) => {
-      let props = require(`./commandes/${f}`);
+      let props = require(`./commands/${f}`);
       console.log(`${f} has loaded.`);
       if (props.info.name) client.commands.set(props.info.name, props);
       else if (props.info.names) for (var i in props.info.names) client.commands.set(props.info.names[i], props);
@@ -36,8 +36,8 @@ fs.readdir('./commandes/', (err, files) => {
 
 // BOT READY
 client.on('ready', () => {
-   console.log('GoodFarm BETA: Prêt !');
-   client.user.setActivity(`people's farms | ghelp`);
+   console.log('RPG Bot: Ready !');
+   client.user.setActivity(`rpg helping | ghelp`);
 });
 client.login(config.token);
 

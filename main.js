@@ -54,5 +54,5 @@ client.on('message', async (message) => {
    if (message.content.startsWith(prefix)) {
       let commandeFile = client.commands.get(cmd.slice(prefix.length));
       if (commandeFile) commandeFile.run(client, message, Args, args);
-   }
+   };
 });

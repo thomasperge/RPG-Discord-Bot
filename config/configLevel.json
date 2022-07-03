@@ -1,8 +1,8 @@
 {
-    "level_1":{
+    "level1":{
         "XPcost": 5000,
         "XPmax": 2,   
-        "NextLevel": 2,
+        "nextLevel": 2,
         "stats": {
             "attack": 110,
             "defense": 24,
@@ -17,7 +17,7 @@
             "vengeance": 25
         }
     },
-    "level_2":{
+    "level2":{
         "XPcost": 10000,
         "XPmax": 3,   
         "NextLevel": 3,
@@ -35,7 +35,7 @@
             "vengeance": 30
         }
     },
-    "level_3":{
+    "level3":{
         "XPcost": 20000,
         "XPmax": 5,       
         "NextLevel": 4,
@@ -53,7 +53,7 @@
             "vengeance": 35
         }
     },
-    "level_4":{
+    "level4":{
         "XPcost": 40000,
         "XPmax": 9,        
         "NextLevel": 5,
@@ -71,7 +71,7 @@
             "vengeance": 40
         }
     },
-    "level_5":{
+    "level5":{
         "XPcost": 80000,
         "XPmax": 17,       
         "NextLevel": 6,
@@ -89,7 +89,7 @@
             "vengeance": 45
         }
     },
-    "level_6":{
+    "level6":{
         "XPcost": 160000,
         "XPmax": 33,         
         "NextLevel": 7,
@@ -107,7 +107,7 @@
             "vengeance": 50
         }
     },
-    "level_7":{
+    "level7":{
         "XPcost": 320000,
         "XPmax": 65,    
         "NextLevel": 8,
@@ -125,7 +125,7 @@
             "vengeance": 55
         }
     },
-    "level_8":{
+    "level8":{
         "XPcost": 640000,
         "XPmax": 129,       
         "NextLevel": 9,
@@ -143,7 +143,7 @@
             "vengeance": 60
         }
     },
-    "level_9":{
+    "level9":{
         "XPcost": 1280000,
         "XPmax": 257,      
         "NextLevel": 10,
@@ -161,7 +161,7 @@
             "vengeance": 65
         }
     },
-    "level_10":{
+    "level10":{
         "XPcost": 2560000,
         "XPmax": 513,      
         "NextLevel": 11,
@@ -179,7 +179,7 @@
             "vengeance": 70
         }
     },
-    "level_11":{
+    "level11":{
         "XPcost": 5120000,
         "XPmax": 1025,      
         "NextLevel": 12,
@@ -197,7 +197,7 @@
             "vengeance": 75
         }
     },
-    "level_12":{
+    "level12":{
         "XPcost": 10240000,
         "XPmax": 2049,        
         "NextLevel": 13,
@@ -215,7 +215,7 @@
             "vengeance": 80
         }
     },
-    "level_13":{
+    "level13":{
         "XPcost": 20480000,
         "XPmax": 4097,       
         "NextLevel": 14,
@@ -233,7 +233,7 @@
             "vengeance": 85
         }
     },
-    "level_14":{
+    "level14":{
         "XPcost": 40960000,
         "XPmax": 8193,      
         "NextLevel": 15,
@@ -251,7 +251,7 @@
             "vengeance": 90
         }
     },
-    "level_15":{
+    "level15":{
         "XPcost": 81920000,
         "XPmax": 16385,        
         "NextLevel": "level max",

@@ -4,12 +4,12 @@ const fs = require('fs');
 const config = require('./config.json');
 
 const mongoose = require('mongoose');
-// mongoose
-//    .connect(config.mongodb, {
-//       useUnifiedTopology: true,
-//       useNewUrlParser: true,
-//    })
-//    .then(() => console.log('MongoDB : Prêt !'));
+mongoose
+   .connect(config.mongodb, {
+      useUnifiedTopology: true,
+      useNewUrlParser: true,
+   })
+   .then(() => console.log('MongoDB : Ready !'));
 
 const client = new Discord.Client();
 client.commands = new Discord.Collection();

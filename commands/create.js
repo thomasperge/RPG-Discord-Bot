@@ -66,7 +66,7 @@ module.exports.run = async (client, message, args) => {
                 economiePLayer.save()
                 message.reply('`✅` Balance create ! - To you the conquest towards wealth!')
             } else {
-                message.reply('❌ You already have a bank account... !')
+                message.reply('`❌` You already have a bank account... !')
             }
         }
     )

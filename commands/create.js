@@ -42,7 +42,7 @@ module.exports.run = async (client, message, args) => {
                 accountPLayer.save()
                 message.reply('`✅` Account create ! - New player joins the adventure!')
             } else {
-                message.reply('❌ You are already a player... !')
+                message.reply('`❌` You are already a player... !')
             }
         }
     )

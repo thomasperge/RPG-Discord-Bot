@@ -1,130 +1,77 @@
 const Discord = require('discord.js')
-const ItemsData = require('../modules/items.js')
-const ToolsData = require('../modules/tools.js')
-const EconomyData = require('../modules/economy.js')
-const StatsData = require('../modules/stats.js')
+const PLAYERDATA = require('../modules/player.js')
+const ECONOMIEDATA = require('../modules/economie.js')
 const config = require('../config.json')
 
 module.exports.run = async (client, message, args) => {
     var user = message.author
-    /**Account Items */
-    ItemsData.findOne(
+    // ======= ACCOUNT PLAYER =======
+    PLAYERDATA.findOne(
         {
             userId: message.author.id,
         },
-        (err, items) => {
+        (err, player) => {
             if (err) console.log(err)
-            if (!items) {
-                var accountItems = new ItemsData({
+            if (!player) {
+                var accountPLayer = new PLAYERDATA({
                     userId: message.author.id,
                     pseudo: message.author.username,
-                    farm: {
-                        bush: 0,
-                        wheat: 0,
-                        corn: 0,
-                        potato: 0,
-                        carrot: 0,
-                        clover: 0,
-                    },
-                    mine: {
-                        stone: 0,
-                        coal: 0,
-                        iron: 0,
-                        gold: 0,
-                        diamond: 0,
-                        gems: 0,
-                        rainbow: 0,
+                    player: {
+                        level: 0,
+                        attack: 100,
+                        defense: 20,
+                        health: 2500,
+                        dodge: 0.00,
+                        crit: 0.00,
+                        critMultplicator : 1.0,
+                        attackSpeed: 1.0,
+                        lifeSteal: 0,
+                        execute: 100,
+                        aegis: 125,
+                        vengeance: 20,
+                        ultimate:{
+                            reflect: 0,
+                            heal: 0,
+                            luckyStrike: 0,
+                        },
+                        other:{
+                            dm: false,
+                        },
                     },
                 })
-                accountItems.save()
-                message.reply('✅ Account create ! - Items')
+                accountPLayer.save()
+                message.reply('`✅` Account create ! - New player joins the adventure!')
             } else {
-                message.reply('❌ Account Already Create ! - Items')
+                message.reply('❌ You are already a player... !')
             }
         }
     )
 
-    /**Account Tools */
-    ToolsData.findOne(
+    // ======= ECONOMIE PLAYER =======
+    ECONOMIEDATA.findOne(
         {
             userId: message.author.id,
         },
-        (err, tools) => {
+        (err, economie) => {
             if (err) console.log(err)
-            if (!tools) {
-                var accoutTool = new ToolsData({
-                    userId: message.author.id,
-                    pseudo: message.author.username,
-                    tool: {
-                        pickaxe: 1,
-                        shovel: 1,
-                        generator: 0,
-                    },
-                })
-                accoutTool.save()
-                message.reply('✅ Account create ! - Tools')
-            } else {
-                message.reply('❌ Account Already Create ! - Tools')
-            }
-        }
-    )
-
-    /**Account Economy */
-    EconomyData.findOne(
-        {
-            userId: message.author.id,
-        },
-        (err, economy) => {
-            if (err) console.log(err)
-            if (!economy) {
-                var accountEco = new EconomyData({
+            if (!economie) {
+                var economiePLayer = new ECONOMIEDATA({
                     userId: message.author.id,
                     pseudo: message.author.username,
                     eco: {
-                        money: 50,
-                        gem: 0,
-                        chest: 2,
-                        businessvalue: 1,
-                        profit: 1,
+                        coins: 25,
+                        xp: 0,
                     },
                 })
-                accountEco.save()
-                message.reply('✅ Account create ! - Economy')
+                economiePLayer.save()
+                message.reply('`✅` Balance create ! - To you the conquest towards wealth!')
             } else {
-                message.reply('❌ Account Already Create ! - Economy')
-            }
-        }
-    )
-
-    /**Account Stats */
-    StatsData.findOne(
-        {
-            userId: message.author.id,
-        },
-        (err, stats) => {
-            if (err) console.log(err)
-            if (!stats) {
-                var accountStats = new StatsData({
-                    userId: message.author.id,
-                    pseudo: message.author.username,
-                    stats: {
-                        nbfarm: 0,
-                        nbmine: 0,
-                        nbchest: 0,
-                        nbhourly: 0,
-                        nbdaily: 0,
-                        nbrestart: 0,
-                    },
-                })
-                accountStats.save()
-                message.reply('✅ Account create ! - Stats')
-            } else {
-                message.reply('❌ Account Already Create ! - Stats')
+                message.reply('❌ You already have a bank account... !')
             }
         }
     )
 }
 
 module.exports.info = {
-    names: ['create', 'start', 'account', 'newaccount'],
+    names: ['create', 'start', 'account', 'newaccount', 'begin'],
 }

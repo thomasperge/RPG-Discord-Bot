@@ -1,0 +1,274 @@
+{
+    "level0":{
+        "monsterlvl1":{
+            "attack": 80,
+            "defense": 16,
+            "health": 1800
+        },
+        "monsterlvl2":{
+            "attack": 100,
+            "defense": 20,
+            "health": 2500
+        },
+        "monsterlvl3":{
+            "attack": 120,
+            "defense": 24,
+            "health": 3200
+        }  
+    },
+    "level1":{
+        "monsterlvl1":{
+            "attack": 90,
+            "defense": 20,
+            "health": 2000
+        },
+        "monsterlvl2":{
+            "attack": 110,
+            "defense": 24,
+            "health": 2700
+        },
+        "monsterlvl3":{
+            "attack": 130,
+            "defense": 28,
+            "health": 3400
+        }  
+    },
+    "level2":{
+        "monsterlvl1":{
+            "attack": 100,
+            "defense": 24,
+            "health": 2200
+        },
+        "monsterlvl2":{
+            "attack": 120,
+            "defense": 28,
+            "health": 2900
+        },
+        "monsterlvl3":{
+            "attack": 130,
+            "defense": 32,
+            "health": 3600
+        }  
+    },
+    "level3":{
+        "monsterlvl1":{
+            "attack": 110,
+            "defense": 28,
+            "health": 2400
+        },
+        "monsterlvl2":{
+            "attack": 130,
+            "defense": 32,
+            "health": 3100
+        },
+        "monsterlvl3":{
+            "attack": 150,
+            "defense": 36,
+            "health": 3800
+        }  
+    },
+    "level4":{
+        "monsterlvl1":{
+            "attack": 120,
+            "defense": 32,
+            "health": 2600
+        },
+        "monsterlvl2":{
+            "attack": 140,
+            "defense": 36,
+            "health": 3300
+        },
+        "monsterlvl3":{
+            "attack": 150,
+            "defense": 40,
+            "health": 4000
+        }  
+    },
+    "level5":{
+        "monsterlvl1":{
+            "attack": 130,
+            "defense": 36,
+            "health": 2600
+        },
+        "monsterlvl2":{
+            "attack": 150,
+            "defense": 40,
+            "health": 3300
+        },
+        "monsterlvl3":{
+            "attack": 170,
+            "defense": 44,
+            "health": 4000
+        }  
+    },
+    "level6":{
+        "monsterlvl1":{
+            "attack": 140,
+            "defense": 40,
+            "health": 3000
+        },
+        "monsterlvl2":{
+            "attack": 160,
+            "defense": 44,
+            "health": 3700
+        },
+        "monsterlvl3":{
+            "attack": 180,
+            "defense": 48,
+            "health": 4400
+        }  
+    },
+    "level7":{
+        "monsterlvl1":{
+            "attack": 150,
+            "defense": 44,
+            "health": 3200
+        },
+        "monsterlvl2":{
+            "attack": 170,
+            "defense": 48,
+            "health": 3900
+        },
+        "monsterlvl3":{
+            "attack": 190,
+            "defense": 52,
+            "health": 4600
+        }  
+    },
+    "level8":{
+        "monsterlvl1":{
+            "attack": 160,
+            "defense": 48,
+            "health": 3400
+        },
+        "monsterlvl2":{
+            "attack": 180,
+            "defense": 52,
+            "health": 4100
+        },
+        "monsterlvl3":{
+            "attack": 200,
+            "defense": 56,
+            "health": 4800
+        }  
+    },
+    "level9":{
+        "monsterlvl1":{
+            "attack": 170,
+            "defense": 52,
+            "health": 3600
+        },
+        "monsterlvl2":{
+            "attack": 190,
+            "defense": 56,
+            "health": 4300
+        },
+        "monsterlvl3":{
+            "attack": 210,
+            "defense": 60,
+            "health": 5000
+        }  
+    },
+    "level10":{
+        "monsterlvl1":{
+            "attack": 180,
+            "defense": 56,
+            "health": 3800
+        },
+        "monsterlvl2":{
+            "attack": 200,
+            "defense": 60,
+            "health": 4500
+        },
+        "monsterlvl3":{
+            "attack": 220,
+            "defense": 64,
+            "health": 5200
+        }  
+    },
+    "level11":{
+        "monsterlvl1":{
+            "attack": 190,
+            "defense": 60,
+            "health": 4000
+        },
+        "monsterlvl2":{
+            "attack": 210,
+            "defense": 64,
+            "health": 4700
+        },
+        "monsterlvl3":{
+            "attack": 230,
+            "defense": 68,
+            "health": 5400
+        }  
+    },
+    "level12":{
+        "monsterlvl1":{
+            "attack": 200,
+            "defense": 64,
+            "health": 4200
+        },
+        "monsterlvl2":{
+            "attack": 220,
+            "defense": 68,
+            "health": 4900
+        },
+        "monsterlvl3":{
+            "attack": 240,
+            "defense": 72,
+            "health": 5600
+        }  
+    },
+    "level13":{
+        "monsterlvl1":{
+            "attack": 210,
+            "defense": 68,
+            "health": 4400
+        },
+        "monsterlvl2":{
+            "attack": 230,
+            "defense": 72,
+            "health": 5100
+        },
+        "monsterlvl3":{
+            "attack": 250,
+            "defense": 76,
+            "health": 5800
+        }  
+    },
+    "level14":{
+        "monsterlvl1":{
+            "attack": 220,
+            "defense": 72,
+            "health": 4600
+        },
+        "monsterlvl2":{
+            "attack": 240,
+            "defense": 76,
+            "health": 5300
+        },
+        "monsterlvl3":{
+            "attack": 260,
+            "defense": 80,
+            "health": 6000
+        }  
+    },
+    "level15":{
+        "monsterlvl1":{
+            "attack": 230,
+            "defense": 76,
+            "health": 4800
+        },
+        "monsterlvl2":{
+            "attack": 250,
+            "defense": 80,
+            "health": 5500
+        },
+        "monsterlvl3":{
+            "attack": 270,
+            "defense": 84,
+            "health": 6200
+        }  
+    }
+}

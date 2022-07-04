@@ -64,7 +64,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level1.XPcost, 1)
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level1.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level1.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 1){
@@ -85,7 +85,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level2.XPcost, CONFIGLEVEL.level1.nextLevel)
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level2.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level2.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 2){
@@ -106,7 +106,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level3.XPcost, CONFIGLEVEL.level2.nextLevel)
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level3.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level3.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 3){
@@ -156,7 +156,7 @@ module.exports.run = async (client, message, args) => {
                     });
                     return
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level4.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level4.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 4){
@@ -177,7 +177,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level5.XPcost, CONFIGLEVEL.level4.nextLevel)
                 }  else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level5.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level5.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 5){
@@ -198,7 +198,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level6.XPcost, CONFIGLEVEL.level5.nextLevel) 
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level6.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level6.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 6){
@@ -219,7 +219,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level7.XPcost, CONFIGLEVEL.level6.nextLevel)  
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level7.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level7.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 7){
@@ -269,7 +269,7 @@ module.exports.run = async (client, message, args) => {
                     });
                     return
                 }  else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level8.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level8.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 8){
@@ -290,7 +290,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level9.XPcost, CONFIGLEVEL.level8.nextLevel)  
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level9.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level9.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 9){
@@ -311,7 +311,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level10.XPcost, CONFIGLEVEL.level9.nextLevel)  
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level10.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level10.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 10){
@@ -332,7 +332,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level11.XPcost, CONFIGLEVEL.level10.nextLevel)  
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level11.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level11.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 11){
@@ -382,7 +382,7 @@ module.exports.run = async (client, message, args) => {
                     });
                     return
                 }  else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level12.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level12.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 12){
@@ -403,7 +403,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level13.XPcost, CONFIGLEVEL.level12.nextLevel)  
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level13.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level13.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 13){
@@ -424,7 +424,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level14.XPcost, CONFIGLEVEL.level13.nextLevel)  
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level14.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level14.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 14){
@@ -445,7 +445,7 @@ module.exports.run = async (client, message, args) => {
                     stats.save()
                     return upgradeLevel(CONFIGLEVEL.level15.XPcost, CONFIGLEVEL.level14.nextLevel)  
                 } else {
-                    return message.reply(`❌ ${CONFIGLEVEL.level15.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level15.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
                 }
             };
             if(stats.player.level == 15){

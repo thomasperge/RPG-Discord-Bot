@@ -4,7 +4,7 @@ const PLAYERDATA = require('../modules/player.js');
 module.exports.run = async (client, message, args) => {
   var user = message.author;
 
-  /**=== Account Tools ===*/
+  /**=== Account Stats ===*/
   let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
   if (!playerStats) return message.reply("`❌` you are not player ! : `gstart`");
   else {

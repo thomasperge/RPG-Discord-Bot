@@ -22,5 +22,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-    names: ['ping'],
+    names: ['dm'],
 };

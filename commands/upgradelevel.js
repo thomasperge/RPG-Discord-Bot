@@ -24,6 +24,7 @@ module.exports.run = async (client, message, args) => {
                 } 
             }
 
+            // Function display upgrade level :
             function upgradeLevel(priceNextLevel, nextLevel){
                 if(priceNextLevel > balance.eco.xp) message.reply('`❌` You have enought xp... !')
                 if(priceNextLevel <= balance.eco.xp){
@@ -59,11 +60,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level1.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level1.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level1.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 1
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level1.XPcost, CONFIGLEVEL.level1.nextLevel)
+                    return upgradeLevel(CONFIGLEVEL.level1.XPcost, 1)
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level1.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level1.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 1){
@@ -80,11 +81,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level2.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level2.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level2.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 2
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level2.XPcost, CONFIGLEVEL.level2.nextLevel)
+                    return upgradeLevel(CONFIGLEVEL.level2.XPcost, CONFIGLEVEL.level1.nextLevel)
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level2.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level2.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 2){
@@ -101,11 +102,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level3.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level3.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level3.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 3
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level3.XPcost, CONFIGLEVEL.level3.nextLevel)
+                    return upgradeLevel(CONFIGLEVEL.level3.XPcost, CONFIGLEVEL.level2.nextLevel)
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level3.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level3.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 3){
@@ -122,9 +123,9 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level4.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level4.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level4.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 4
                     stats.save()
-                    upgradeLevel(CONFIGLEVEL.level4.XPcost, CONFIGLEVEL.level4.nextLevel)
+                    upgradeLevel(CONFIGLEVEL.level4.XPcost, CONFIGLEVEL.level3.nextLevel)
                     // Choose Ultimate :
                     var ultimateEmbed = new Discord.MessageEmbed()
                         .setColor('#fc9803')
@@ -145,17 +146,17 @@ module.exports.run = async (client, message, args) => {
                             if(emoji === '❤️‍🩹'){
                                 stats.player.ultimate.heal = stats.player.ultimate.heal + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.reflect}% of heal`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.heal}% of heal`);
                             };
                             if(emoji === '🍀'){
                                 stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.reflect}% of luckyStrike`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.luckyStrike}% of luckyStrike`);
                             }
                     });
-
+                    return
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level4.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level4.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 4){
@@ -172,11 +173,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level5.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level5.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level5.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 5
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level5.XPcost, CONFIGLEVEL.level5.nextLevel)
+                    return upgradeLevel(CONFIGLEVEL.level5.XPcost, CONFIGLEVEL.level4.nextLevel)
                 }  else {
-                    message.reply(`❌ ${CONFIGLEVEL.level5.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level5.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 5){
@@ -193,11 +194,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level6.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level6.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level6.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 6
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level6.XPcost, CONFIGLEVEL.level6.nextLevel) 
+                    return upgradeLevel(CONFIGLEVEL.level6.XPcost, CONFIGLEVEL.level5.nextLevel) 
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level6.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level6.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 6){
@@ -214,11 +215,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level7.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level7.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level7.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 7
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level7.XPcost, CONFIGLEVEL.level7.nextLevel)  
+                    return upgradeLevel(CONFIGLEVEL.level7.XPcost, CONFIGLEVEL.level6.nextLevel)  
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level7.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level7.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 7){
@@ -235,9 +236,9 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level8.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level8.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level8.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 8
                     stats.save()
-                    upgradeLevel(CONFIGLEVEL.level8.XPcost, CONFIGLEVEL.level8.nextLevel)
+                    upgradeLevel(CONFIGLEVEL.level8.XPcost, CONFIGLEVEL.level7.nextLevel)
                     // Choose Ultimate :
                     var ultimateEmbed = new Discord.MessageEmbed()
                         .setColor('#fc9803')
@@ -253,21 +254,22 @@ module.exports.run = async (client, message, args) => {
                             if(emoji === '🪞'){
                                 stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.reflect}% of reflect`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.reflect}%** of reflect`);
                             };
                             if(emoji === '❤️‍🩹'){
                                 stats.player.ultimate.heal = stats.player.ultimate.heal + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.reflect}% of heal`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.heal}%** of heal`);
                             };
                             if(emoji === '🍀'){
                                 stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.reflect}% of luckyStrike`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of luckyStrike`);
                             }
                     });
+                    return
                 }  else {
-                    message.reply(`❌ ${CONFIGLEVEL.level8.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level8.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 8){
@@ -284,11 +286,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level9.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level9.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level9.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 9
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level9.XPcost, CONFIGLEVEL.level9.nextLevel)  
+                    return upgradeLevel(CONFIGLEVEL.level9.XPcost, CONFIGLEVEL.level8.nextLevel)  
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level9.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level9.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 9){
@@ -305,11 +307,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level10.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level10.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level10.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 10
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level10.XPcost, CONFIGLEVEL.level10.nextLevel)  
+                    return upgradeLevel(CONFIGLEVEL.level10.XPcost, CONFIGLEVEL.level9.nextLevel)  
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level10.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level10.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 10){
@@ -326,11 +328,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level11.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level11.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level11.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 11
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level11.XPcost, CONFIGLEVEL.level11.nextLevel)  
+                    return upgradeLevel(CONFIGLEVEL.level11.XPcost, CONFIGLEVEL.level10.nextLevel)  
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level11.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level11.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 11){
@@ -347,9 +349,9 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level12.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level12.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level12.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 12
                     stats.save()
-                    upgradeLevel(CONFIGLEVEL.level12.XPcost, CONFIGLEVEL.level12.nextLevel) 
+                    upgradeLevel(CONFIGLEVEL.level12.XPcost, CONFIGLEVEL.level11.nextLevel)
                     // Choose Ultimate :
                     var ultimateEmbed = new Discord.MessageEmbed()
                         .setColor('#fc9803')
@@ -370,16 +372,17 @@ module.exports.run = async (client, message, args) => {
                             if(emoji === '❤️‍🩹'){
                                 stats.player.ultimate.heal = stats.player.ultimate.heal + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.reflect}% of heal`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.heal}% of heal`);
                             };
                             if(emoji === '🍀'){
                                 stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.reflect}% of luckyStrike`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.luckyStrike}% of luckyStrike`);
                             }
                     });
+                    return
                 }  else {
-                    message.reply(`❌ ${CONFIGLEVEL.level12.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level12.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 12){
@@ -396,11 +399,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level13.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level13.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level13.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 13
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level13.XPcost, CONFIGLEVEL.level13.nextLevel)  
+                    return upgradeLevel(CONFIGLEVEL.level13.XPcost, CONFIGLEVEL.level12.nextLevel)  
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level13.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level13.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 13){
@@ -417,11 +420,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level14.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level14.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level14.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 14
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level14.XPcost, CONFIGLEVEL.level14.nextLevel)  
+                    return upgradeLevel(CONFIGLEVEL.level14.XPcost, CONFIGLEVEL.level13.nextLevel)  
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level14.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level14.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 14){
@@ -438,11 +441,11 @@ module.exports.run = async (client, message, args) => {
                     stats.player.execute = CONFIGLEVEL.level15.stats.execute
                     stats.player.aegis = CONFIGLEVEL.level15.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level15.stats.vengeance
-                    stats.player.level = stats.player.level + 1
+                    stats.player.level = 15
                     stats.save()
-                    return upgradeLevel(CONFIGLEVEL.level15.XPcost, CONFIGLEVEL.level15.nextLevel)  
+                    return upgradeLevel(CONFIGLEVEL.level15.XPcost, CONFIGLEVEL.level14.nextLevel)  
                 } else {
-                    message.reply(`❌ ${CONFIGLEVEL.level15.XPcost - balance.eco.xp} XP are missing`)
+                    return message.reply(`❌ ${CONFIGLEVEL.level15.XPcost - balance.eco.xp} XP are missing`)
                 }
             };
             if(stats.player.level == 15){

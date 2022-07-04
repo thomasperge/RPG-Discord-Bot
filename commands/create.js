@@ -1,7 +1,7 @@
 const Discord = require('discord.js')
 const PLAYERDATA = require('../modules/player.js')
 const ECONOMIEDATA = require('../modules/economie.js')
-const config = require('../config.json')
+const BOSS = require('../modules/boss.js')
 
 module.exports.run = async (client, message, args) => {
     var user = message.author
@@ -45,7 +45,7 @@ module.exports.run = async (client, message, args) => {
                 message.reply('`❌` You are already a player... !')
             }
         }
-    )
+    );
 
     // ======= ECONOMIE PLAYER =======
     ECONOMIEDATA.findOne(
@@ -69,7 +69,32 @@ module.exports.run = async (client, message, args) => {
                 message.reply('`❌` You already have a bank account... !')
             }
         }
-    )
+    );
+
+    BOSS.findOne(
+        {
+            bossname: 'Hello',
+        },
+        (err, boss) => {
+            if (err) console.log(err)
+            if (!boss) {
+                var bossPLayer = new BOSS({
+                    bossname: 'Hello',
+                    stats: {
+                        attack: 55000,
+                        defense: 450000,
+                        health: 850000,
+                    },
+                })
+                bossPLayer.save()
+                message.reply('`✅` Boss create !')
+            } else {
+                message.reply('`❌` Boss existing already !')
+            }
+        }
+    );
+
+
 }
 
 module.exports.info = {

@@ -139,7 +139,7 @@ module.exports.run = async (client, message, args) => {
                             .addFields(
                             { name: '**🎯 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n `, inline: true },
                             { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
-                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER}x** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}x** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\nYou Lose !\n${`🎁`} You lose **10%** of your :coin: (**${losecoin}**)...`, inline: false },
+                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER}x** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}x** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n${`▶️`} You Lose !\n${`🎁`} You lose **10%** of your :coin: (**${losecoin}**)...`, inline: false },
                             )
                             .setFooter('© RPG Bot 2022 | ghelp')
                             .setTimestamp();
@@ -183,7 +183,7 @@ module.exports.run = async (client, message, args) => {
                             .addFields(
                             { name: '**🎯 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n `, inline: true },
                             { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
-                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER}x** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}x** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\nYou Win !\n${`🎁`} And get: **${randomxp}** :izakaya_lantern: and **${randomcoin}** :coin:`, inline: false },
+                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER}x** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}x** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n${`▶️`} You Win !\n${`🎁`} And get: **${randomxp}** :izakaya_lantern: and **${randomcoin}** :coin:`, inline: false },
 
                             )
                             .setFooter('© RPG Bot 2022 | ghelp')

@@ -46,7 +46,7 @@ module.exports.run = async (client, message, args) => {
             }
 
 
-            function battle(MAXATK_PLAYER, MAXATK_MONSTER, HEALTH_PLAYER, HEALTH_MONSTER, DEFENSE_MONSTER, DODGEPLAYER, CRITPLAYER){
+            function battle(MAXATK_PLAYER, MAXATK_MONSTER, HEALTH_PLAYER, HEALTH_MONSTER, DEFENSE_MONSTER, DODGEPLAYER, CRITPLAYER, MAXXP){
                 var monsterStats_atk = MAXATK_MONSTER
                 var monsterStats_hth = HEALTH_MONSTER
                 var NB_CRIT = 0
@@ -135,11 +135,11 @@ module.exports.run = async (client, message, args) => {
                         var battleEmbed = new Discord.MessageEmbed()
                             .setColor('#9696ab')
                             .setAuthor(`${client.users.cache.get(user.id).username}'s Stats`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
-                            .setDescription(`**:crossed_swords: BATTLE**\n${client.users.cache.get(user.id).username} :vs: Monster\n\n**${`:headstone: YOU'VE LOSE...!**`}`)
+                            .setDescription(`**:crossed_swords: BATTLE**\n${client.users.cache.get(user.id).username} ${"`🆚`"} Monster\n`)
                             .addFields(
                             { name: '**🎯 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n `, inline: true },
                             { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
-                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER}x** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}x** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n${`▶️`} You Lose !\n${`🎁`} You lose **10%** of your :coin: (**${losecoin}**)...`, inline: false },
+                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER}x** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}x** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${"`▶ 🪦 YOU LOSE...`"}**\n${`🎁`} You lose **10%** of your :coin: (**${losecoin}**)...`, inline: false },
                             )
                             .setFooter('© RPG Bot 2022 | ghelp')
                             .setTimestamp();
@@ -151,8 +151,8 @@ module.exports.run = async (client, message, args) => {
                         playerStats.save()
 
                         // === PLAYER WIN ===
-                        var randomcoin = Math.floor(Math.random() * playerStats.player.attack);
-                        var randomxp = Math.floor(Math.random() * playerStats.player.health);
+                        var randomcoin = Math.floor((Math.random() * MAXXP) / 2);
+                        var randomxp = Math.floor(Math.random() * MAXXP) + 1;
                         balance.eco.coins = balance.eco.coins + randomcoin
                         balance.eco.xp = balance.eco.xp + randomxp
                         balance.save()
@@ -179,11 +179,11 @@ module.exports.run = async (client, message, args) => {
                         var battleEmbed = new Discord.MessageEmbed()
                             .setColor('#fc9803')
                             .setAuthor(`${client.users.cache.get(user.id).username}'s Stats`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
-                            .setDescription(`**:crossed_swords: BATTLE**\n${client.users.cache.get(user.id).username} :vs: Monster\n\n**${`:tada: YOU'VE WON!**`}`)
+                            .setDescription(`**:crossed_swords: BATTLE**\n${client.users.cache.get(user.id).username} ${"`🆚`"} Monster\n`)
                             .addFields(
                             { name: '**🎯 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n `, inline: true },
                             { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
-                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER}x** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}x** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n${`▶️`} You Win !\n${`🎁`} And get: **${randomxp}** :izakaya_lantern: and **${randomcoin}** :coin:`, inline: false },
+                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER}x** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}x** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${"`▶ 🎉 YOU WIN !`"}**\n${`🎁`} And get: **${randomxp}** :izakaya_lantern: and **${randomcoin}** :coin:`, inline: false },
 
                             )
                             .setFooter('© RPG Bot 2022 | ghelp')
@@ -203,7 +203,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 3)
             };
             if(playerStats.player.level == 1){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -215,7 +215,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 3)
             };
             if(playerStats.player.level == 2){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -227,7 +227,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 5)
             };
             if(playerStats.player.level == 3){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -239,7 +239,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 9)
             };
             if(playerStats.player.level == 4){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -251,7 +251,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 17)
             };
             if(playerStats.player.level == 5){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -263,7 +263,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 33)
             };
             if(playerStats.player.level == 6){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -275,7 +275,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 65)
             };
             if(playerStats.player.level == 7){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -287,7 +287,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 129)
             };
             if(playerStats.player.level == 8){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -299,7 +299,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 257)
             };
             if(playerStats.player.level == 9){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -311,7 +311,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 513)
             };
             if(playerStats.player.level == 10){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -323,7 +323,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 1025)
             };
             if(playerStats.player.level == 11){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -335,7 +335,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 2049)
             };
             if(playerStats.player.level == 12){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -347,7 +347,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 4097)
             };
             if(playerStats.player.level == 13){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -359,7 +359,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 8193)
             };
             if(playerStats.player.level == 14){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -371,7 +371,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 16385)
             };
             if(playerStats.player.level == 15){
                 var randomMonster = Math.floor(Math.random() * 2);
@@ -383,7 +383,7 @@ module.exports.run = async (client, message, args) => {
                 // Initialize MAX ATTACK Player and Monster :
                 const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                 const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit))
+                battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 32769)
             };
 
         }

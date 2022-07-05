@@ -18,7 +18,7 @@
         }
     },
     "level2":{
-        "XPcost": 10000,
+        "XPcost": 12500,
         "XPmax": 3,   
         "nextLevel": 3,
         "stats": {
@@ -36,7 +36,7 @@
         }
     },
     "level3":{
-        "XPcost": 20000,
+        "XPcost": 30000,
         "XPmax": 5,       
         "nextLevel": 4,
         "stats": {
@@ -54,7 +54,7 @@
         }
     },
     "level4":{
-        "XPcost": 40000,
+        "XPcost": 70000,
         "XPmax": 9,        
         "nextLevel": 5,
         "stats": {
@@ -72,7 +72,7 @@
         }
     },
     "level5":{
-        "XPcost": 80000,
+        "XPcost": 175000,
         "XPmax": 17,       
         "nextLevel": 6,
         "stats": {
@@ -90,7 +90,7 @@
         }
     },
     "level6":{
-        "XPcost": 160000,
+        "XPcost": 400000,
         "XPmax": 33,         
         "nextLevel": 7,
         "stats": {
@@ -108,7 +108,7 @@
         }
     },
     "level7":{
-        "XPcost": 320000,
+        "XPcost": 950000,
         "XPmax": 65,    
         "nextLevel": 8,
         "stats": {
@@ -126,7 +126,7 @@
         }
     },
     "level8":{
-        "XPcost": 640000,
+        "XPcost": 2225000,
         "XPmax": 129,       
         "nextLevel": 9,
         "stats": {
@@ -144,7 +144,7 @@
         }
     },
     "level9":{
-        "XPcost": 1280000,
+        "XPcost": 5000000,
         "XPmax": 257,      
         "nextLevel": 10,
         "stats": {
@@ -162,7 +162,7 @@
         }
     },
     "level10":{
-        "XPcost": 2560000,
+        "XPcost": 11500000,
         "XPmax": 513,      
         "nextLevel": 11,
         "stats": {
@@ -180,7 +180,7 @@
         }
     },
     "level11":{
-        "XPcost": 5120000,
+        "XPcost": 60000000,
         "XPmax": 1025,      
         "nextLevel": 12,
         "stats": {
@@ -198,7 +198,7 @@
         }
     },
     "level12":{
-        "XPcost": 10240000,
+        "XPcost": 138000000,
         "XPmax": 2049,        
         "nextLevel": 13,
         "stats": {
@@ -216,7 +216,7 @@
         }
     },
     "level13":{
-        "XPcost": 20480000,
+        "XPcost": 317500000,
         "XPmax": 4097,       
         "nextLevel": 14,
         "stats": {
@@ -234,7 +234,7 @@
         }
     },
     "level14":{
-        "XPcost": 40960000,
+        "XPcost": 730250000,
         "XPmax": 8193,      
         "nextLevel": 15,
         "stats": {

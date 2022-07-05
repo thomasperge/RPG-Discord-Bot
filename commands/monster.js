@@ -110,11 +110,24 @@ module.exports.run = async (client, message, args) => {
                         playerStats.player.other.nbmonster = playerStats.player.other.nbmonster - 1
                         playerStats.save()
 
-                        // Player Lose
+                        // === PLAYER LOSE ===
                         var losecoin = Math.floor((balance.eco.coins*10)/100)
 
                         balance.eco.coins = Math.floor(balance.eco.coins - losecoin)
                         balance.save()
+
+                        // == DM DIARY ==
+                        if(playerStats.player.other.dm){
+                            var battleDiaryEmbed = new Discord.MessageEmbed()
+                                .setColor('#48a329')
+                                .setAuthor(`:scroll: ${client.users.cache.get(user.id).username}'s Battle Diary`)
+                                .addFields(
+                                { name: `${`🪦`} You Lose...\nYou lose ${losecoins} :coin:`, inline: true },
+                                )
+                                .setFooter('© RPG Bot 2022 | Battle Diary')
+                                .setTimestamp();
+                            message.author.send(battleDiaryEmbed)
+                        }
 
                         // Embed :
                         var battleEmbed = new Discord.MessageEmbed()
@@ -135,12 +148,25 @@ module.exports.run = async (client, message, args) => {
                         playerStats.player.other.nbmonster = playerStats.player.other.nbmonster - 1
                         playerStats.save()
 
-                        // Player Win
+                        // === PLAYER WIN ===
                         var randomcoin = Math.floor(Math.random() * playerStats.player.attack);
                         var randomxp = Math.floor(Math.random() * playerStats.player.health);
                         balance.eco.coins = balance.eco.coins + randomcoin
                         balance.eco.xp = balance.eco.xp + randomxp
                         balance.save()
+
+                        // == DM DIARY ==
+                        if(playerStats.player.other.dm){
+                            var battleDiaryEmbed = new Discord.MessageEmbed()
+                                .setColor('#4de21b')
+                                .setAuthor(`:scroll: ${client.users.cache.get(user.id).username}'s Battle Diary`)
+                                .addFields(
+                                { name: `${`🥇`} You Win !\nYou get ${randomxp} :izakaya_lantern: and ${randomcoin} :coin:`, inline: true },
+                                )
+                                .setFooter('© RPG Bot 2022 | Battle Diary')
+                                .setTimestamp();
+                            message.author.send(battleDiaryEmbed)
+                        }
 
                         if(NB_DODGE == undefined) NB_DODGE = 0
                         if(NB_CRIT == undefined) NB_CRIT = 0

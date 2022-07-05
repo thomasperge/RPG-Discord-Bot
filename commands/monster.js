@@ -122,11 +122,13 @@ module.exports.run = async (client, message, args) => {
                                 .setColor('#48a329')
                                 .setAuthor(`:scroll: ${client.users.cache.get(user.id).username}'s Battle Diary`)
                                 .addFields(
-                                { name: `${`🪦`} You Lose...\nYou lose ${losecoins} :coin:`, inline: true },
+                                { name: `${`🪦`} You Lose...\nYou lose ${losecoin} :coin:`, inline: true },
                                 )
                                 .setFooter('© RPG Bot 2022 | Battle Diary')
                                 .setTimestamp();
-                            message.author.send(battleDiaryEmbed)
+                            message.author.send(battleDiaryEmbed).catch(error => {
+                                message.channel.send(`Something went wrong while I tried to send you a DM`)
+                            }) 
                         }
 
                         // Embed :
@@ -165,7 +167,9 @@ module.exports.run = async (client, message, args) => {
                                 )
                                 .setFooter('© RPG Bot 2022 | Battle Diary')
                                 .setTimestamp();
-                            message.author.send(battleDiaryEmbed)
+                            message.author.send(battleDiaryEmbed).catch(error => {
+                                message.channel.send(`Something went wrong while I tried to send you a DM`)
+                            })
                         }
 
                         if(NB_DODGE == undefined) NB_DODGE = 0

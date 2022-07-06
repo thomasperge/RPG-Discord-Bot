@@ -25,8 +25,6 @@ module.exports.run = async (client, message, args) => {
             }
             cooldownPlayers.set(message.author.id, new Date().getTime());
 
-            cooldownPlayers.set(message.author.id, new Date().getTime())
-
             function dodgeFunction(dodge){
                 // True = dodge, False = not dodge
                 if((Math.floor(Math.random() * 100) + 1) < dodge){
@@ -139,7 +137,7 @@ module.exports.run = async (client, message, args) => {
                             .addFields(
                             { name: '**🎯 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n `, inline: true },
                             { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
-                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER}x** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}x** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${"`▶ 🪦 YOU LOSE...`"}**\n${`🎁`} You lose **10%** of your :coin: (**${losecoin}**)...`, inline: false },
+                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${"`▶ 🪦 YOU LOSE...`"}**\n${`🎁`} You lose **10%** of your :coin: (**${losecoin}**)...`, inline: false },
                             )
                             .setFooter('© RPG Bot 2022 | ghelp')
                             .setTimestamp();
@@ -178,12 +176,12 @@ module.exports.run = async (client, message, args) => {
                         // === Embed ===
                         var battleEmbed = new Discord.MessageEmbed()
                             .setColor('#fc9803')
-                            .setAuthor(`${client.users.cache.get(user.id).username}'s Stats`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
+                            .setAuthor(`${client.users.cache.get(user.id).username}'s Battle`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
                             .setDescription(`**:crossed_swords: BATTLE**\n${client.users.cache.get(user.id).username} ${"`🆚`"} Monster\n`)
                             .addFields(
                             { name: '**🎯 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n `, inline: true },
                             { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
-                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER}x** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}x** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${"`▶ 🎉 YOU WIN !`"}**\n${`🎁`} And get: **${randomxp}** :izakaya_lantern: and **${randomcoin}** :coin:`, inline: false },
+                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${"`▶ 🎉 YOU WIN !`"}**\n${`🎁`} And get: **${randomxp}** :izakaya_lantern: and **${randomcoin}** :coin:`, inline: false },
 
                             )
                             .setFooter('© RPG Bot 2022 | ghelp')

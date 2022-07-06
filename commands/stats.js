@@ -31,5 +31,5 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.info = {
-  names: ['stats', 'statistics'],
+  names: ['stats', 'statistics', 'profile'],
 };

@@ -1,14 +1,53 @@
 {
     "boss1":{
-        "health": 250000
+        "name": "`Lithowanderer`",
+        "health": 115000,
+        "attack": 790
     },
     "boss2":{
-        "health": 415000
+        "name": "`Horned Lizard`",
+        "health": 125000,
+        "attack": 845
     },
     "boss3":{
-        "health": 750000
+        "name": "`Fire Beetle`",
+        "health": 145000,
+        "attack": 895
     },
     "boss4":{
-        "health": 1250000
+        "name": "`Lava Golem`",
+        "health": 205000,
+        "attack": 950
+    },
+    "boss5":{
+        "name": "`Crab`",
+        "health": 245000,
+        "attack": 1125
+    },
+    "boss6":{
+        "name": "`Thunder Fenrir`",
+        "health": 395000,
+        "attack": 1525
+    },
+    "boss7":{
+        "name": "`Motlen Fiend`",
+        "health": 425000,
+        "attack": 1655
+    },
+    "boss8":{
+        "name": "`Turtle`",
+        "health": 505000,
+        "attack": 1715
+    },
+    "boss9":{
+        "name": "`Lord`",
+        "health": 745000,
+        "attack": 1835
+    },
+    "boss10":{
+        "name": "`Valir`",
+        "health": 885000,
+        "attack": 1995
+
     }
 }

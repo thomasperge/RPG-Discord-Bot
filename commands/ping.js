@@ -5,7 +5,14 @@ const MONSTERCONFIG = require('../config/monster.json')
 module.exports.run = async (client, message, args) => {
     var user = message.author;
 
-    message.reply('Pong !')
+    message.reply('Pong !').then((sentMessage) => sentMessage.edit('Test'))
+
+
+    const msg = await message.channel.send("Beep");
+    msg.edit("Boop");
+    msg.react("👋")
+
+
 };
 
 module.exports.info = {

@@ -66,13 +66,13 @@ module.exports.run = async (client, message, args) => {
                         var randomUltimateLuckyStrike = Math.floor(Math.random() * 100)
 
                         if(randomUltimateReflect < playerStats.player.ultimate.reflect){
-                            ULTIMATEREFLECT = '\n:scroll: You use your Ultimate: `Reflect` :mirror:'
+                            ULTIMATEREFLECT = '\n📜 You use your Ultimate: `Reflect` :mirror:'
                         };
                         if(randomUltimateHeal < playerStats.player.ultimate.heal){
-                            ULTIMATEHEAL = '\n:scroll: You use your Ultimate: `Heal` :four_leaf_clover:'
+                            ULTIMATEHEAL = '\n📜 You use your Ultimate: `Heal` :four_leaf_clover:'
                         };
                         if(randomUltimateLuckyStrike < playerStats.player.ultimate.luckyStrike){
-                            ULTIMATELUCKYSTRIKE = '\n:scroll: You use your Ultimate: `Lucky Strike` :mending_heart:'
+                            ULTIMATELUCKYSTRIKE = '\n📜 You use your Ultimate: `Lucky Strike` :mending_heart:'
                         };
 
                         var attackDamagePLayer = Math.floor(Math.random() * MAXATK_PLAYER) + 1
@@ -117,10 +117,10 @@ module.exports.run = async (client, message, args) => {
                         // == DM DIARY ==
                         if(playerStats.player.other.dm){
                             var battleDiaryEmbed = new Discord.MessageEmbed()
-                                .setColor('#48a329')
-                                .setAuthor(`:scroll: ${client.users.cache.get(user.id).username}'s Battle Diary`)
+                                .setColor('#ff0000')
+                                .setAuthor(`📜 ${client.users.cache.get(user.id).username}'s Battle Diary (Monster)`)
                                 .addFields(
-                                { name: `${`🪦`} You Lose...\nYou lose ${losecoin} :coin:`, inline: true },
+                                { name: `${`🪦`} You Lose...\n`, value : `You lose ${losecoin} 🪙`},
                                 )
                                 .setFooter('© RPG Bot 2022 | Battle Diary')
                                 .setTimestamp();
@@ -137,7 +137,7 @@ module.exports.run = async (client, message, args) => {
                             .addFields(
                             { name: '**🎯 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n `, inline: true },
                             { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
-                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${"`▶ 🪦 YOU LOSE...`"}**\n${`🎁`} You lose **10%** of your :coin: (**${losecoin}**)...`, inline: false },
+                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${"`▶ 🪦 YOU LOSE...`"}**\n${`🎁`} You lose **10%** of your 🪙 (**${losecoin}**)...`, inline: false },
                             )
                             .setFooter('© RPG Bot 2022 | ghelp')
                             .setTimestamp();
@@ -158,10 +158,10 @@ module.exports.run = async (client, message, args) => {
                         // == DM DIARY ==
                         if(playerStats.player.other.dm){
                             var battleDiaryEmbed = new Discord.MessageEmbed()
-                                .setColor('#4de21b')
-                                .setAuthor(`:scroll: ${client.users.cache.get(user.id).username}'s Battle Diary`)
+                                .setColor('#17ff00')
+                                .setAuthor(`📜 ${client.users.cache.get(user.id).username}'s Battle Diary (Monster)`)
                                 .addFields(
-                                { name: `${`🥇`} You Win !\nYou get ${randomxp} :izakaya_lantern: and ${randomcoin} :coin:`, inline: true },
+                                { name: `${`🥇`} You Win !\n`, value : `You get ${randomxp} 🏮 and ${randomcoin} 🪙`},
                                 )
                                 .setFooter('© RPG Bot 2022 | Battle Diary')
                                 .setTimestamp();
@@ -181,7 +181,7 @@ module.exports.run = async (client, message, args) => {
                             .addFields(
                             { name: '**🎯 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n `, inline: true },
                             { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
-                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${"`▶ 🎉 YOU WIN !`"}**\n${`🎁`} And get: **${randomxp}** :izakaya_lantern: and **${randomcoin}** :coin:`, inline: false },
+                            { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER}x** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${"`▶ 🎉 YOU WIN !`"}**\n${`🎁`} And get: **${randomxp}** 🏮 and **${randomcoin}** 🪙`, inline: false },
 
                             )
                             .setFooter('© RPG Bot 2022 | ghelp')

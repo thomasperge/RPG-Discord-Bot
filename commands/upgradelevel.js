@@ -141,17 +141,17 @@ module.exports.run = async (client, message, args) => {
                             if(emoji === '🪞'){
                                 stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.reflect}% of reflect`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.reflect}%** of reflect`);
                             };
                             if(emoji === '❤️‍🩹'){
                                 stats.player.ultimate.heal = stats.player.ultimate.heal + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.heal}% of heal`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.heal}%** of heal`);
                             };
                             if(emoji === '🍀'){
                                 stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.luckyStrike}% of luckyStrike`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of luckyStrike`);
                             }
                     });
                     return
@@ -367,17 +367,17 @@ module.exports.run = async (client, message, args) => {
                             if(emoji === '🪞'){
                                 stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.reflect}% of reflect`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.reflect}%** of reflect`);
                             };
                             if(emoji === '❤️‍🩹'){
                                 stats.player.ultimate.heal = stats.player.ultimate.heal + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.heal}% of heal`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.heal}%** of heal`);
                             };
                             if(emoji === '🍀'){
                                 stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
                                 stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : ${stats.player.ultimate.luckyStrike}% of luckyStrike`);
+                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of luckyStrike`);
                             }
                     });
                     return

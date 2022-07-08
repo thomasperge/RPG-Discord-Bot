@@ -8,11 +8,12 @@ const shuffleTime = 0;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
+    var user = message.author
     // Stats
     let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
     if (!playerStats) return message.reply("`❌` you are not player ! : `gstart`");
     else {
-        /**=== Account BOSs ===*/
+        /**=== Account BOSS ===*/
         let boss = await BOSSDATA.findOne({ idboss: 0 });
         if (!boss) return message.reply("`❌` you are not player ! : `gstart`");
         else {
@@ -27,30 +28,27 @@ module.exports.run = async (client, message, args) => {
 
             cooldownPlayers.set(message.author.id, new Date().getTime());
 
+            // ==== Boss Attack ====
             var damage = Math.floor(Math.random() * playerStats.player.attack)
-            message.reply(`You attack the boss, and make : ${damage} dmg`)
+            message.reply(`You attack the boss, and make : ${damage} dmg (Wait pls soon)`)
+
             boss.stats.health -= damage
-            var arr2 = [
-                message.author.id,
-                damage,
-            ];
+            var newUser = {userId : message.author.id, dmg : damage}
+            // boss.userattack.push(newUser)
 
             if(boss.userattack.length != 0){
-                for(const element of boss.userattack){
-                    console.log(element)
-                    if(element[0] == message.author.id){
-                        element[1] = damage
-
-                        console.log(element[1])
-                    } else {
-                        console.log('New Player !')
-                        boss.userattack.push(arr2)
+                // Check si le joueur est deja enregistre dans la base de donnée
+                for(const userDb of boss.userattack){
+                    if(userDb.userId == user.id){
+                        console.log(`${user.username} dans la databse`)
+                    } else{
+                        console.log(`${user.username} n'est pas dans la databse`)
                     }
-                }
-            } else {
-                console.log('Anyone attack the boss..., New Player !')
-                boss.userattack.push(arr2)
+                    console.log(userDb)
+                }              
             }
+
+            // Save modules Boss
             boss.save()
         }
     }
@@ -58,5 +56,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-    names: ['bossattack'],
+    names: ['g'],
 };

@@ -6,7 +6,6 @@ const bossSchema = mongoose.Schema({
     userattack: Array,
     stats: {
         attack: Number,
-        defense: Number,
         health: Number,
     },
 })

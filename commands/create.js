@@ -74,7 +74,7 @@ module.exports.run = async (client, message, args) => {
 
     BOSS.findOne(
         {
-            bossname: 'Hello',
+            bossname: 'Lithowanderer',
         },
         (err, boss) => {
             if (err) console.log(err)
@@ -82,7 +82,7 @@ module.exports.run = async (client, message, args) => {
                 var bossPLayer = new BOSS({
                     idboss: 0,
                     bossname: BOSSCONFIG.boss1.name,
-                    bossattack: [],
+                    userattack: [],
                     stats: {
                         attack: BOSSCONFIG.boss1.attack,
                         health: BOSSCONFIG.boss1.health,

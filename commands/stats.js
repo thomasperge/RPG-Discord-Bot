@@ -41,12 +41,12 @@ module.exports.run = async (client, message, args) => {
   } else {
     /**=== Account Stats Other ===*/
     let playerStats2 = await PLAYERDATA.findOne({ userId: userInput.id });
-    if (!playerStats2) return message.reply("`❌` you are not player ! : `gstart`");
+    if (!playerStats2) return message.reply("`❌` this user is not a player... ! : `gstart`");
     else {
 
       /**=== Account Economie Other ===*/
       let balance2 = await BALANCEDATA.findOne({ userId: userInput.id });
-      if (!balance2) return message.reply("`❌` you are not player ! : `gstart`");
+      if (!balance2) return message.reply("`❌` this user is not a player... ! : `gstart`");
       else {
 
         function main2() {
@@ -63,7 +63,7 @@ module.exports.run = async (client, message, args) => {
             )
             .setFooter('© RPG Bot 2022 | ghelp')
             .setTimestamp();
-          message.channel.send(statsEmbed);
+          message.channel.send({embeds: [statsEmbed]});
         }
 
         main2()

@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
             )
             .setFooter('© RPG Bot 022 | ghelp')
             .setTimestamp();
-          message.channel.send(statsEmbed);
+          message.channel.send({embeds: [statsEmbed]});
         }
 
         main()

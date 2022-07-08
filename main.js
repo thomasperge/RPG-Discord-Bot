@@ -1,7 +1,13 @@
 // ALL REQUIRE
+// 12.2.0
 const Discord = require('discord.js');
 const fs = require('fs');
 const config = require('./config.json');
+
+
+const { Client, Intents } = require('discord.js');
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+
 
 const mongoose = require('mongoose');
 mongoose
@@ -11,7 +17,7 @@ mongoose
    })
    .then(() => console.log('MongoDB : Ready !'));
 
-const client = new Discord.Client();
+
 client.commands = new Discord.Collection();
 client.aliases = new Discord.Collection();
 ['commands', 'cooldowns'].forEach((x) => (client[x] = new Discord.Collection()));
@@ -34,16 +40,8 @@ fs.readdir('./commands/', (err, files) => {
    });
 });
 
-// BOT READY
-client.on('ready', () => {
-   console.log('RPG Bot: Ready !');
-   client.user.setActivity(`rpg helping | ghelp`);
-});
-client.login(config.token);
 
-client.on('message', async (message) => {
-   if (message.channel.type === 'dm') return;
-
+client.on('messageCreate', async (message) => {
    //MISES EN PLACE DU PREFIX
    let prefix = config.prefix;
    let messageArray = message.content.split(' ');
@@ -56,3 +54,20 @@ client.on('message', async (message) => {
       if (commandeFile) commandeFile.run(client, message, Args, args);
    };
 });
+
+// BOT READY
+client.on('ready', () => {
+   console.log('RPG Bot: Ready !');
+   client.user.setActivity(`rpg helping | ghelp`);
+});
+
+
+client.on('interactionCreate', async (interaction) => {
+   if(interaction.isButton()){
+      if(interaction.customId == 'test'){
+         interaction.reply('Hello 1')
+      }
+   }
+})
+
+client.login(config.token);

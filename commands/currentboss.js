@@ -20,7 +20,7 @@ module.exports.run = async (client, message, args) => {
                 .setDescription(`**${"`➡️`"} 📊 CURRENTLY BOSS WORLD :**\n${"`⚔️`"} **Current World Boss**: ${boss.bossname}\n${"`🔥`"} **Attack** : ${boss.stats.attack}\n${"`❤️`"} **Health** : ${boss.stats.health}`)
                 .setFooter('© RPG Bot 2022 | ghelp')
                 .setTimestamp();
-            return message.channel.send(bossEmbed);
+            return message.channel.send({embeds: [bossEmbed]});
         }
     }
 

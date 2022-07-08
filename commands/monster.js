@@ -124,7 +124,7 @@ module.exports.run = async (client, message, args) => {
                                 )
                                 .setFooter('© RPG Bot 2022 | Battle Diary')
                                 .setTimestamp();
-                            message.author.send(battleDiaryEmbed).catch(error => {
+                            message.author.send({embeds: [battleDiaryEmbed]}).catch(error => {
                                 message.channel.send(`Something went wrong while I tried to send you a DM`)
                             }) 
                         }
@@ -141,7 +141,7 @@ module.exports.run = async (client, message, args) => {
                             )
                             .setFooter('© RPG Bot 2022 | ghelp')
                             .setTimestamp();
-                        return message.channel.send(battleEmbed);
+                        return message.channel.send({embeds: [battleEmbed]});
                     }
                     if (HEALTH_MONSTER <= 0){
                         // Delete 1 monster
@@ -165,7 +165,7 @@ module.exports.run = async (client, message, args) => {
                                 )
                                 .setFooter('© RPG Bot 2022 | Battle Diary')
                                 .setTimestamp();
-                            message.author.send(battleDiaryEmbed).catch(error => {
+                            message.author.send({embeds: [battleDiaryEmbed]}).catch(error => {
                                 message.channel.send(`Something went wrong while I tried to send you a DM`)
                             })
                         }
@@ -186,7 +186,7 @@ module.exports.run = async (client, message, args) => {
                             )
                             .setFooter('© RPG Bot 2022 | ghelp')
                             .setTimestamp();
-                        return message.channel.send(battleEmbed);
+                        return message.channel.send({embeds: [battleEmbed]});
                     }
                 }
             }

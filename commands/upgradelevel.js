@@ -42,7 +42,7 @@ module.exports.run = async (client, message, args) => {
                         )
                         .setFooter('© RPG Bot 2022 | ghelp')
                         .setTimestamp();
-                    message.channel.send(upgradeEmbed);
+                    message.channel.send({embeds: [upgradeEmbed]});
                 }
             }
 

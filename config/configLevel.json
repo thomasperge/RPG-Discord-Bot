@@ -1,4 +1,11 @@
 {
+    "level0":{
+        "stats": {
+            "attack": 100,
+            "defense": 20,
+            "health": 2500
+        }
+    },
     "level1":{
         "XPcost": 5000,
         "XPmax": 2,   

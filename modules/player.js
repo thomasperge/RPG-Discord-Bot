@@ -23,6 +23,7 @@ const playerSchema = mongoose.Schema({
         },
         other:{
             dm: Boolean,
+            bossattack: Number
         },
     },
 })

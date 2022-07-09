@@ -70,4 +70,7 @@ client.on('interactionCreate', async (interaction) => {
    }
 })
 
+// boss.userattack.find((obj => obj[0] === user.id))[1]
+
+
 client.login(config.token);

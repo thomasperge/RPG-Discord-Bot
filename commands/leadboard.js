@@ -31,6 +31,7 @@ module.exports.run = async (client, message, args) => {
             .setFooter('© RPG Bot 2022 | ghelp')
             .setTimestamp();
         return message.channel.send({embeds: [leadboardEmbed]});
+
     } else if(item == 'coin' || item == 'coins' || item == 'gold'){
         // LeadBoard Coins
         const sortedCollection = await BALANCEDATA.find()
@@ -50,6 +51,7 @@ module.exports.run = async (client, message, args) => {
             .setFooter('© RPG Bot 2022 | ghelp')
             .setTimestamp();
         return message.channel.send({embeds: [leadboardEmbed]});
+        
     } else {
         return message.reply(`${inlineCode("❌")} Use gleaderboard ${inlineCode("gold")} or ${inlineCode("xp")}!`)
     }

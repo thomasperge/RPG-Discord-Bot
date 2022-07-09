@@ -9,18 +9,13 @@ const shuffleTime = 0;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
-    var user = message.author
-    // Stats
-    let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
-    if (!playerStats) return message.reply("`❌` you are not player ! : `gstart`");
-    else {
-        /**=== Account BOSS ===*/
-        let boss = await BOSSDATA.findOne({ idboss: 0 });
-        if (!boss) return message.reply("`❌` you are not player ! : `gstart`");
-        else {
-            console.log('t', boss.userattack.find((obj => obj.userId === user.id)).dmg)
-        }
+
+    let destinataire = message.mentions.users.first();
+    if (!destinataire){
+        return message.channel.send("L'utilisateur n'existe pas");
     }
+    destinataire.author.send(args.join(" "));
+    
 
 };
 

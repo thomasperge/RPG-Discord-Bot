@@ -1,8 +1,6 @@
 const Discord = require('discord.js')
 const PLAYERDATA = require('../modules/player.js')
 const ECONOMIEDATA = require('../modules/economie.js')
-const BOSSCONFIG = require('../config/boss.json')
-const BOSS = require('../modules/boss.js')
 
 module.exports.run = async (client, message, args) => {
     var user = message.author

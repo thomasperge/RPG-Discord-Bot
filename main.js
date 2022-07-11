@@ -6,7 +6,7 @@ const config = require('./config.json');
 
 
 const { Client, Intents } = require('discord.js');
-const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Discord.Intents.FLAGS.DIRECT_MESSAGES] });
 
 
 const mongoose = require('mongoose');
@@ -62,13 +62,16 @@ client.on('ready', () => {
 });
 
 
-client.on('interactionCreate', async (interaction) => {
-   if(interaction.isButton()){
-      if(interaction.customId == 'test'){
-         interaction.reply('Hello 1')
-      }
-   }
-})
+// client.on('interactionCreate', async (interaction) => {
+//    if(interaction.isButton()) {
+//       if(interaction.customId === 'yes') {
+//          return
+//       }if(interaction.customId === 'no') {
+//          return
+//       }
+//    }
+// })
+
 
 // boss.userattack.find((obj => obj[0] === user.id))[1]
 

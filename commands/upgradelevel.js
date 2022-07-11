@@ -136,7 +136,7 @@ module.exports.run = async (client, message, args) => {
                         .setFooter('© RPG Bot 2022 | ghelp')
                         .setTimestamp();
 
-                    await message.reply(ultimateEmbed).then(async msg => {
+                    await message.reply({embeds: [ultimateEmbed]}).then(async msg => {
                         const emoji = await promptMessage(msg, message.author, 3800, ['🪞', '❤️‍🩹', '🍀']);
                             if(emoji === '🪞'){
                                 stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
@@ -249,7 +249,7 @@ module.exports.run = async (client, message, args) => {
                         .setFooter('© RPG Bot 2022 | ghelp')
                         .setTimestamp();
 
-                    await message.reply(ultimateEmbed).then(async msg => {
+                    await message.reply({embeds: [ultimateEmbed]}).then(async msg => {
                         const emoji = await promptMessage(msg, message.author, 3800, ['🪞', '❤️‍🩹', '🍀']);
                             if(emoji === '🪞'){
                                 stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
@@ -362,7 +362,7 @@ module.exports.run = async (client, message, args) => {
                         .setFooter('© RPG Bot 2022 | ghelp')
                         .setTimestamp();
 
-                    await message.reply(ultimateEmbed).then(async msg => {
+                    await message.reply({embeds: [ultimateEmbed]}).then(async msg => {
                         const emoji = await promptMessage(msg, message.author, 3800, ['🪞', '❤️‍🩹', '🍀']);
                             if(emoji === '🪞'){
                                 stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5

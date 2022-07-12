@@ -4,7 +4,7 @@ const { MessageActionRow, MessageButton } = require('discord.js');
 
 module.exports.run = async (client, message, args) => {
 
-    message.react('👍').then(() => message.react('👎'));
+    message.reply('TEst').then(message.react('👍').then(() => message.react('👎')));
 
     const filter = (reaction, user) => {
         return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;

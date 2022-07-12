@@ -3,14 +3,16 @@ const BALANCEDATA = require('../modules/economie.js');
 const PLAYERSTATSDATA = require('../modules/player.js')
 const SQUADDATA = require('../modules/squad.js')
 const CONFIGLEVEL = require('../config/configLevel.json')
-const { promptMessage } = require("../function.js");
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
+const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 
 // Config Cooldown :
-const shuffleTime = 300000;
+const shuffleTime = 0;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
+    var user = message.author
+
     //  ======= CoolDowns: 5min =======
     if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
         message.channel.send('⌚ Please wait `' + Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000) + ' seconds` and try again.');
@@ -21,14 +23,16 @@ module.exports.run = async (client, message, args) => {
 
     var user = message.author;
 
-    /**=== Account Economie ===*/
+    // ==== Economie Accout ====
     let balance = await BALANCEDATA.findOne({ userId: message.author.id });
     if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
     else {
+
+        // ==== Player Accout ====
         let stats = await PLAYERSTATSDATA.findOne({ userId: message.author.id });
         if (!stats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
         else {
-
+                
             function checkPrice(priceNextLevel){
                 if(priceNextLevel <= balance.eco.xp){
                     return true
@@ -39,7 +43,7 @@ module.exports.run = async (client, message, args) => {
 
             // Function display upgrade level :
             function upgradeLevel(priceNextLevel, nextLevel){
-                if(priceNextLevel > balance.eco.xp) message.reply('`❌` You have enought xp... !')
+                if(priceNextLevel > balance.eco.xp) message.reply(`${inlineCode('❌')} You have not enought Xp...`)
                 if(priceNextLevel <= balance.eco.xp){
                     // Pricing :
                     balance.eco.xp = balance.eco.xp - priceNextLevel
@@ -48,10 +52,10 @@ module.exports.run = async (client, message, args) => {
                     // Embed :
                     var upgradeEmbed = new Discord.MessageEmbed()
                         .setColor('#fc9803')
-                        .setAuthor(`${client.users.cache.get(user.id).username}'s Upgrade Level`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
-                        .setDescription(`** ${`:white_check_mark:`} NEW LEVEL !**\n${`:arrow_forward:`} You are now levels: **${nextLevel}** !`)
+                        .setAuthor(`${user.username}'s Upgrade Level`)
+                        .setDescription(`** ${inlineCode('✅')} NEW LEVEL !**\n${inlineCode('➡️')} You are now levels: **${nextLevel}** !\n🪧 Cost: ${inlineCode(priceNextLevel)} 🏮`)
                         .addFields(
-                            { name: '**📊 NEW STATS :**\n', value: `:fire: ${"`Attack`"}: ${stats.player.attack}\n:shield: ${"`Defense`"}: ${stats.player.defense}\n:heart: ${"`Health`"}: ${stats.player.health}\n:dash: ${"`Dodge`"}: ${stats.player.dodge}%\n:boom: ${"`Critick`"}: ${stats.player.crit}%\n:heavy_multiplication_x: ${"`Critick Multplicator`"}: ${stats.player.critMultplicator}%\n:comet: ${"`Attack Speed`"}: ${stats.player.attackSpeed}%\n:heart_on_fire: ${"`Life Steal`"}: ${stats.player.lifeSteal}%\n:wind_chime: ${"`Execute`"}: ${stats.player.execute}\n:fire_extinguisher: ${"`Aegis`"}: ${stats.player.aegis}\n:firecracker: ${"`Vengance`"}: ${stats.player.vengeance}\n`, inline: true },
+                            { name: '**📊 NEW STATS :**\n', value: `:fire: ${inlineCode('Attack')}: ${stats.player.attack}\n:shield: ${inlineCode('Defense')}: ${stats.player.defense}\n:heart: ${inlineCode('Health')}: ${stats.player.health}\n:dash: ${inlineCode('Dodge')}: ${stats.player.dodge}%\n:boom: ${inlineCode('Critick')}: ${stats.player.crit}%\n:heavy_multiplication_x: ${inlineCode('Critick Multplicator')}: ${stats.player.critMultplicator}%\n:heart_on_fire: ${inlineCode('Life Steal')}: ${stats.player.lifeSteal}%\n:wind_chime: ${inlineCode('Execute')}: ${stats.player.execute}\n:fire_extinguisher: ${inlineCode('Aegis')}: ${stats.player.aegis}\n`, inline: true },
                         )
                         .setFooter('© RPG Bot 2022 | ghelp')
                         .setTimestamp();
@@ -60,8 +64,7 @@ module.exports.run = async (client, message, args) => {
             }
 
 
-            function addSquadXp(levelUser){
-                let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+            function addSquadXp(squad, levelUser){
                 if (!squad) return
                 else {
                     squad.squadXp += Math.floor(levelUser * 1350)
@@ -85,10 +88,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level1.stats.vengeance
                     stats.player.level = 1
                     stats.save()
-                    addSquadXp(1)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 1)
+
                     return upgradeLevel(CONFIGLEVEL.level1.XPcost, 1)
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level1.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level1.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 1){
@@ -107,10 +113,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level2.stats.vengeance
                     stats.player.level = 2
                     stats.save()
-                    addSquadXp(2)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 2)
+
                     return upgradeLevel(CONFIGLEVEL.level2.XPcost, CONFIGLEVEL.level1.nextLevel)
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level2.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level2.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 2){
@@ -129,10 +138,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level3.stats.vengeance
                     stats.player.level = 3
                     stats.save()
-                    addSquadXp(3)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 3)
+
                     return upgradeLevel(CONFIGLEVEL.level3.XPcost, CONFIGLEVEL.level2.nextLevel)
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level3.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level3.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 3){
@@ -150,41 +162,76 @@ module.exports.run = async (client, message, args) => {
                     stats.player.aegis = CONFIGLEVEL.level4.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level4.stats.vengeance
                     stats.player.level = 4
-                    stats.save()
-                    addSquadXp(4)
+
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 4)
+
                     upgradeLevel(CONFIGLEVEL.level4.XPcost, CONFIGLEVEL.level3.nextLevel)
-                    // Choose Ultimate :
+
+
+                    // ==== Choose Ultimate : ====
+                    const row = new MessageActionRow()
+                        .addComponents(
+                            new MessageButton()
+                                .setCustomId('reflect')
+                                .setLabel('Reflect')
+                                .setStyle('PRIMARY')
+                                .setEmoji('🪞'),
+                            
+                            new MessageButton()
+                                .setCustomId('lucky')
+                                .setLabel('Lucky Strike')
+                                .setStyle('DANGER')
+                                .setEmoji('❤️‍🩹'),
+
+                            new MessageButton()
+                                .setCustomId('heal')
+                                .setLabel('Heal')
+                                .setStyle('SUCCESS')
+                                .setEmoji('🍀'),
+                        );
+
                     var ultimateEmbed = new Discord.MessageEmbed()
                         .setColor('#fc9803')
-                        .setAuthor(`${client.users.cache.get(user.id).username}'s ultimate`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
+                        .setAuthor(`🪧 ${user.username}'s Ultimate`)
                         .addFields(
-                        { name: '**📰 Choose Ultimate :**\n', value: `:mirror: ${"`Reflect`"}: **+5%**\n:mending_heart: ${"`Heal`"}: **+5%**\n:four_leaf_clover: ${"`Lucky Strike`"}: **+5%**`, inline: true },
+                        { name: '**📰 Choose Ultimate :**\n', value: `🪞 ${inlineCode('Reflect')}: **+5%**\n❤️‍🩹 ${inlineCode('Heal')}: **+5%**\n🍀 ${inlineCode('Lucky Strike')}: **+5%**`, inline: true },
                         )
-                        .setFooter('© RPG Bot 2022 | ghelp')
                         .setTimestamp();
+                    message.reply({ embeds: [ultimateEmbed], components: [row], ephemeral: true });
 
-                    await message.reply({embeds: [ultimateEmbed]}).then(async msg => {
-                        const emoji = await promptMessage(msg, message.author, 3800, ['🪞', '❤️‍🩹', '🍀']);
-                            if(emoji === '🪞'){
-                                stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
-                                stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.reflect}%** of reflect`);
-                            };
-                            if(emoji === '❤️‍🩹'){
-                                stats.player.ultimate.heal = stats.player.ultimate.heal + 5
-                                stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.heal}%** of heal`);
-                            };
-                            if(emoji === '🍀'){
-                                stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
-                                stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of luckyStrike`);
-                            }
+
+                    const filter = (interaction)  => {
+                        if(interaction.user.id === message.author.id) return true
+                        return interaction.reply({ content: 'You cant use this button', ephemeral: true })
+                    }
+                    const collector = message.channel.createMessageComponentCollector({
+                        filter, 
+                        max: 1
+                    })
+                
+                    collector.on('end', async (ButtonInteraction) => {
+                        const id = ButtonInteraction.first().customId
+                        if(id === 'reflect'){
+                            stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
+                            stats.save()
+                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.reflect}%** of Reflect`);
+                        }
+                        if(id === 'lucky'){
+                            stats.player.ultimate.heal = stats.player.ultimate.heal + 5
+                            stats.save()
+                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.heal}%** of Heal`);
+                        }
+                        if(id === 'Heal'){
+                            stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
+                            stats.save()
+                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of Lucky Strike`);
+                        }
                     });
-                    return
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level4.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
-                }
+                    return message.reply(`❌ **${CONFIGLEVEL.level4.XPcost - balance.eco.xp}** 🏮 are missing`)
+                };
             };
             if(stats.player.level == 4){
                 if(checkPrice(CONFIGLEVEL.level5.XPcost)){
@@ -202,10 +249,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level5.stats.vengeance
                     stats.player.level = 5
                     stats.save()
-                    addSquadXp(5)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 5)
+
                     return upgradeLevel(CONFIGLEVEL.level5.XPcost, CONFIGLEVEL.level4.nextLevel)
                 }  else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level5.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level5.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 5){
@@ -224,10 +274,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level6.stats.vengeance
                     stats.player.level = 6
                     stats.save()
-                    addSquadXp(6)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 6)
+
                     return upgradeLevel(CONFIGLEVEL.level6.XPcost, CONFIGLEVEL.level5.nextLevel) 
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level6.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level6.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 6){
@@ -246,10 +299,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level7.stats.vengeance
                     stats.player.level = 7
                     stats.save()
-                    addSquadXp(7)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 7)
+
                     return upgradeLevel(CONFIGLEVEL.level7.XPcost, CONFIGLEVEL.level6.nextLevel)  
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level7.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level7.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 7){
@@ -267,40 +323,74 @@ module.exports.run = async (client, message, args) => {
                     stats.player.aegis = CONFIGLEVEL.level8.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level8.stats.vengeance
                     stats.player.level = 8
-                    stats.save()
-                    addSquadXp(8)
+
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 8)
+
                     upgradeLevel(CONFIGLEVEL.level8.XPcost, CONFIGLEVEL.level7.nextLevel)
-                    // Choose Ultimate :
+
+                    // ==== Choose Ultimate : ====
+                    const row = new MessageActionRow()
+                        .addComponents(
+                            new MessageButton()
+                                .setCustomId('reflect')
+                                .setLabel('Reflect')
+                                .setStyle('PRIMARY')
+                                .setEmoji('🪞'),
+                            
+                            new MessageButton()
+                                .setCustomId('lucky')
+                                .setLabel('Lucky Strike')
+                                .setStyle('DANGER')
+                                .setEmoji('❤️‍🩹'),
+
+                            new MessageButton()
+                                .setCustomId('heal')
+                                .setLabel('Heal')
+                                .setStyle('SUCCESS')
+                                .setEmoji('🍀'),
+                        );
+
                     var ultimateEmbed = new Discord.MessageEmbed()
                         .setColor('#fc9803')
-                        .setAuthor(`${client.users.cache.get(user.id).username}'s ultimate`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
+                        .setAuthor(`🪧 ${user.username}'s Ultimate`)
                         .addFields(
-                        { name: '**📰 Choose Ultimate :**\n', value: `:mirror: ${"`Reflect`"}: **+5%**\n:mending_heart: ${"`Heal`"}: **+5%**\n:four_leaf_clover: ${"`Lucky Strike`"}: **+5%**`, inline: true },
+                        { name: '**📰 Choose Ultimate :**\n', value: `🪞 ${inlineCode('Reflect')}: **+5%**\n❤️‍🩹 ${inlineCode('Heal')}: **+5%**\n🍀 ${inlineCode('Lucky Strike')}: **+5%**`, inline: true },
                         )
-                        .setFooter('© RPG Bot 2022 | ghelp')
                         .setTimestamp();
+                    message.reply({ embeds: [ultimateEmbed], components: [row], ephemeral: true });
 
-                    await message.reply({embeds: [ultimateEmbed]}).then(async msg => {
-                        const emoji = await promptMessage(msg, message.author, 3800, ['🪞', '❤️‍🩹', '🍀']);
-                            if(emoji === '🪞'){
-                                stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
-                                stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.reflect}%** of reflect`);
-                            };
-                            if(emoji === '❤️‍🩹'){
-                                stats.player.ultimate.heal = stats.player.ultimate.heal + 5
-                                stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.heal}%** of heal`);
-                            };
-                            if(emoji === '🍀'){
-                                stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
-                                stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of luckyStrike`);
-                            }
+
+                    const filter = (interaction)  => {
+                        if(interaction.user.id === message.author.id) return true
+                        return interaction.reply({ content: 'You cant use this button', ephemeral: true })
+                    }
+                    const collector = message.channel.createMessageComponentCollector({
+                        filter, 
+                        max: 1
+                    })
+                
+                    collector.on('end', async (ButtonInteraction) => {
+                        const id = ButtonInteraction.first().customId
+                        if(id === 'reflect'){
+                            stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
+                            stats.save()
+                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.reflect}%** of Reflect`);
+                        }
+                        if(id === 'lucky'){
+                            stats.player.ultimate.heal = stats.player.ultimate.heal + 5
+                            stats.save()
+                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.heal}%** of Heal`);
+                        }
+                        if(id === 'Heal'){
+                            stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
+                            stats.save()
+                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of Lucky Strike`);
+                        }
                     });
-                    return
                 }  else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level8.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level8.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 8){
@@ -319,10 +409,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level9.stats.vengeance
                     stats.player.level = 9
                     stats.save()
-                    addSquadXp(9)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 9)
+
                     return upgradeLevel(CONFIGLEVEL.level9.XPcost, CONFIGLEVEL.level8.nextLevel)  
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level9.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level9.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 9){
@@ -341,10 +434,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level10.stats.vengeance
                     stats.player.level = 10
                     stats.save()
-                    addSquadXp(10)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 10)
+
                     return upgradeLevel(CONFIGLEVEL.level10.XPcost, CONFIGLEVEL.level9.nextLevel)  
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level10.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level10.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 10){
@@ -363,10 +459,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level11.stats.vengeance
                     stats.player.level = 11
                     stats.save()
-                    addSquadXp(11)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 11)
+
                     return upgradeLevel(CONFIGLEVEL.level11.XPcost, CONFIGLEVEL.level10.nextLevel)  
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level11.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level11.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 11){
@@ -384,40 +483,74 @@ module.exports.run = async (client, message, args) => {
                     stats.player.aegis = CONFIGLEVEL.level12.stats.aegis
                     stats.player.vengeance = CONFIGLEVEL.level12.stats.vengeance
                     stats.player.level = 12
-                    stats.save()
-                    addSquadXp(12)
+
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 12)
+
                     upgradeLevel(CONFIGLEVEL.level12.XPcost, CONFIGLEVEL.level11.nextLevel)
-                    // Choose Ultimate :
+
+                    // ==== Choose Ultimate : ====
+                    const row = new MessageActionRow()
+                        .addComponents(
+                            new MessageButton()
+                                .setCustomId('reflect')
+                                .setLabel('Reflect')
+                                .setStyle('PRIMARY')
+                                .setEmoji('🪞'),
+                            
+                            new MessageButton()
+                                .setCustomId('lucky')
+                                .setLabel('Lucky Strike')
+                                .setStyle('DANGER')
+                                .setEmoji('❤️‍🩹'),
+
+                            new MessageButton()
+                                .setCustomId('heal')
+                                .setLabel('Heal')
+                                .setStyle('SUCCESS')
+                                .setEmoji('🍀'),
+                        );
+
                     var ultimateEmbed = new Discord.MessageEmbed()
                         .setColor('#fc9803')
-                        .setAuthor(`${client.users.cache.get(user.id).username}'s ultimate`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
+                        .setAuthor(`🪧 ${user.username}'s Ultimate`)
                         .addFields(
-                        { name: '**📰 Choose Ultimate :**\n', value: `:mirror: ${"`Reflect`"}: **+5%**\n:mending_heart: ${"`Heal`"}: **+5%**\n:four_leaf_clover: ${"`Lucky Strike`"}: **+5%**`, inline: true },
+                        { name: '**📰 Choose Ultimate :**\n', value: `🪞 ${inlineCode('Reflect')}: **+5%**\n❤️‍🩹 ${inlineCode('Heal')}: **+5%**\n🍀 ${inlineCode('Lucky Strike')}: **+5%**`, inline: true },
                         )
-                        .setFooter('© RPG Bot 2022 | ghelp')
                         .setTimestamp();
+                    message.reply({ embeds: [ultimateEmbed], components: [row], ephemeral: true });
 
-                    await message.reply({embeds: [ultimateEmbed]}).then(async msg => {
-                        const emoji = await promptMessage(msg, message.author, 3800, ['🪞', '❤️‍🩹', '🍀']);
-                            if(emoji === '🪞'){
-                                stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
-                                stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.reflect}%** of reflect`);
-                            };
-                            if(emoji === '❤️‍🩹'){
-                                stats.player.ultimate.heal = stats.player.ultimate.heal + 5
-                                stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.heal}%** of heal`);
-                            };
-                            if(emoji === '🍀'){
-                                stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
-                                stats.save()
-                                return message.channel.send(`${`:white_check_mark: `} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of luckyStrike`);
-                            }
+
+                    const filter = (interaction)  => {
+                        if(interaction.user.id === message.author.id) return true
+                        return interaction.reply({ content: 'You cant use this button', ephemeral: true })
+                    }
+                    const collector = message.channel.createMessageComponentCollector({
+                        filter, 
+                        max: 1
+                    })
+                
+                    collector.on('end', async (ButtonInteraction) => {
+                        const id = ButtonInteraction.first().customId
+                        if(id === 'reflect'){
+                            stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
+                            stats.save()
+                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.reflect}%** of Reflect`);
+                        }
+                        if(id === 'lucky'){
+                            stats.player.ultimate.heal = stats.player.ultimate.heal + 5
+                            stats.save()
+                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.heal}%** of Heal`);
+                        }
+                        if(id === 'Heal'){
+                            stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
+                            stats.save()
+                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of Lucky Strike`);
+                        }
                     });
-                    return
                 }  else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level12.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level12.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 12){
@@ -436,10 +569,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level13.stats.vengeance
                     stats.player.level = 13
                     stats.save()
-                    addSquadXp(13)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 13)
+
                     return upgradeLevel(CONFIGLEVEL.level13.XPcost, CONFIGLEVEL.level12.nextLevel)  
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level13.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level13.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 13){
@@ -458,10 +594,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level14.stats.vengeance
                     stats.player.level = 14
                     stats.save()
-                    addSquadXp(14)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 14)
+
                     return upgradeLevel(CONFIGLEVEL.level14.XPcost, CONFIGLEVEL.level13.nextLevel)  
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level14.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level14.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 14){
@@ -480,10 +619,13 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level15.stats.vengeance
                     stats.player.level = 15
                     stats.save()
-                    addSquadXp(15)
+                    // ==== Squad Accout ====
+                    let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                    if (squad) addSquadXp(squad, 15)
+
                     return upgradeLevel(CONFIGLEVEL.level15.XPcost, CONFIGLEVEL.level14.nextLevel)  
                 } else {
-                    return message.reply(`❌ **${CONFIGLEVEL.level15.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
+                    return message.reply(`❌ **${CONFIGLEVEL.level15.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
             if(stats.player.level == 15){

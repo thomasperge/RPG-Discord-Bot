@@ -28,8 +28,7 @@ module.exports.run = async (client, message, args) => {
     else if(isNaN(itemUpgrade)) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gugradesquadboss/gusb <attack/health> <amout>")}`);
     else if((itemUpgrade == 'attack' || itemUpgrade == 'atk' || itemUpgrade == 'a' || itemUpgrade == 'health' || itemUpgrade == 'hlh' || itemUpgrade == 'h') && isNaN(amoutUpgrade) == false) {
 
-        function playerInSquad(){
-            let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
+        function playerInSquad(playerStats){
             if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
             else {
                 if(playerStats.player.other.squadName != undefined) return true
@@ -51,7 +50,7 @@ module.exports.run = async (client, message, args) => {
                 if (!squad) return message.reply(`${inlineCode("😵‍💫")} squad are not available...`)
                 else {
                     // === PLayer is in Squad ===
-                    if(playerInSquad()){
+                    if(playerInSquad(playerStats)){
 
                     // === Initialize Player is the leader of the team ===
                         if(playerStats.userId === squad.leader[0]){

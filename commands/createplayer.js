@@ -1,17 +1,19 @@
-const PLAYERDATA = require('../modules/player.js')
-const ECONOMIEDATA = require('../modules/economie.js')
+const PLAYER = require('../modules/player.js')
+const ECONOMIE = require('../modules/economie.js')
+const BOSS = require('../modules/boss.js')
+const BOSSCONFIG = require('../config/boss.json')
 
 module.exports.run = async (client, message, args) => {
     var user = message.author
     // ======= ACCOUNT PLAYER =======
-    PLAYERDATA.findOne(
+    PLAYER.findOne(
         {
             userId: message.author.id,
         },
         (err, player) => {
             if (err) console.log(err)
             if (!player) {
-                var accountPLayer = new PLAYERDATA({
+                var accountPLayer = new PLAYER({
                     userId: message.author.id,
                     pseudo: message.author.username,
                     player: {
@@ -47,19 +49,19 @@ module.exports.run = async (client, message, args) => {
     );
 
     // ======= ECONOMIE PLAYER =======
-    ECONOMIEDATA.findOne(
+    ECONOMIE.findOne(
         {
             userId: message.author.id,
         },
         (err, economie) => {
             if (err) console.log(err)
             if (!economie) {
-                var economiePLayer = new ECONOMIEDATA({
+                var economiePLayer = new ECONOMIE({
                     userId: message.author.id,
                     pseudo: message.author.username,
                     eco: {
-                        coins: 25,
-                        xp: 0,
+                        coins: 25_000_000,
+                        xp: 99_750_000,
                     },
                 })
                 economiePLayer.save()
@@ -70,28 +72,28 @@ module.exports.run = async (client, message, args) => {
         }
     );
 
-    // BOSS.findOne(
-    //     {
-    //         bossname: 'Lithowanderer',
-    //     },
-    //     (err, boss) => {
-    //         if (err) console.log(err)
-    //         if (!boss) {
-    //             var bossPLayer = new BOSS({
-    //                 idboss: 0,
-    //                 bossname: BOSSCONFIG.boss1.name,
-    //                 stats: {
-    //                     attack: BOSSCONFIG.boss1.attack,
-    //                     health: BOSSCONFIG.boss1.health,
-    //                 },
-    //             })
-    //             bossPLayer.save()
-    //             message.reply('`✅` Boss create !')
-    //         } else {
-    //             message.reply('`❌` Boss existing already !')
-    //         }
-    //     }
-    // );
+    BOSS.findOne(
+        {
+            bossname: 'Lithowanderer',
+        },
+        (err, boss) => {
+            if (err) console.log(err)
+            if (!boss) {
+                var bossPLayer = new BOSS({
+                    idboss: 0,
+                    bossname: BOSSCONFIG.boss1.name,
+                    stats: {
+                        attack: BOSSCONFIG.boss1.attack,
+                        health: BOSSCONFIG.boss1.health,
+                    },
+                })
+                bossPLayer.save()
+                message.reply('`✅` Boss create !')
+            } else {
+                message.reply('`❌` Boss existing already !')
+            }
+        }
+    );
 
 
 }

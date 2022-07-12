@@ -42,7 +42,7 @@ module.exports.run = async (client, message, args) => {
               { name: '**📊 Info :**\n', value: `:pencil: ${inlineCode('Level')}: ${playerStats.player.level}`, inline: true },
               { name: '**🏦 Balance :**\n', value: `🪙: ${balance.eco.coins}\n🏮: ${balance.eco.xp}`, inline: true },
               { name: '**🛖 Squad :**\n', value: `🪧: ${squad}`, inline: false },
-              { name: '**📈 Stats :**\n', value: `:fire: ${inlineCode('Attack')}}: ${playerStats.player.attack}\n:shield: ${inlineCode('Defense')}: ${playerStats.player.defense}\n:heart: ${inlineCode('Health')}: ${playerStats.player.health}\n:dash: ${inlineCode('Dodge')}: ${playerStats.player.dodge}%\n:boom: ${inlineCode('Critick')}: ${playerStats.player.crit}%\n:heavy_multiplication_x: ${inlineCode('Critick Multplicator')}: ${playerStats.player.critMultplicator}%\n:heart_on_fire: ${inli('Life Steal')}: ${playerStats.player.lifeSteal}%\n:wind_chime: ${inli('Execute')}: ${playerStats.player.execute}\n:fire_extinguisher: ${inlineCode('Aegis')}: ${playerStats.player.aegis}\n`, inline: false },
+              { name: '**📈 Stats :**\n', value: `:fire: ${inlineCode('Attack')}: ${playerStats.player.attack}\n:shield: ${inlineCode('Defense')}: ${playerStats.player.defense}\n:heart: ${inlineCode('Health')}: ${playerStats.player.health}\n:dash: ${inlineCode('Dodge')}: ${playerStats.player.dodge}%\n:boom: ${inlineCode('Critick')}: ${playerStats.player.crit}%\n:heavy_multiplication_x: ${inlineCode('Critick Multplicator')}: ${playerStats.player.critMultplicator}%\n:heart_on_fire: ${inlineCode('Life Steal')}: ${playerStats.player.lifeSteal}%\n:wind_chime: ${inlineCode('Execute')}: ${playerStats.player.execute}\n:fire_extinguisher: ${inlineCode('Aegis')}: ${playerStats.player.aegis}\n`, inline: false },
               { name: '**⚔️ Ultimate :**\n', value: `:mirror: ${inlineCode('Reflect')}: ${playerStats.player.ultimate.reflect}%\n:mending_heart: ${inlineCode('Heal')}: ${playerStats.player.ultimate.heal}%\n:four_leaf_clover: ${inlineCode('Lucky Strike')}: ${playerStats.player.ultimate.luckyStrike}%\n`, inline: true },
               { name: '**📰 Others :**\n', value: `📜 ${inlineCode('Battle Diary')} : ${playerStats.player.other.dm}`, inline: true },
             )
@@ -85,12 +85,12 @@ module.exports.run = async (client, message, args) => {
             .setFooter('© RPG Bot 2022 | ghelp')
             .setTimestamp();
           message.channel.send({embeds: [statsEmbed]});
-        }
-        main2()
-      }
-    }
-  }
-}
+        };
+        main2();
+      };
+    };
+  };
+};
 
 module.exports.info = {
   names: ['profile', 'statistics', 'stats', 'user', 'p', 'pro', 'profil'],

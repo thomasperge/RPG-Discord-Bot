@@ -1,3 +1,4 @@
+const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 

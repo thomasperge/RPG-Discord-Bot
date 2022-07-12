@@ -6,7 +6,7 @@ const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
-const shuffleTime = 43200000;
+const shuffleTime = 0;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
@@ -21,13 +21,12 @@ module.exports.run = async (client, message, args) => {
     var user = message.author;
     var squadNameJoin = args[0]
 
-    if(squadName === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gjoinsquad <squad name>")}`)
-    else if(squadName === ' ') message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gjoinsquad <squad name>")}`)
-    else if(squadName === undefined) message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gjoinsquad <squad name>")}`)
-    else if(squadName != undefined) {
+    if(squadNameJoin === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gjoinsquad <squad name>")}`)
+    else if(squadNameJoin === ' ') message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gjoinsquad <squad name>")}`)
+    else if(squadNameJoin === undefined) message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gjoinsquad <squad name>")}`)
+    else if(squadNameJoin != undefined) {
 
-        function playerInSquad(){
-            let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
+        function playerInSquad(playerStats){
             if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
             else {
                 if(playerStats.player.other.squadName != undefined) return true
@@ -50,7 +49,7 @@ module.exports.run = async (client, message, args) => {
                 if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
                 else {
 
-                    if(playerInSquad() == false){
+                    if(playerInSquad(playerStats) == false){
                         if(balance.eco.coins <= 150) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode('150')} 🪙 to join a squad...`)
                         else {
 

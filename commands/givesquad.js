@@ -23,13 +23,12 @@ module.exports.run = async (client, message, args) => {
     if(coinGiven === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
     else if(coinGiven === ' ') message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
     else if(coinGiven === undefined) message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
-    else if(isNaN(amoutInput)) message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
+    else if(isNaN(coinGiven)) message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
     else if(coinGiven != undefined) {
 
 
         function playerInSquad(){
             // == Player Db ==
-            let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
             if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
             else {
                 if(playerStats.player.other.squadName != undefined) return true
@@ -37,23 +36,22 @@ module.exports.run = async (client, message, args) => {
             return false
         }
         
-
-        // == Squad Db ==
-        let squad = await SQUADDATA.findOne({ squadName: squadNameJoin });
-        if (!squad) return message.reply(`${inlineCode("😵‍💫")} squad are not available...`)
+        // == Balance Db ==
+        let balance = await BALANCEDATA.findOne({ userId: message.author.id });
+        if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
         else {
 
-            // == Balance Db ==
-            let balance = await BALANCEDATA.findOne({ userId: message.author.id });
-            if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+            // == Player Db ==
+            let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
+            if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
             else {
 
-                // == Player Db ==
-                let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
-                if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+                // == Squad Db ==
+                let squad = await SQUADDATA.findOne({ squadName: playerStats.player.other.squadName });
+                if (!squad) return message.reply(`${inlineCode("😵‍💫")} squad are not available...`)
                 else {
 
-                    if(playerInSquad()){
+                    if(playerInSquad(playerStats)){
                         if(balance.eco.coins < coinGiven) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode(coinGiven)} 🪙 to give in the bank squad...`)
                         else {
                             balance.eco.coins -= coinGiven

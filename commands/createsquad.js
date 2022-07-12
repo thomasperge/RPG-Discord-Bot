@@ -22,7 +22,6 @@ module.exports.run = async (client, message, args) => {
     var squadName = args[0]
 
     function playerInSquad(){
-        let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
         if (!playerStats) return message.reply("`❌` you are not player ! : `gstart`");
         else {
             if(playerStats.player.other.squadName != undefined) return true
@@ -43,7 +42,9 @@ module.exports.run = async (client, message, args) => {
             else if(squadName === undefined) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gcreatesquad <squad name>")}`)
             else if(squadName != undefined) {
 
-                if(playerInSquad() == false){
+                let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
+
+                if(playerInSquad(playerStats) == false){
                     var newSquad = new SQUADDATA({
                         squadName : squadName,
                         squadXp: 0,

@@ -47,9 +47,8 @@ module.exports.run = async (client, message, args) => {
                 }
             }
 
-            function addSquadXp(xpUserEarn){
-                let squad = await SQUADDATA.findOne({ squadName: squadNameJoin });
-                if (!squad) return message.reply(`${inlineCode("😵‍💫")} squad are not available...`)
+            function addSquadXp(squad, xpUserEarn){
+                if (!squad) return
                 else {
                     squad.squadXp += Math.floor(xpUserEarn * 0.15)
                     squad.save()
@@ -57,7 +56,8 @@ module.exports.run = async (client, message, args) => {
             }
 
 
-            function battle(MAXATK_PLAYER, MAXATK_MONSTER, HEALTH_PLAYER, HEALTH_MONSTER, DEFENSE_MONSTER, DODGEPLAYER, CRITPLAYER, MAXXP){
+
+            function battle(MAXATK_PLAYER, MAXATK_MONSTER, HEALTH_PLAYER, HEALTH_MONSTER, DEFENSE_MONSTER, DODGEPLAYER, CRITPLAYER, MAXXP, squad){
                 var monsterStats_atk = MAXATK_MONSTER
                 var monsterStats_hth = HEALTH_MONSTER
                 var NB_CRIT = 0
@@ -158,8 +158,6 @@ module.exports.run = async (client, message, args) => {
                         var randomcoin = Math.floor((Math.random() * MAXXP) / 2);
                         var randomxp = Math.floor(Math.random() * MAXXP) + 1;
 
-                        addSquadXp(randomxp)
-
                         balance.eco.coins = balance.eco.coins + randomcoin
                         balance.eco.xp = balance.eco.xp + randomxp
                         balance.save()
@@ -203,7 +201,7 @@ module.exports.run = async (client, message, args) => {
 
 
 
-            function firstMessage(){
+            function firstMessage(squad){
                 const row = new MessageActionRow()
                     .addComponents(
                         new MessageButton()
@@ -232,6 +230,11 @@ module.exports.run = async (client, message, args) => {
                     ButtonInteraction.first().deferUpdate()
                     const id = ButtonInteraction.first().customId
                     if(id === 'yes'){
+
+                        // === Ad Squad Xp ===
+                        var randomxp = Math.floor(Math.random() * playerStats.player.health) + 1;
+                        addSquadXp(squad, randomxp)
+
                         // ================= LEVEL CONFIG =================
                         if(playerStats.player.level == 0){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -430,7 +433,8 @@ module.exports.run = async (client, message, args) => {
                 })
             }
             // ======== END FUNCTION FIRSTMESSAGE() ========
-            firstMessage()
+            squad = await SQUADDATA.findOne({ squadName: playerStats.player.other.squadName })
+            firstMessage(squad)
 
         }
     }

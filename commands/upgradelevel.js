@@ -1,19 +1,32 @@
 const Discord = require('discord.js');
-const config = require('../config.json');
 const BALANCEDATA = require('../modules/economie.js');
-const STATSDATA = require('../modules/player.js')
+const PLAYERSTATSDATA = require('../modules/player.js')
+const SQUADDATA = require('../modules/squad.js')
 const CONFIGLEVEL = require('../config/configLevel.json')
 const { promptMessage } = require("../function.js");
+const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
+
+// Config Cooldown :
+const shuffleTime = 300000;
+var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
+    //  ======= CoolDowns: 5min =======
+    if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
+        message.channel.send('⌚ Please wait `' + Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000) + ' seconds` and try again.');
+        return;
+        }
+    cooldownPlayers.set(message.author.id, new Date().getTime());
+    // ===============================
+
     var user = message.author;
 
     /**=== Account Economie ===*/
     let balance = await BALANCEDATA.findOne({ userId: message.author.id });
-    if (!balance) return message.reply("`❌` you are not player ! : `gstart`");
+    if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
     else {
-        let stats = await STATSDATA.findOne({ userId: message.author.id });
-        if (!stats) return message.reply("`❌` you are not player ! : `gstart`");
+        let stats = await PLAYERSTATSDATA.findOne({ userId: message.author.id });
+        if (!stats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
         else {
 
             function checkPrice(priceNextLevel){
@@ -46,6 +59,16 @@ module.exports.run = async (client, message, args) => {
                 }
             }
 
+
+            function addSquadXp(levelUser){
+                let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
+                if (!squad) return
+                else {
+                    squad.squadXp += Math.floor(levelUser * 1350)
+                    squad.save()
+                }
+            }
+
             if(stats.player.level == 0){
                 if(checkPrice(CONFIGLEVEL.level1.XPcost)){
                     // Stats :
@@ -62,6 +85,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level1.stats.vengeance
                     stats.player.level = 1
                     stats.save()
+                    addSquadXp(1)
                     return upgradeLevel(CONFIGLEVEL.level1.XPcost, 1)
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level1.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -83,6 +107,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level2.stats.vengeance
                     stats.player.level = 2
                     stats.save()
+                    addSquadXp(2)
                     return upgradeLevel(CONFIGLEVEL.level2.XPcost, CONFIGLEVEL.level1.nextLevel)
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level2.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -104,6 +129,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level3.stats.vengeance
                     stats.player.level = 3
                     stats.save()
+                    addSquadXp(3)
                     return upgradeLevel(CONFIGLEVEL.level3.XPcost, CONFIGLEVEL.level2.nextLevel)
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level3.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -125,6 +151,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level4.stats.vengeance
                     stats.player.level = 4
                     stats.save()
+                    addSquadXp(4)
                     upgradeLevel(CONFIGLEVEL.level4.XPcost, CONFIGLEVEL.level3.nextLevel)
                     // Choose Ultimate :
                     var ultimateEmbed = new Discord.MessageEmbed()
@@ -175,6 +202,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level5.stats.vengeance
                     stats.player.level = 5
                     stats.save()
+                    addSquadXp(5)
                     return upgradeLevel(CONFIGLEVEL.level5.XPcost, CONFIGLEVEL.level4.nextLevel)
                 }  else {
                     return message.reply(`❌ **${CONFIGLEVEL.level5.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -196,6 +224,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level6.stats.vengeance
                     stats.player.level = 6
                     stats.save()
+                    addSquadXp(6)
                     return upgradeLevel(CONFIGLEVEL.level6.XPcost, CONFIGLEVEL.level5.nextLevel) 
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level6.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -217,6 +246,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level7.stats.vengeance
                     stats.player.level = 7
                     stats.save()
+                    addSquadXp(7)
                     return upgradeLevel(CONFIGLEVEL.level7.XPcost, CONFIGLEVEL.level6.nextLevel)  
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level7.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -238,6 +268,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level8.stats.vengeance
                     stats.player.level = 8
                     stats.save()
+                    addSquadXp(8)
                     upgradeLevel(CONFIGLEVEL.level8.XPcost, CONFIGLEVEL.level7.nextLevel)
                     // Choose Ultimate :
                     var ultimateEmbed = new Discord.MessageEmbed()
@@ -288,6 +319,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level9.stats.vengeance
                     stats.player.level = 9
                     stats.save()
+                    addSquadXp(9)
                     return upgradeLevel(CONFIGLEVEL.level9.XPcost, CONFIGLEVEL.level8.nextLevel)  
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level9.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -309,6 +341,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level10.stats.vengeance
                     stats.player.level = 10
                     stats.save()
+                    addSquadXp(10)
                     return upgradeLevel(CONFIGLEVEL.level10.XPcost, CONFIGLEVEL.level9.nextLevel)  
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level10.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -330,6 +363,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level11.stats.vengeance
                     stats.player.level = 11
                     stats.save()
+                    addSquadXp(11)
                     return upgradeLevel(CONFIGLEVEL.level11.XPcost, CONFIGLEVEL.level10.nextLevel)  
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level11.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -351,6 +385,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level12.stats.vengeance
                     stats.player.level = 12
                     stats.save()
+                    addSquadXp(12)
                     upgradeLevel(CONFIGLEVEL.level12.XPcost, CONFIGLEVEL.level11.nextLevel)
                     // Choose Ultimate :
                     var ultimateEmbed = new Discord.MessageEmbed()
@@ -401,6 +436,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level13.stats.vengeance
                     stats.player.level = 13
                     stats.save()
+                    addSquadXp(13)
                     return upgradeLevel(CONFIGLEVEL.level13.XPcost, CONFIGLEVEL.level12.nextLevel)  
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level13.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -422,6 +458,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level14.stats.vengeance
                     stats.player.level = 14
                     stats.save()
+                    addSquadXp(14)
                     return upgradeLevel(CONFIGLEVEL.level14.XPcost, CONFIGLEVEL.level13.nextLevel)  
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level14.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -443,6 +480,7 @@ module.exports.run = async (client, message, args) => {
                     stats.player.vengeance = CONFIGLEVEL.level15.stats.vengeance
                     stats.player.level = 15
                     stats.save()
+                    addSquadXp(15)
                     return upgradeLevel(CONFIGLEVEL.level15.XPcost, CONFIGLEVEL.level14.nextLevel)  
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level15.XPcost - balance.eco.xp}** :izakaya_lantern: are missing`)
@@ -457,5 +495,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-    names: ['upgrade', 'upgradelevel', 'buylevel'],
+    names: ['upgrade', 'upgradelevel', 'buylevel', 'upgradeprofile'],
 };

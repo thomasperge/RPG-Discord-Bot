@@ -11,11 +11,9 @@ const playerSchema = mongoose.Schema({
         dodge: Number, // Esquive
         crit: Number, // Chance de coup critique
         critMultplicator: Number, // attack * critMultplicator
-        attackSpeed: Number,
         lifeSteal: Number,
         execute: Number,
         aegis: Number, // bouclier
-        vengeance: Number,
         ultimate:{
             reflect: Number,
             heal: Number,
@@ -23,7 +21,9 @@ const playerSchema = mongoose.Schema({
         },
         other:{
             dm: Boolean,
-            bossattack: Number
+            bossattack: Number,
+            squadName: String,
+            squadCoinGiven: Number,
         },
     },
 })

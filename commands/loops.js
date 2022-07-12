@@ -1,8 +1,3 @@
-const Discord = require('discord.js');
-const SQUADDATA = require('../modules/squad.js')
-const { promptMessage } = require("../function.js");
-
-
 module.exports.run = async (client, message, args) => {
     // var interval = setInterval (function () {
     //     //use the message's channel (TextChannel) to send a new message

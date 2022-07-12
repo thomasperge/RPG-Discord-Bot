@@ -1,30 +1,30 @@
 const Discord = require('discord.js');
-const config = require('../config.json');
 const BOSSDATA = require('../modules/boss.js')
 const BALANCEDATA = require('../modules/economie.js');
 const PLAYERDATA = require('../modules/player.js');
 const CONFIGBOSS = require('../config/boss.json')
 const CONFIGPLAYER = require('../config/configLevel.json')
+const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
-/**Config Cooldown */
-// const shuffleTime = 8.64e7;
-const shuffleTime = 0;
+// Config Cooldown :
+// const shuffleTime = 8.64e7; (= 24h)
+const shuffleTime = 15000;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
     var user = message.author
     // Stats
     let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
-    if (!playerStats) return message.reply("`❌` you are not player ! : `gstart`");
+    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
     else {
         /**=== Account BOSS ===*/
         let boss = await BOSSDATA.findOne({ idboss: 0 });
-        if (!boss) return message.reply("`❌` you are not player ! : `gstart`");
+        if (!boss) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
         else {
 
             /**=== Account Economie ===*/
             let balance = await BALANCEDATA.find();
-            if (!balance) return message.reply("`❌` you are not player ! : `gstart`");
+            if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
             else {
             
                 /**=== Cooldown Commands: Daily: 24h */
@@ -45,7 +45,7 @@ module.exports.run = async (client, message, args) => {
 
                     // === Balance Player ===
                     let balancePlayer = await BALANCEDATA.findOne({userId: user.id});
-                    if (!balancePlayer) return message.reply("`❌` you are not player ! : `gstart`");
+                    if (!balancePlayer) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
                     else {
                         
                         message.reply(`You attack the boss and make ${damage} dmg\nThe Boss attack you and make ${damageBoss} dmg`)
@@ -91,7 +91,7 @@ module.exports.run = async (client, message, args) => {
                     }
                 }
 
-                // ==== Boss Death ====
+                // ==== Boss Death - Player WIN ====
                 if(boss.stats.health <= 0){
                     message.reply(`**BOSS DESTROY !!!**\nChaque Participant à voir attaquer le boss va recevoir une prime !`)
 
@@ -127,6 +127,7 @@ module.exports.run = async (client, message, args) => {
                             if(randomBoss == 9) newBoss(CONFIGBOSS.boss9.name, CONFIGBOSS.boss9.health, CONFIGBOSS.boss9.attack)
                             if(randomBoss == 10) newBoss(CONFIGBOSS.boss10.name, CONFIGBOSS.boss10.health, CONFIGBOSS.boss10.attack)
                         }
+
                     }
                     boss.save()
                 }

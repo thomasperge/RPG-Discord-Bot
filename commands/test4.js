@@ -22,30 +22,26 @@ module.exports.run = async (client, message, args) => {
         .setURL('https://discord.js.org')
         .setDescription('Some description here');
 
-    message.reply({ content: 'Pong!', embeds: [embed], components: [row], ephemeral: true });
+    message.reply({ content: 'Pong!', embeds: [embed], components: [row] });
 
     const filter = (interaction)  => {
         if(interaction.user.id === message.author.id) return true
-        return interaction.reply({ content: 'You cant use this button bro', ephemeral: true })
+        return interaction.reply({ content: 'You cant use this button bro' })
     }
     const collector = message.channel.createMessageComponentCollector({
         filter, 
         max: 1
     })
 
-    collector.on('end', async (ButtonInteraction) => {
-        // const id = ButtonInteraction.first().customId
-        if(ButtonInteraction.id === 'yes'){
-            await ButtonInteraction.reply('ok YES')
-        }
-        if(ButtonInteraction.id === 'no'){
-            await ButtonInteraction.reply('ok NO')
-        }
-        ButtonInteraction.defer()
+    collector.on('end', (ButtonInteraction) => {
+        ButtonInteraction.first().deferUpdate()
+        const id = ButtonInteraction.first().customId
+        if(id === 'yes') return ButtonInteraction.first().reply('YES.')
+        if(id === 'no') return ButtonInteraction.first().reply('NO.')
     })
 
 };
 
 module.exports.info = {
-    names: ['t3'],
+    names: ['t4'],
 };

@@ -1,10 +1,15 @@
 const mongoose = require('mongoose')
 
-const suadSchema = mongoose.Schema({
+const squadSchema = mongoose.Schema({
     squadName : String,
-    leader: Number,
+    squadXp: Number,
+    leader: Array,
     member: Array,
     squadbank: Number,
+    squadboss: {
+        bossattack: Number,
+        bosshealth: Number
+    }
 })
 
-module.exports = mongoose.model('Squad', suadSchema)
+module.exports = mongoose.model('Squad', squadSchema)

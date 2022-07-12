@@ -1,4 +1,3 @@
-const Discord = require('discord.js')
 const PLAYERDATA = require('../modules/player.js')
 const ECONOMIEDATA = require('../modules/economie.js')
 
@@ -23,11 +22,9 @@ module.exports.run = async (client, message, args) => {
                         dodge: 0.00,
                         crit: 0.00,
                         critMultplicator : 1.0,
-                        attackSpeed: 1.0,
                         lifeSteal: 0,
                         execute: 100,
                         aegis: 125,
-                        vengeance: 20,
                         ultimate:{
                             reflect: 0,
                             heal: 0,
@@ -35,7 +32,9 @@ module.exports.run = async (client, message, args) => {
                         },
                         other:{
                             dm: false,
-                            bossattack: 0
+                            bossattack: 0,
+                            squadName: undefined,
+                            squadCoinGiven: 0,
                         },
                     },
                 })

@@ -9,6 +9,7 @@ const shuffleTime = 5000;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
+    console.log(message.content == 'give')
     //  ======= CoolDowns: 5s =======
     if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
         message.channel.send('⌚ Please wait `' + Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000) + ' seconds` and try again.');
@@ -24,14 +25,14 @@ module.exports.run = async (client, message, args) => {
     else if(coinGiven === ' ') message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
     else if(coinGiven === undefined) message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
     else if(isNaN(coinGiven)) message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
-    else if(coinGiven != undefined) {
+    else if(coinGiven != undefined && isNaN(coinGiven) == false && coinGiven > 0) {
 
 
-        function playerInSquad(){
+        function playerInSquad(playerStats){
             // == Player Db ==
             if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
             else {
-                if(playerStats.player.other.squadName != undefined) return true
+                if(playerStats.player.other.squadName != 'undefined') return true
             }
             return false
         }
@@ -54,30 +55,30 @@ module.exports.run = async (client, message, args) => {
                     if(playerInSquad(playerStats)){
                         if(balance.eco.coins < coinGiven) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode(coinGiven)} 🪙 to give in the bank squad...`)
                         else {
-                            balance.eco.coins -= coinGiven
+                            balance.eco.coins -= Math.floor(coinGiven)
                             balance.save()
 
-                            squad.squadbank += coinGiven
+                            squad.squadbank += Math.floor(coinGiven)
                             squad.save()
 
-                            playerStats.player.other.squadCoinGiven += coinGiven
+                            playerStats.player.other.squadCoinGiven += Math.floor(coinGiven)
                             playerStats.save()
 
                             var squadEmbed = new Discord.MessageEmbed()
                                 .setColor('#4dca4d')
                                 .setAuthor(`🛖 Squad Coin Given`)
-                                .setDescription(`🪵 ${inlineCode(squad.squadName)}'s squad\n🪧 You given : ${inlineCode(coinGiven)} 🪙\n📰 Current Squad Bank : ${inlineCode(squad.squadbank)}`)
+                                .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n🪧 You given : ${inlineCode(coinGiven)} 🪙\n📰 Current Squad Bank : ${inlineCode(squad.squadbank + "🪙")}`)
                                 .setFooter('© RPG Bot 2022 | ghelp')
                                 .setTimestamp();
                             return message.reply({embeds: [squadEmbed]});
                         } 
-                    } else return message.reply(`${inlineCode("😵‍💫")} you are not in a squad...`) 
+                    } else return message.reply(`${inlineCode("😵‍💫")} you are not in a squad...`);
                 }
             }
         }
-    }
+    } else return message.reply(`${inlineCode("😶‍🌫️")} number of coins is invalid...`) ;
 }
 
 module.exports.info = {
-  names: ['squadgive', 'givesquad', 'givecoinsquad', 'squadcoin', 'coinsquad', 'teamgive', 'giveteam', 'ivesquad'],
+  names: ['squadgive', 'give', 'givesquad', 'givecoinsquad', 'squadcoin', 'coinsquad', 'teamgive', 'giveteam', 'ivesquad'],
 };

@@ -24,25 +24,35 @@ module.exports.run = async (client, message, args) => {
     else {
 
         // == Squad Db ==
-        let squad = await SQUADDATA.findOne({ squadName: playerStats.player.other.squadname });
+        let squad = await SQUADDATA.findOne({ squadName: playerStats.player.other.squadName });
         if (!squad) return message.reply(`${inlineCode("😵‍💫")} squad are not available...`)
         else {
 
             // == If user is the leader of the squad ==
             if(playerStats.userId === squad.leader[0]){
+
+                var memberLenght
+                if(squad.member.length == undefined) memberLenght = 0
+                else memberLenght = squad.member.length
+
                 var squadEmbed = new Discord.MessageEmbed()
                     .setColor('#4dca4d')
                     .setAuthor(`🛖 Your Squad (leader)`)
-                    .setDescription(`🪵 ${inlineCode(squad.squadName)}'s squad\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(squad.squadbank)} 🪙\n👑 Leader : **You**\n👥 Member(s): ${inlineCode(squad.member.lenght)}\n🗿 Squad Bosses: ${inlineCode("soon")}`)
+                    .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : **You**\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(squad.squadbank + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: ${inlineCode("soon")}`)
                     .setFooter('© RPG Bot 2022 | ghelp')
                     .setTimestamp();
                 return message.reply({embeds: [squadEmbed]});
             } else {
+
+                var memberLenght
+                if(squad.member.length == undefined) memberLenght = 0
+                else memberLenght = squad.member.length
+
                 // == User is a Member of Squad ==
                 var squadEmbed = new Discord.MessageEmbed()
                     .setColor('#4dca4d')
                     .setAuthor(`🛖 Your Squad`)
-                    .setDescription(`🪵 ${inlineCode(squad.squadName)}'s squad\n👑 Leader : ${squad.leader[1]}\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(squad.squadbank)} 🪙\n👥 Member(s): ${inlineCode(squad.member.lenght)}\n🗿 Squad Bosses: ${inlineCode("soon")}`)
+                    .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : ${squad.leader[1]}\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(squad.squadbank + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: ${inlineCode("soon")}`)
                     .setFooter('© RPG Bot 2022 | ghelp')
                     .setTimestamp();
                 return message.reply({embeds: [squadEmbed]});
@@ -52,5 +62,5 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.info = {
-  names: ['squad', 'mysquad', 'team', 'myteam'],
+  names: ['squad', 'mysquad', 'team', 'myteam', 'squd'],
 };

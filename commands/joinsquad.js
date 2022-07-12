@@ -29,7 +29,7 @@ module.exports.run = async (client, message, args) => {
         function playerInSquad(playerStats){
             if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
             else {
-                if(playerStats.player.other.squadName != undefined) return true
+                if(playerStats.player.other.squadName != 'undefined') return true
             }
             return false
         }
@@ -70,12 +70,12 @@ module.exports.run = async (client, message, args) => {
                                         .setStyle('DANGER'),
                                 );
                         
-                                const SquadembedRow = new MessageEmbed()
+                                const squadEmbedRow = new MessageEmbed()
                                     .setColor('#4dca4d')
                                     .setAuthor(`🛖 Join ${squad.squadName}'s squad ?`)
                                     .setDescription(`Click JOIN ✅ to join ${inlineCode('or')} Click CANCEL ❌ to canceled`)
                                     .setTimestamp();
-                                message.reply({embeds: [SquadembedRow], components: [row] });
+                                message.reply({embeds: [squadEmbedRow], components: [row] });
 
                                 // ========== Filter & Collector ==========
                                 const filter = (interaction)  => {
@@ -100,8 +100,8 @@ module.exports.run = async (client, message, args) => {
 
                                         var squadEmbed = new Discord.MessageEmbed()
                                             .setColor('#4dca4d')
-                                            .setAuthor(`🛖 You join ${squad.squadName}'s squad`)
-                                            .setDescription(`✅ New squad Member: ${inlineCode(user.username)}\n✨ Congrats you have sucessfully join your new squad !<\n👑 Leader : ${inlineCode(squad.leader[1])}\n👥 Member(s): ${inlineCode(allSquad.member.lenght), '+1'}\n📦 Earn Xp to improve your squad level !`)
+                                            .setAuthor(`🛖 You join ${squad.squadName + "'s"} squad`)
+                                            .setDescription(`✅ New squad Member: ${inlineCode(user.username)}\n✨ Congrats you have sucessfully join your new squad !<\n👑 Leader : ${inlineCode(squad.leader[1])}\n👥 Member(s): ${inlineCode(squad.member.length), '+1'}\n📦 Earn Xp to improve your squad level !`)
                                             .setFooter('© RPG Bot 2022 | ghelp')
                                             .setTimestamp();
                                         return ButtonInteraction.first().reply({embeds: [squadEmbed]});

@@ -32,7 +32,7 @@ module.exports.run = async (client, message, args) => {
 
         function main() {
           var squad
-          if(playerStats.player.other.squadName == undefined) squad = 'No Squad'
+          if(playerStats.player.other.squadName == 'undefined') squad = 'No Squad'
           else squad = playerStats.player.other.squadName
 
           var statsEmbed = new Discord.MessageEmbed()

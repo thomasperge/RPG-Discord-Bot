@@ -31,7 +31,7 @@ module.exports.run = async (client, message, args) => {
         function playerInSquad(playerStats){
             if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
             else {
-                if(playerStats.player.other.squadName != undefined) return true
+                if(playerStats.player.other.squadName != 'undefined') return true
             }
             return false
         }

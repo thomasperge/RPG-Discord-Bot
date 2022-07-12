@@ -59,14 +59,13 @@ module.exports.run = async (client, message, args) => {
                         )
                         .setFooter('© RPG Bot 2022 | ghelp')
                         .setTimestamp();
-                    message.channel.send({embeds: [upgradeEmbed]});
+                    return message.channel.send({embeds: [upgradeEmbed]});
                 }
             }
 
 
             function addSquadXp(squad, levelUser){
-                if (!squad) return
-                else {
+                if(squad){
                     squad.squadXp += Math.floor(levelUser * 1350)
                     squad.save()
                 }
@@ -223,12 +222,13 @@ module.exports.run = async (client, message, args) => {
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.heal}%** of Heal`);
                         }
-                        if(id === 'Heal'){
+                        if(id === 'heal'){
                             stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of Lucky Strike`);
                         }
                     });
+                    return
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level4.XPcost - balance.eco.xp}** 🏮 are missing`)
                 };
@@ -383,12 +383,13 @@ module.exports.run = async (client, message, args) => {
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.heal}%** of Heal`);
                         }
-                        if(id === 'Heal'){
+                        if(id === 'heal'){
                             stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of Lucky Strike`);
                         }
                     });
+                    return
                 }  else {
                     return message.reply(`❌ **${CONFIGLEVEL.level8.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
@@ -543,12 +544,13 @@ module.exports.run = async (client, message, args) => {
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.heal}%** of Heal`);
                         }
-                        if(id === 'Heal'){
+                        if(id === 'heal'){
                             stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of Lucky Strike`);
                         }
                     });
+                    return
                 }  else {
                     return message.reply(`❌ **${CONFIGLEVEL.level12.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }

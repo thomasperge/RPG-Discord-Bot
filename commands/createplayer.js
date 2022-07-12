@@ -35,7 +35,7 @@ module.exports.run = async (client, message, args) => {
                         other:{
                             dm: false,
                             bossattack: 0,
-                            squadName: undefined,
+                            squadName: 'undefined',
                             squadCoinGiven: 0,
                         },
                     },
@@ -72,28 +72,28 @@ module.exports.run = async (client, message, args) => {
         }
     );
 
-    BOSS.findOne(
-        {
-            bossname: 'Lithowanderer',
-        },
-        (err, boss) => {
-            if (err) console.log(err)
-            if (!boss) {
-                var bossPLayer = new BOSS({
-                    idboss: 0,
-                    bossname: BOSSCONFIG.boss1.name,
-                    stats: {
-                        attack: BOSSCONFIG.boss1.attack,
-                        health: BOSSCONFIG.boss1.health,
-                    },
-                })
-                bossPLayer.save()
-                message.reply('`✅` Boss create !')
-            } else {
-                message.reply('`❌` Boss existing already !')
-            }
-        }
-    );
+    // BOSS.findOne(
+    //     {
+    //         bossname: 'Lithowanderer',
+    //     },
+    //     (err, boss) => {
+    //         if (err) console.log(err)
+    //         if (!boss) {
+    //             var bossPLayer = new BOSS({
+    //                 idboss: 0,
+    //                 bossname: BOSSCONFIG.boss1.name,
+    //                 stats: {
+    //                     attack: BOSSCONFIG.boss1.attack,
+    //                     health: BOSSCONFIG.boss1.health,
+    //                 },
+    //             })
+    //             bossPLayer.save()
+    //             message.reply('`✅` Boss create !')
+    //         } else {
+    //             message.reply('`❌` Boss existing already !')
+    //         }
+    //     }
+    // );
 
 
 }

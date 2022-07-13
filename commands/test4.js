@@ -17,12 +17,10 @@ module.exports.run = async (client, message, args) => {
         );
 
         const embed = new MessageEmbed()
-        .setColor('#0099ff')
-        .setTitle('Some title')
-        .setURL('https://discord.js.org')
-        .setDescription('Some description here');
-
-    message.reply({ content: 'Pong!', embeds: [embed], components: [row] });
+            .setColor('#0099ff')
+            .setTitle('Some title')
+            
+    message.reply({ embeds: [embed], components: [row] });
 
     const filter = (interaction)  => {
         if(interaction.user.id === message.author.id) return true
@@ -34,10 +32,10 @@ module.exports.run = async (client, message, args) => {
     })
 
     collector.on('end', (ButtonInteraction) => {
-        ButtonInteraction.first().deferUpdate()
+        // ButtonInteraction.first().deferUpdate()
         const id = ButtonInteraction.first().customId
-        if(id === 'yes') return ButtonInteraction.first().reply('YES.')
-        if(id === 'no') return ButtonInteraction.first().reply('NO.')
+        if(id === 'yes') ButtonInteraction.first().reply('YES !!')
+        if(id === 'no') message.reply('NO !!')
     })
 
 };

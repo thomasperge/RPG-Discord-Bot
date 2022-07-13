@@ -58,17 +58,17 @@ module.exports.run = async (client, message, args) => {
 
                                 // ========== Button Squad Join ==========
                                 const row = new MessageActionRow()
-                                .addComponents(
-                                    new MessageButton()
-                                        .setCustomId('yes')
-                                        .setLabel('JOIN ✅')
-                                        .setStyle('SUCCESS'),
-                                    
-                                    new MessageButton()
-                                        .setCustomId('no')
-                                        .setLabel('CANCEL ❌')
-                                        .setStyle('DANGER'),
-                                );
+                                    .addComponents(
+                                        new MessageButton()
+                                            .setCustomId('yes')
+                                            .setLabel('JOIN ✅')
+                                            .setStyle('SUCCESS'),
+                                        
+                                        new MessageButton()
+                                            .setCustomId('no')
+                                            .setLabel('CANCEL ❌')
+                                            .setStyle('DANGER'),
+                                    );
                         
                                 const squadEmbedRow = new MessageEmbed()
                                     .setColor('#4dca4d')
@@ -104,9 +104,10 @@ module.exports.run = async (client, message, args) => {
                                             .setDescription(`✅ New squad Member: ${inlineCode(user.username)}\n✨ Congrats you have sucessfully join your new squad !<\n👑 Leader : ${inlineCode(squad.leader[1])}\n👥 Member(s): ${inlineCode(squad.member.length), '+1'}\n📦 Earn Xp to improve your squad level !`)
                                             .setFooter('© RPG Bot 2022 | ghelp')
                                             .setTimestamp();
-                                        return ButtonInteraction.first().reply({embeds: [squadEmbed]});
+                                        return message.reply({embeds: [squadEmbed]});
+                                        
                                     }
-                                    if(id === 'no') return ButtonInteraction.first().reply(`You canceled ❌`)
+                                    if(id === 'no') return message.reply(`You canceled ❌`)
                                 });
 
                             } 

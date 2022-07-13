@@ -61,19 +61,4 @@ client.on('ready', () => {
    client.user.setActivity(`rpg helping | ghelp`);
 });
 
-
-// client.on('interactionCreate', async (interaction) => {
-//    if(interaction.isButton()) {
-//       if(interaction.customId === 'yes') {
-//          return
-//       }if(interaction.customId === 'no') {
-//          return
-//       }
-//    }
-// })
-
-
-// boss.userattack.find((obj => obj[0] === user.id))[1]
-
-
 client.login(config.token);

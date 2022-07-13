@@ -27,7 +27,7 @@ module.exports.run = async (client, message, args) => {
     if (!balance) return message.reply("`❌` you are not player ! : `gstart`");
     else {
 
-        if (balance.eco.coins <= 125000) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode('125 000')} 🪙 to create a squad...`)
+        if (balance.eco.coins <= 500000) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode('500000')} 🪙 to create a squad...`)
         else {
 
             if(squadName === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gcreatesquad <squad name>")}`)

@@ -36,7 +36,7 @@ module.exports.run = async (client, message, args) => {
                 } else {
                     return false
                 }
-            }
+            };
 
             function critFunction(crit){
                 // True = critik, False = not critik
@@ -45,7 +45,7 @@ module.exports.run = async (client, message, args) => {
                 } else {
                     return false
                 }
-            }
+            };
 
             function addSquadXp(squad, xpUserEarn){
                 if (!squad) return
@@ -53,11 +53,10 @@ module.exports.run = async (client, message, args) => {
                     squad.squadXp += Math.floor(xpUserEarn * 0.15)
                     squad.save()
                 }
-            }
+            };
 
 
-
-            function battle(MAXATK_PLAYER, MAXATK_MONSTER, HEALTH_PLAYER, HEALTH_MONSTER, DEFENSE_MONSTER, DODGEPLAYER, CRITPLAYER, MAXXP, squad){
+            function battle(MAXATK_PLAYER, MAXATK_MONSTER, HEALTH_PLAYER, HEALTH_MONSTER, DEFENSE_MONSTER, DODGEPLAYER, CRITPLAYER, MAXXP){
                 var monsterStats_atk = MAXATK_MONSTER
                 var monsterStats_hth = HEALTH_MONSTER
                 var NB_CRIT = 0
@@ -104,26 +103,28 @@ module.exports.run = async (client, message, args) => {
 
                     // ====== Monstre attaque ======
                     if(DODGEPLAYER == false){
-                        var attackDamageMonster = Math.floor(Math.random() * MAXATK_MONSTER) + 1
-                        NB_ATTACK_MONSTER = NB_ATTACK_MONSTER + 1
-                        ATK_SOMME_MONSTER = ATK_SOMME_MONSTER + attackDamageMonster
+                        var attackDamageMonster = Math.floor(Math.random() * MAXATK_MONSTER) + 1;
+                        NB_ATTACK_MONSTER = NB_ATTACK_MONSTER + 1;
+                        ATK_SOMME_MONSTER = ATK_SOMME_MONSTER + attackDamageMonster;
 
                         HEALTH_PLAYER = HEALTH_PLAYER - attackDamageMonster;
                     } else {
-                        NB_DODGE = NB_DODGE + 1
-                        NB_ATTACK_MONSTER = NB_ATTACK_MONSTER + 1
-                        HEALTH_PLAYER = HEALTH_PLAYER
+                        NB_DODGE = NB_DODGE + 1;
+                        NB_ATTACK_MONSTER = NB_ATTACK_MONSTER + 1;
+                        HEALTH_PLAYER = HEALTH_PLAYER;
                     }
 
-                    // Result :
+                    // ============================================
+                    // ================= RESULT : =================
+
                     if (HEALTH_PLAYER <= 0){
-                        // === PLAYER LOSE ===
+                        // ========= PLAYER LOSE =========
                         var losecoin = Math.floor((balance.eco.coins*10)/100)
 
                         balance.eco.coins = Math.floor(balance.eco.coins - losecoin)
                         balance.save()
 
-                        // == DM DIARY ==
+                        // Dm diary :
                         if(playerStats.player.other.dm){
                             var battleDiaryEmbed = new Discord.MessageEmbed()
                                 .setColor('#ff0000')
@@ -151,11 +152,10 @@ module.exports.run = async (client, message, args) => {
                             .setFooter('© RPG Bot 2022 | ghelp')
                             .setTimestamp();
                         return message.channel.send({embeds: [battleEmbed]});
-                    }
+                    };
                     if (HEALTH_MONSTER <= 0){
-
-                        // === PLAYER WIN ===
-                        var randomcoin = Math.floor((Math.random() * MAXXP) / 2);
+                        // ========= PLAYER WIN =========
+                        var randomcoin = Math.floor((Math.random() * MAXXP));
                         var randomxp = Math.floor(Math.random() * MAXXP) + 1;
 
                         balance.eco.coins = balance.eco.coins + randomcoin
@@ -246,7 +246,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 3);
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 27);
                         };
                         if(playerStats.player.level == 1){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -258,7 +258,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 3)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 39)
                         };
                         if(playerStats.player.level == 2){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -270,7 +270,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 5)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 60)
                         };
                         if(playerStats.player.level == 3){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -282,7 +282,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 9)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 98)
                         };
                         if(playerStats.player.level == 4){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -294,7 +294,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 17)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 163)
                         };
                         if(playerStats.player.level == 5){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -306,7 +306,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 33)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 278)
                         };
                         if(playerStats.player.level == 6){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -318,7 +318,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 65)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 479)
                         };
                         if(playerStats.player.level == 7){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -330,7 +330,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 129)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 831)
                         };
                         if(playerStats.player.level == 8){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -342,7 +342,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 257)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 1447)
                         };
                         if(playerStats.player.level == 9){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -354,7 +354,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 513)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 2524)
                         };
                         if(playerStats.player.level == 10){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -366,7 +366,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 1025)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 4410)
                         };
                         if(playerStats.player.level == 11){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -378,7 +378,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 2049)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 7710)
                         };
                         if(playerStats.player.level == 12){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -390,7 +390,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 4097)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 13485)
                         };
                         if(playerStats.player.level == 13){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -402,7 +402,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 8193)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 23592)
                         };
                         if(playerStats.player.level == 14){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -414,7 +414,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 16385)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 41278)
                         };
                         if(playerStats.player.level == 15){
                             var randomMonster = Math.floor(Math.random() * 2);
@@ -426,7 +426,7 @@ module.exports.run = async (client, message, args) => {
                             // Initialize MAX ATTACK Player and Monster :
                             const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
                             const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 32769)
+                            return battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 72228)
                         };
                     }
                     if(id === 'no') return message.reply('YOU AFRAID HAHHAHAHAHH !!!!!!')

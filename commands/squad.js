@@ -38,7 +38,7 @@ module.exports.run = async (client, message, args) => {
                 var squadEmbed = new Discord.MessageEmbed()
                     .setColor('#4dca4d')
                     .setAuthor(`🛖 Your Squad (leader)`)
-                    .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : **You**\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(squad.squadbank + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: ${inlineCode("soon")}`)
+                    .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : **You**\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(squad.squadbank + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squad.squadboss.bossattack)} / ❤️: ${inlineCode(squad.squadboss.bosshealth)}`)
                     .setFooter('© RPG Bot 2022 | ghelp')
                     .setTimestamp();
                 return message.reply({embeds: [squadEmbed]});

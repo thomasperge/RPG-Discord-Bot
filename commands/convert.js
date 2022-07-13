@@ -44,7 +44,7 @@ module.exports.run = async (client, message, args) => {
             const embed = new MessageEmbed()
                 .setColor('#a25cff')
                 .setTitle('🪧 Coins Converting')
-                .setDescription(`📝 Would you convert :\n➡️ ${inlineCode(amout + '🪙')}  into ${inlineCode(amoutXP + '🏮')} \n✅ for ${inlineCode('yes')} & ❌ for ${inlineCode('canceled')}`);
+                .setDescription(`📝 Would you convert :\n➡️ ${inlineCode(amout + '🪙')}  into ${inlineCode(amoutXP + '🏮')}`);
             message.reply({ embeds: [embed], components: [row] });
 
             const filter = (interaction)  => {

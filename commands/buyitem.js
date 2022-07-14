@@ -27,25 +27,23 @@ module.exports.run = async (client, message, args) => {
                 if(balance.eco.coins < CONFIGITEM[pas].cost) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${CONFIGITEM[pas].cost - balance.eco.coins}`)
 
                 for(const alias of CONFIGITEM[pas].alias){
-                    console.log(item, alias)
 
                     if(item === alias){
                         if(balance.eco.coins >= CONFIGITEM[pas].cost) {
 
-                            function alreadyBuy(itemBuyID){
+                            function alreadyBuy(){
                                 for(const itemPlayerAll of playerStats.player.stuff.stuffUnlock){
-                                    if(itemPlayerAll[0] === CONFIGITEM[pas].id) return true
-                                    else return false
+                                    if(itemPlayerAll.id === CONFIGITEM[pas].id) return true
                                 }
+                                return false
                             }
 
-                            if(alreadyBuy(CONFIGITEM[pas].id)) return message.reply(`${inlineCode("😵‍💫")} you have already this item !`)
+                            if(alreadyBuy()) return message.reply(`${inlineCode("😵‍💫")} you have already this item !`)
                             else {
-                                console.log('here !!')
                                 balance.eco.coins -= CONFIGITEM[pas].cost
                                 balance.save()
 
-                                playerStats.player.stuff.stuffUnlock.push([CONFIGITEM[pas].id, CONFIGITEM[pas].name, 1, CONFIGITEM[pas].levelAttack.level1, CONFIGITEM[pas].levelDefense.level1, CONFIGITEM[pas].levelDodge.level1, CONFIGITEM[pas].levelHealth.level1])
+                                playerStats.player.stuff.stuffUnlock.push({id: CONFIGITEM[pas].id, level: 1})
                                 playerStats.save()
 
                                 return message.reply(`✅ Purchase made!\n**NEW** ITEM ${CONFIGITEM[pas].name}`)

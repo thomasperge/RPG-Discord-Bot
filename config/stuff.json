@@ -570,7 +570,7 @@
     },
 
     {
-        "id": 14,
+        "id": 15,
         "name": "War Axe",
         "alias": ["WarAxe", "Waraxe", "waraxe", "WA", "wa"],
         "categorie": "weapon",
@@ -608,7 +608,7 @@
     },
 
     {
-        "id": 15,
+        "id": 16,
         "name": "Glowing Wand",
         "alias": ["GlowingHand", "glowinghand", "Glowing", "glowing", "BH", "gh"],
         "categorie": "magic-item",
@@ -646,7 +646,7 @@
     },
 
     {
-        "id": 16,
+        "id": 17,
         "name": "Lightning Truncheon",
         "alias": ["LightningTruncheon", "Lightningtruncheon", "lightningtruncheon", "Lightning", "Lightning", "LT", "lt"],
         "categorie": "magic-item",
@@ -684,7 +684,7 @@
     },
 
     {
-        "id": 17,
+        "id": 18,
         "name": "Queen's Wings",
         "alias": ["QueenWings", "QueenWing", "queenwings", "queenW", "gueenw", "QW", "qw"],
         "categorie": "armor",
@@ -722,7 +722,7 @@
     },
 
     {
-        "id": 18,
+        "id": 19,
         "name": "Brute Force Breastplate",
         "alias": ["BruteForceBreastplate", "Bruteforcebreastplate", "BruteForce", "BFB", "BF", "bfb", "bf"],
         "categorie": "armor",
@@ -760,7 +760,7 @@
     },
 
     {
-        "id": 19,
+        "id": 20,
         "name": "Twilight Armor",
         "alias": ["TwilightArmor", "Twilightarmor", "twilightarmor", "Twilight", "twilight", "TA", "ta"],
         "categorie": "armor",
@@ -798,7 +798,7 @@
     },
 
     {
-        "id": 20,
+        "id": 21,
         "name": "Scarlet Phantom",
         "alias": ["ScarletPhantom", "Scarletphantom", "scarletphantom", "Scarlet", "scarlet", "SP", "sp"],
         "categorie": "magic-item",
@@ -836,7 +836,7 @@
     },
 
     {
-        "id": 21,
+        "id": 22,
         "name": "Dominance Ice",
         "alias": ["DominanceIce", "Dominanceice", "fominanceice", "Dominance", "dominance", "DI", "di"],
         "categorie": "armor",
@@ -874,7 +874,7 @@
     },
 
     {
-        "id": 22,
+        "id": 23,
         "name": "Immortality",
         "alias": ["Immortality", "immortality", "Imm", "I", "i"],
         "categorie": "armor",
@@ -912,7 +912,7 @@
     },
 
     {
-        "id": 23,
+        "id": 24,
         "name": "Blade Armor",
         "alias": ["BladeArmor", "Bladearmor", "bladearmor", "BA", "ba"],
         "categorie": "armor",

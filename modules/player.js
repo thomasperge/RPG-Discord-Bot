@@ -15,7 +15,7 @@ const playerSchema = mongoose.Schema({
         execute: Number,
         aegis: Number, // bouclier
         stuff: {
-            stuffUnlock: Array,
+            stuffUnlock : Array,
             weaponID: Number,
             bootsID: Number,
             armorID: Number,

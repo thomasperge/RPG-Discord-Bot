@@ -18,14 +18,17 @@ module.exports.run = async (client, message, args) => {
     cooldownPlayers.set(message.author.id, new Date().getTime());
     // ===============================
 
+    var windofnature = [['windofnature', 'weapon', 0, 'Epic']]
+
     var user = message.author;
     var itemUpgrade = args[0]
     var amoutUpgrade = args[1]
+    if(isNaN(amoutUpgrade) == false) console.log(amoutUpgrade)
 
     if(itemUpgrade === '' || amoutUpgrade === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health> <amout>")}`);
     else if(itemUpgrade === ' ' || amoutUpgrade === ' ') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health> <amout>")}`);
     else if(itemUpgrade === undefined || amoutUpgrade === undefined) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health> <amout>")}`);
-    else if(isNaN(itemUpgrade)) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gugradesquadboss/gusb <attack/health> <amout>")}`);
+    else if(isNaN(amoutUpgrade)) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gugradesquadboss/gusb <attack/health> <amout>")}`);
     else if((itemUpgrade == 'attack' || itemUpgrade == 'atk' || itemUpgrade == 'a' || itemUpgrade == 'health' || itemUpgrade == 'hlh' || itemUpgrade == 'h') && isNaN(amoutUpgrade) == false) {
 
         function playerInSquad(playerStats){
@@ -55,7 +58,7 @@ module.exports.run = async (client, message, args) => {
                     // === Initialize Player is the leader of the team ===
                         if(playerStats.userId === squad.leader[0]){
 
-                            function upgradeBossMessage(done, emojiDone, price){
+                            function upgradeBossMessage(done, emojiDone, price, amoutUpgrade){
                                 // ===== Row Button =====
                                 const row = new MessageActionRow()
                                     .addComponents(
@@ -73,7 +76,7 @@ module.exports.run = async (client, message, args) => {
                                 const upgradeBoss = new MessageEmbed()
                                     .setColor('#4dca4d')
                                     .setAuthor(`🗿 Upgrade Squad Boss`)
-                                    .setDescription(`🛖 Squad : ${inlineCode(squad.squadName)} by ${inlineCode(squad.leader[1])}\n🪧 Improve ${done}: +${amoutUpgrade} ${emojiDone}\n📝 Cost: ${price} 🪙`)
+                                    .setDescription(`🛖 Squad : ${inlineCode(squad.squadName)} by ${inlineCode(squad.leader[1])}\n🪧 Improve ${done}: ${inlineCode('+' + amoutUpgrade)} ${emojiDone}\n📝 Balance Squad Cost: ${inlineCode(price)} 🪙`)
                                     .setTimestamp();
                                 message.reply({embeds: [upgradeBoss], components: [row]});
 
@@ -94,9 +97,9 @@ module.exports.run = async (client, message, args) => {
 
                                     if(id === 'yes'){
                                         // ========== YES: UPGRADE the SQUAD BOSS ==========
-
                                         if(done == 'attack'){
-                                            squad.squadboss.bossattack += amoutUpgrade
+                                            console.log('Here Attack !')
+                                            squad.squadboss.bossattack = amoutUpgrade
                                             squad.squadbank -= price
                                             squad.save() 
                                         };
@@ -110,20 +113,21 @@ module.exports.run = async (client, message, args) => {
                                         var upgradeDone = new Discord.MessageEmbed()
                                             .setColor('#4dca4d')
                                             .setAuthor(`🗿 Boss Upgrade`)
-                                            .setDescription(`✅ Squad Boss Upgrading !\n🪧 Improve ${done}: +${amoutUpgrade} ${emojiDone}\n📝 Cost: ${price} 🪙`)
+                                            .setDescription(`✅ Squad Boss Upgrading !\n🪧 Improve ${done}: ${inlineCode('+' + amoutUpgrade)} ${emojiDone}\n📝 Cost: ${inlineCode(price)} 🪙`)
                                             .setFooter('© RPG Bot 2022 | ghelp')
                                             .setTimestamp();
-                                        return ButtonInteraction.first().reply({embeds: [upgradeDone]});
+                                        return message.reply({embeds: [upgradeDone]});
                                     }
-                                    if(id === 'no') return ButtonInteraction.first().reply(`You canceled ❌`)
+                                    if(id === 'no') return message.reply(`You canceled ❌`)
                                 });
                             };
                             // === End Function ===
 
                             if(itemUpgrade == 'attack' || itemUpgrade == 'atk' || itemUpgrade == 'a'){
-                                upgradeBossMessage('attack', '💥', Math.floor(amoutUpgrade * 112.2)) 
+                                return upgradeBossMessage('attack', '💥', Math.floor(amoutUpgrade * 112.2), amoutUpgrade) 
+
                             } else if(itemUpgrade == 'health' || itemUpgrade == 'hlh' || itemUpgrade == 'h'){
-                                upgradeBossMessage('health', '❤️', Math.floor(amoutUpgrade * 7.4)) 
+                                return upgradeBossMessage('health', '❤️', Math.floor(amoutUpgrade * 7.4), amoutUpgrade) 
                             };
 
                         } else return message.reply(`${inlineCode("😵‍💫")} you are not the leader of the squad...`) 

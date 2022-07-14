@@ -14,6 +14,13 @@ const playerSchema = mongoose.Schema({
         lifeSteal: Number,
         execute: Number,
         aegis: Number, // bouclier
+        stuff: {
+            stuffUnlock: Array,
+            weaponID: Number,
+            bootsID: Number,
+            armorID: Number,
+            magicItemID: Number,
+        },
         ultimate:{
             reflect: Number,
             heal: Number,

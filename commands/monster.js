@@ -7,7 +7,7 @@ const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
-const shuffleTime = 15000;
+const shuffleTime = 0;
 var cooldownPlayers = new Discord.Collection();
 
 
@@ -232,7 +232,8 @@ module.exports.run = async (client, message, args) => {
                     if(id === 'yes'){
 
                         // === Ad Squad Xp ===
-                        var randomxp = Math.floor(Math.random() * playerStats.player.health) + 1;
+                        var randomxp = Math.floor(Math.random() * (playerStats.player.health / 60)) + 1;
+                        console.log(randomxp)
                         addSquadXp(squad, randomxp)
 
                         // ================= LEVEL CONFIG =================

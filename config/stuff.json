@@ -1,0 +1,56 @@
+[
+    {
+        "id": 0,
+        "name": "Wind Of Nature",
+        "alias": ["windofnature", "WindOfNature", "WindofNature", "Windofnature", "won", "WON", "WoN"],
+        "categorie": "weapon",
+        "cost": 1000000,
+        "rarety": "Epic",
+        "costperenhancement": 500000,
+        "levelAttack": {
+            "level1": 3,
+            "level2": 6,
+            "level3": 9,
+            "level4": 12,
+            "level5": 15
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        }
+    },
+
+    {
+        "id": 1,
+        "name": "Beserker's Fury",
+        "alias": ["BeserkerFury", "Beserker'sFury", "beserkerfury", "beserkersfury", "BeserkersFury"],
+        "categorie": "weapon",
+        "cost": 2000000,
+        "rarety": "Epic",
+        "costperenhancement": 500000,
+        "levelAttack": {
+            "level1": 15,
+            "level2": 25,
+            "level3": 40,
+            "level4": 65,
+            "level5": 105
+        }
+    }
+]

@@ -32,6 +32,13 @@ module.exports.run = async (client, message, args) => {
                             heal: 0,
                             luckyStrike: 0,
                         },
+                        stuff: {
+                            stuffUnlock: [],
+                            weaponID: -1,
+                            bootsID: -1,
+                            armorID: -1,
+                            magicItemID: -1,
+                        },
                         other:{
                             dm: false,
                             bossattack: 0,

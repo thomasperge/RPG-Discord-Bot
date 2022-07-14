@@ -39,18 +39,913 @@
 
     {
         "id": 1,
-        "name": "Beserker's Fury",
-        "alias": ["BeserkerFury", "Beserker'sFury", "beserkerfury", "beserkersfury", "BeserkersFury"],
+        "name": "Berserker's Fury",
+        "alias": ["BerserkersFury", "berserkersfury", "Berserkersfury", "bf", "BF", "Bf", "Berserker", "Berserkers", "berserker", "berserkers"],
         "categorie": "weapon",
-        "cost": 2000000,
+        "cost": 1000000,
         "rarety": "Epic",
         "costperenhancement": 500000,
         "levelAttack": {
             "level1": 15,
-            "level2": 25,
-            "level3": 40,
-            "level4": 65,
-            "level5": 105
+            "level2": 30,
+            "level3": 45,
+            "level4": 60,
+            "level5": 75
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
         }
-    }
+    },
+
+    {
+        "id": 2,
+        "name": "Malefic Roar",
+        "alias": ["MaleficRoar", "Maleficroar", "maleficroar", "malefic", "Malefic", "mr", "MR", "Mr"],
+        "categorie": "weapon",
+        "cost": 1000000,
+        "rarety": "Epic",
+        "costperenhancement": 300000,
+        "levelAttack": {
+            "level1": 12,
+            "level2": 24,
+            "level3": 36,
+            "level4": 48,
+            "level5": 60
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        }
+    },
+
+    {
+        "id": 3,
+        "name": "Sea Halberd",
+        "alias": ["SeaHalberd", "seahalberd", "sea", "Seahalberd", "SH", "Sh", "sh"],
+        "categorie": "weapon",
+        "cost": 1000000,
+        "rarety": "Epic",
+        "costperenhancement": 500000,
+        "levelAttack": {
+            "level1": 14,
+            "level2": 28,
+            "level3": 42,
+            "level4": 56,
+            "level5": 70
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        }
+    },
+
+    {
+        "id": 4,
+        "name": "Bloodlust Axe",
+        "alias": ["BloodlustAxe", "Bloodlustaxe", "bloodlustaxe", "Blood", "blood", "BA", "ba"],
+        "categorie": "weapon",
+        "cost": 1000000,
+        "rarety": "Epic",
+        "costperenhancement": 200000,
+        "levelAttack": {
+            "level1": 14,
+            "level2": 28,
+            "level3": 42,
+            "level4": 56,
+            "level5": 70
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 20,
+            "level2": 40,
+            "level3": 60,
+            "level4": 80,
+            "level5": 100
+        }
+    },
+
+    {
+        "id": 5,
+        "name": "Rapid Boost",
+        "alias": ["RapidBoost", "RapidBoost", "rapidboost", "Rapid", "Rapid", "RB", "rb"],
+        "categorie": "boots",
+        "cost": 1000000,
+        "rarety": "Epic",
+        "costperenhancement": 200000,
+        "levelAttack": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 5,
+            "level2": 10,
+            "level3": 15,
+            "level4": 20,
+            "level5": 25
+        },
+        "levelHealth": {
+            "level1": 20,
+            "level2": 40,
+            "level3": 60,
+            "level4": 80,
+            "level5": 100
+        }
+    },
+
+    {
+        "id": 6,
+        "name": "Arcane Boost",
+        "alias": ["ArcaneBoost", "Arcaneboost", "arcaneboost", "Arcane", "arcane", "AB", "ab"],
+        "categorie": "boots",
+        "cost": 1000000,
+        "rarety": "Epic",
+        "costperenhancement": 250000,
+        "levelAttack": {
+            "level1": 5,
+            "level2": 10,
+            "level3": 15,
+            "level4": 20,
+            "level5": 25
+        },
+        "levelDefense": {
+            "level1": 3,
+            "level2": 6,
+            "level3": 9,
+            "level4": 12,
+            "level5": 15
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 15,
+            "level2": 30,
+            "level3": 45,
+            "level4": 60,
+            "level5": 75
+        }
+    },
+
+    {
+        "id": 7,
+        "name": "Warrior Boost",
+        "alias": ["WarriorBoost", "Warriorboost", "wariorboost", "Warior", "warior", "WB", "wb"],
+        "categorie": "boots",
+        "cost": 1000000,
+        "rarety": "Epic",
+        "costperenhancement": 250000,
+        "levelAttack": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDefense": {
+            "level1": 10,
+            "level2": 20,
+            "level3": 30,
+            "level4": 40,
+            "level5": 50
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        }
+    },
+
+    {
+        "id": 8,
+        "name": "Magic Shoes",
+        "alias": ["MagicBoost", "Magicboost", "magicboost", "Magic", "magic", "WB", "wb"],
+        "categorie": "boots",
+        "cost": 1000000,
+        "rarety": "Epic",
+        "costperenhancement": 100000,
+        "levelAttack": {
+            "level1": 2,
+            "level2": 4,
+            "level3": 6,
+            "level4": 8,
+            "level5": 10
+        },
+        "levelDefense": {
+            "level1": 2,
+            "level2": 4,
+            "level3": 6,
+            "level4": 8,
+            "level5": 10
+        },
+        "levelDodge": {
+            "level1": 1,
+            "level2": 2,
+            "level3": 3,
+            "level4": 4,
+            "level5": 5
+        },
+        "levelHealth": {
+            "level1": 10,
+            "level2": 20,
+            "level3": 30,
+            "level4": 40,
+            "level5": 50
+        }
+    },
+
+    {
+        "id": 9,
+        "name": "Golden Staff",
+        "alias": ["GoldenStaff", "Goldenstaff", "goldenstaff", "Golden", "golden", "GS", "gs"],
+        "categorie": "weapon",
+        "cost": 5000000,
+        "rarety": "Legend",
+        "costperenhancement": 200000,
+        "levelAttack": {
+            "level1": 13,
+            "level2": 26,
+            "level3": 39,
+            "level4": 52,
+            "level5": 65
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        }
+    },
+
+    {
+        "id": 10,
+        "name": "Rose Gold Meteor",
+        "alias": ["RoseGoldMeteor", "Rosegoldmeteor", "rosegoldmeteor", "rosegold", "rose", "RGM", "rgm"],
+        "categorie": "weapon",
+        "cost": 5000000,
+        "rarety": "Legend",
+        "costperenhancement": 400000,
+        "levelAttack": {
+            "level1": 10,
+            "level2": 20,
+            "level3": 30,
+            "level4": 40,
+            "level5": 50
+        },
+        "levelDefense": {
+            "level1": 6,
+            "level2": 12,
+            "level3": 18,
+            "level4": 24,
+            "level5": 36
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        }
+    },
+
+    {
+        "id": 11,
+        "name": "Haas's Claws",
+        "alias": ["HaasClaws", "Haasclaws", "haashlaws", "hass", "HC", "hc"],
+        "categorie": "weapon",
+        "cost": 5000000,
+        "rarety": "Legend",
+        "costperenhancement": 500000,
+        "levelAttack": {
+            "level1": 14,
+            "level2": 28,
+            "level3": 42,
+            "level4": 56,
+            "level5": 70
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        }
+    },
+
+    {
+        "id": 12,
+        "name": "Ice Queen Wand",
+        "alias": ["IceQueenWand", "Icequeenwand", "icequeenwand", "IQW", "iqw", "icequeen"],
+        "categorie": "magic-item",
+        "cost": 5000000,
+        "rarety": "Legend",
+        "costperenhancement": 300000,
+        "levelAttack": {
+            "level1": 15,
+            "level2": 30,
+            "level3": 45,
+            "level4": 60,
+            "level5": 75
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 30,
+            "level2": 60,
+            "level3": 90,
+            "level4": 120,
+            "level5": 150
+        }
+    },
+
+    {
+        "id": 13,
+        "name": "Guardian Helmet",
+        "alias": ["GuardianHelmet", "Guardianhelmet", "guardianhelmet", "Guardian", "guardian", "GH", "gh"],
+        "categorie": "armor",
+        "cost": 5000000,
+        "rarety": "Legend",
+        "costperenhancement": 1200000,
+        "levelAttack": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 310,
+            "level2": 525,
+            "level3": 845,
+            "level4": 1265,
+            "level5": 1770
+        }
+    },
+
+    {
+        "id": 14,
+        "name": "Blade of Despair",
+        "alias": ["BladeofDespair", "Bladeofdespair", "bladeofdespair", "BOF", "bof", "Blade", "blade"],
+        "categorie": "weapon",
+        "cost": 10000000,
+        "rarety": "Mythic",
+        "costperenhancement": 2000000,
+        "levelAttack": {
+            "level1": 32,
+            "level2": 64,
+            "level3": 128,
+            "level4": 256,
+            "level5": 512
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        }
+    },
+
+    {
+        "id": 14,
+        "name": "War Axe",
+        "alias": ["WarAxe", "Waraxe", "waraxe", "WA", "wa"],
+        "categorie": "weapon",
+        "cost": 10000000,
+        "rarety": "Mythic",
+        "costperenhancement": 1000000,
+        "levelAttack": {
+            "level1": 70,
+            "level2": 140,
+            "level3": 280,
+            "level4": 560,
+            "level5": 1120
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 110,
+            "level2": 220,
+            "level3": 330,
+            "level4": 440,
+            "level5": 550
+        }
+    },
+
+    {
+        "id": 15,
+        "name": "Glowing Wand",
+        "alias": ["GlowingHand", "glowinghand", "Glowing", "glowing", "BH", "gh"],
+        "categorie": "magic-item",
+        "cost": 10000000,
+        "rarety": "Mythic",
+        "costperenhancement": 2500000,
+        "levelAttack": {
+            "level1": 15,
+            "level2": 30,
+            "level3": 60,
+            "level4": 120,
+            "level5": 240
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 80,
+            "level2": 160,
+            "level3": 320,
+            "level4": 640,
+            "level5": 1280
+        }
+    },
+
+    {
+        "id": 16,
+        "name": "Lightning Truncheon",
+        "alias": ["LightningTruncheon", "Lightningtruncheon", "lightningtruncheon", "Lightning", "Lightning", "LT", "lt"],
+        "categorie": "magic-item",
+        "cost": 10000000,
+        "rarety": "Mythic",
+        "costperenhancement": 2750000,
+        "levelAttack": {
+            "level1": 175,
+            "level2": 200,
+            "level3": 250,
+            "level4": 275,
+            "level5": 300
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 60,
+            "level2": 120,
+            "level3": 240,
+            "level4": 480,
+            "level5": 960
+        }
+    },
+
+    {
+        "id": 17,
+        "name": "Queen's Wings",
+        "alias": ["QueenWings", "QueenWing", "queenwings", "queenW", "gueenw", "QW", "qw"],
+        "categorie": "armor",
+        "cost": 10000000,
+        "rarety": "Mythic",
+        "costperenhancement": 3000000,
+        "levelAttack": {
+            "level1": 130,
+            "level2": 160,
+            "level3": 190,
+            "level4": 210,
+            "level5": 230
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 180,
+            "level2": 270,
+            "level3": 405,
+            "level4": 605,
+            "level5": 911
+        }
+    },
+
+    {
+        "id": 18,
+        "name": "Brute Force Breastplate",
+        "alias": ["BruteForceBreastplate", "Bruteforcebreastplate", "BruteForce", "BFB", "BF", "bfb", "bf"],
+        "categorie": "armor",
+        "cost": 10000000,
+        "rarety": "Mythic",
+        "costperenhancement": 3000000,
+        "levelAttack": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDefense": {
+            "level1": 9,
+            "level2": 18,
+            "level3": 27,
+            "level4": 36,
+            "level5": 45
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 154,
+            "level2": 308,
+            "level3": 616,
+            "level4": 1232,
+            "level5": 2464
+        }
+    },
+
+    {
+        "id": 19,
+        "name": "Twilight Armor",
+        "alias": ["TwilightArmor", "Twilightarmor", "twilightarmor", "Twilight", "twilight", "TA", "ta"],
+        "categorie": "armor",
+        "cost": 10000000,
+        "rarety": "Mythic",
+        "costperenhancement": 3000000,
+        "levelAttack": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDefense": {
+            "level1": 40,
+            "level2": 80,
+            "level3": 160,
+            "level4": 240,
+            "level5": 480
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 240,
+            "level2": 480,
+            "level3": 960,
+            "level4": 1920,
+            "level5": 3840
+        }
+    },
+
+    {
+        "id": 20,
+        "name": "Scarlet Phantom",
+        "alias": ["ScarletPhantom", "Scarletphantom", "scarletphantom", "Scarlet", "scarlet", "SP", "sp"],
+        "categorie": "magic-item",
+        "cost": 15000000,
+        "rarety": "Mythical Glory",
+        "costperenhancement": 2500000,
+        "levelAttack": {
+            "level1": 160,
+            "level2": 320,
+            "level3": 640,
+            "level4": 1280,
+            "level5": 2560
+        },
+        "levelDefense": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        }
+    },
+
+    {
+        "id": 21,
+        "name": "Dominance Ice",
+        "alias": ["DominanceIce", "Dominanceice", "fominanceice", "Dominance", "dominance", "DI", "di"],
+        "categorie": "armor",
+        "cost": 15000000,
+        "rarety": "Mythical Glory",
+        "costperenhancement": 3000000,
+        "levelAttack": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDefense": {
+            "level1": 140,
+            "level2": 280,
+            "level3": 560,
+            "level4": 1120,
+            "level5": 2240
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 100,
+            "level2": 200,
+            "level3": 300,
+            "level4": 400,
+            "level5": 500
+        }
+    },
+
+    {
+        "id": 22,
+        "name": "Immortality",
+        "alias": ["Immortality", "immortality", "Imm", "I", "i"],
+        "categorie": "armor",
+        "cost": 15000000,
+        "rarety": "Mythical Glory",
+        "costperenhancement": 2000000,
+        "levelAttack": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDefense": {
+            "level1": 160,
+            "level2": 320,
+            "level3": 640,
+            "level4": 1280,
+            "level5": 2560
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 180,
+            "level2": 270,
+            "level3": 405,
+            "level4": 605,
+            "level5": 911
+        }
+    },
+
+    {
+        "id": 23,
+        "name": "Blade Armor",
+        "alias": ["BladeArmor", "Bladearmor", "bladearmor", "BA", "ba"],
+        "categorie": "armor",
+        "cost": 15000000,
+        "rarety": "Mythical Glory",
+        "costperenhancement": 3500000,
+        "levelAttack": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelDefense": {
+            "level1": 160,
+            "level2": 320,
+            "level3": 640,
+            "level4": 1280,
+            "level5": 2560
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 100,
+            "level2": 200,
+            "level3": 300,
+            "level4": 400,
+            "level5": 500
+        }
+    } 
 ]

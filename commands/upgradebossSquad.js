@@ -1,12 +1,11 @@
 const Discord = require('discord.js');
 const SQUADDATA = require('../modules/squad.js')
 const PLAYERDATA = require('../modules/player.js');
-const BALANCEDATA = require('../modules/economie.js');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
-const shuffleTime = 120000;
+const shuffleTime = 0;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
@@ -18,12 +17,9 @@ module.exports.run = async (client, message, args) => {
     cooldownPlayers.set(message.author.id, new Date().getTime());
     // ===============================
 
-    var windofnature = [['windofnature', 'weapon', 0, 'Epic']]
-
     var user = message.author;
     var itemUpgrade = args[0]
-    var amoutUpgrade = args[1]
-    if(isNaN(amoutUpgrade) == false) console.log(amoutUpgrade)
+    var amoutUpgrade = parseInt(args[1])
 
     if(itemUpgrade === '' || amoutUpgrade === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health> <amout>")}`);
     else if(itemUpgrade === ' ' || amoutUpgrade === ' ') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health> <amout>")}`);
@@ -39,23 +35,23 @@ module.exports.run = async (client, message, args) => {
             return false
         }
 
-        // == Player Db ==
+        // == Player DB ==
         let playerStats = await PLAYERDATA.findOne({ userId: user.id });
         if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
         else {
 
-            // == Balance Db ==
-            let balance = await BALANCEDATA.findOne({ userId: user.id });
-            if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+            // == Squad DB ==
+            let squad = await SQUADDATA.findOne({ squadName: playerStats.player.other.squadName });
+            if (!squad) return message.reply(`${inlineCode("😵‍💫")} squad are not available...`)
             else {
-                // == Squad Db ==
-                let squad = await SQUADDATA.findOne({ squadName: playerStats.player.other.squadName });
-                if (!squad) return message.reply(`${inlineCode("😵‍💫")} squad are not available...`)
-                else {
-                    // === PLayer is in Squad ===
-                    if(playerInSquad(playerStats)){
 
-                    // === Initialize Player is the leader of the team ===
+                // === Player is in Squad ===
+                if(playerInSquad(playerStats)){
+
+                    // === Check amout balance eco Bank ===
+                    if(squad.squadbank >= amoutUpgrade){
+
+                        // === Initialize Player is the leader of the team ===
                         if(playerStats.userId === squad.leader[0]){
 
                             function upgradeBossMessage(done, emojiDone, price, amoutUpgrade){
@@ -98,8 +94,7 @@ module.exports.run = async (client, message, args) => {
                                     if(id === 'yes'){
                                         // ========== YES: UPGRADE the SQUAD BOSS ==========
                                         if(done == 'attack'){
-                                            console.log('Here Attack !')
-                                            squad.squadboss.bossattack = amoutUpgrade
+                                            squad.squadboss.bossattack += amoutUpgrade
                                             squad.squadbank -= price
                                             squad.save() 
                                         };
@@ -130,14 +125,14 @@ module.exports.run = async (client, message, args) => {
                                 return upgradeBossMessage('health', '❤️', Math.floor(amoutUpgrade * 7.4), amoutUpgrade) 
                             };
 
-                        } else return message.reply(`${inlineCode("😵‍💫")} you are not the leader of the squad...`) 
-                    } else return message.reply(`${inlineCode("😵‍💫")} you are not in a squad...`) 
-                }
-            }
-        }
-    }
-}
+                        } else return message.reply(`${inlineCode("😵‍💫")} you are not the leader of the squad...`);
+                    } else return message.reply(`${inlineCode("😵‍💫")} your balance squad don't have enought money...`);
+                } else return message.reply(`${inlineCode("😵‍💫")} you are not in a squad...`);
+            };
+        };
+    };
+};
 
 module.exports.info = {
-    names: ['upgradesquadboss', 'usb', 'upgradesquadboss', 'squadbossimprove', 'upgsboss', 'upgradeteamboss'],
+    names: ['upgradesquadboss', 'usb', 'upgradesquadboss', 'squadbossimprove', 'upgsboss', 'upgradeteamboss', 'bosslevel', 'levelboss', 'improveboss', 'bossup', 'upboss'],
 };

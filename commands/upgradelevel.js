@@ -378,12 +378,12 @@ module.exports.run = async (client, message, args) => {
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.reflect}%** of Reflect`);
                         }
-                        if(id === 'lucky'){
+                        if(id === 'heal'){
                             stats.player.ultimate.heal = stats.player.ultimate.heal + 5
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.heal}%** of Heal`);
                         }
-                        if(id === 'heal'){
+                        if(id === 'lucky'){
                             stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of Lucky Strike`);
@@ -539,12 +539,12 @@ module.exports.run = async (client, message, args) => {
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.reflect}%** of Reflect`);
                         }
-                        if(id === 'lucky'){
+                        if(id === 'heal'){
                             stats.player.ultimate.heal = stats.player.ultimate.heal + 5
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.heal}%** of Heal`);
                         }
-                        if(id === 'heal'){
+                        if(id === 'lucky'){
                             stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
                             stats.save()
                             return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of Lucky Strike`);

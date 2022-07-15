@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
 const BALANCEDATA = require('../modules/economie.js');
 const CONFIGITEM = require('../config/stuff.json')
+const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
@@ -24,31 +25,30 @@ module.exports.run = async (client, message, args) => {
 
             for(let pas = 0; pas < CONFIGITEM.length; pas++){
 
-                if(balance.eco.coins < CONFIGITEM[pas].cost) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${CONFIGITEM[pas].cost - balance.eco.coins}`)
-
                 for(const alias of CONFIGITEM[pas].alias){
 
                     if(item === alias){
-                        if(balance.eco.coins >= CONFIGITEM[pas].cost) {
 
-                            function alreadyBuy(){
-                                for(const itemPlayerAll of playerStats.player.stuff.stuffUnlock){
-                                    if(itemPlayerAll.id === CONFIGITEM[pas].id) return true
-                                }
-                                return false
+                        function itemInInventory(){
+                            for(const itemPlayerAll of playerStats.player.stuff.stuffUnlock){
+                                if(itemPlayerAll.id === CONFIGITEM[pas].id) return [true, itemPlayerAll]
                             }
+                            return [false, itemPlayerAll]
+                        }
 
-                            if(alreadyBuy()) return message.reply(`${inlineCode("😵‍💫")} you have already this item !`)
-                            else {
-                                balance.eco.coins -= CONFIGITEM[pas].cost
-                                balance.save()
+                        if(itemInInventory()[0] == false) return message.reply(`${inlineCode("😵‍💫")} you don't have this item !`)
+                        else {
+                            // == Seling 5% of the prices ==
+                            balance.eco.coins += (CONFIGITEM[pas].cost * 5)/100
+                            balance.save()
 
-                                playerStats.player.stuff.stuffUnlock.push({id: CONFIGITEM[pas].id, level: 1})
-                                playerStats.save()
+                            // == Delete Array ==
+                            var index = playerStats.player.stuff.stuffUnlock.indexOf(itemInInventory()[1])
+                            playerStats.player.stuff.stuffUnlock.splice(index, 1)
+                            playerStats.save()
 
-                                return message.reply(`✅ Purchase made!\n**NEW** ITEM ${CONFIGITEM[pas].name}`)
+                            return message.reply(`✅ Selling made!\nSelling for: ${(CONFIGITEM[pas].cost * 5)/100}`)
 
-                            };
                         };
                     };
                 };
@@ -58,5 +58,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-    names: ['b', 'itembuy'],
+    names: ['s', 'sellitem', 'itemsell', 'sellingitem'],
 };

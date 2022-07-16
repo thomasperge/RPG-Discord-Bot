@@ -31,9 +31,10 @@ module.exports.run = async (client, message, args) => {
 
                         function itemInInventory(){
                             for(const itemPlayerAll of playerStats.player.stuff.stuffUnlock){
-                                if(itemPlayerAll.id === CONFIGITEM[pas].id) return [true, itemPlayerAll]
+                                var i = itemPlayerAll
+                                if(itemPlayerAll.id === CONFIGITEM[pas].id) return [true, i]
                             }
-                            return [false, itemPlayerAll]
+                            return [false, i]
                         }
 
                         if(itemInInventory()[0] == false) return message.reply(`${inlineCode("😵‍💫")} you don't have this item !`)

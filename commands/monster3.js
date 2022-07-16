@@ -441,5 +441,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-    names: ['monster'],
+    names: ['monster3'],
 };

@@ -44,6 +44,8 @@ module.exports.run = async (client, message, args) => {
                 }
             };
 
+
+            // [=================== BATTLE FUNCTION ===================]
             function battle(MAXATK_PLAYER, MAXATK_MONSTER, HEALTH_PLAYER, HEALTH_MONSTER, DEFENSE_MONSTER, DODGEPLAYER, CRITPLAYER, MAXXP){
                 var monsterStats_atk = MAXATK_MONSTER
                 var monsterStats_hth = HEALTH_MONSTER
@@ -189,238 +191,205 @@ module.exports.run = async (client, message, args) => {
                     };
                 };
             };
-            // ====== Function Battle End ======
+            // [================ Function Battle End ================]
+
+
+            // [================ Function LEVEL ================]
+            function levelReturn(randomMonster){
+                if(playerStats.player.level == 0){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level0.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level0.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level0.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 27]
+                };
+                if(playerStats.player.level == 1){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level1.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level1.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level1.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 39]
+                };
+                if(playerStats.player.level == 2){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level2.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level2.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level2.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 60]
+                };
+                if(playerStats.player.level == 3){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level3.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level3.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level3.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 98]
+                };
+                if(playerStats.player.level == 4){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level4.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level4.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level4.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 163]
+                };
+                if(playerStats.player.level == 5){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level5.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level5.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level5.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 608]
+                };
+                if(playerStats.player.level == 6){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level6.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level6.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level6.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 779]
+                };
+                if(playerStats.player.level == 7){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level7.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level7.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level7.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 831]
+                };
+                if(playerStats.player.level == 8){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level8.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level8.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level8.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 1447]
+                };
+                if(playerStats.player.level == 9){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level9.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level9.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level9.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 2524]
+                };
+                if(playerStats.player.level == 10){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level10.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level10.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level10.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 4410]
+                };
+                if(playerStats.player.level == 11){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level11.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level11.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level11.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 7710]
+                };
+                if(playerStats.player.level == 12){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level12.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level12.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level12.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 13485]
+                };
+                if(playerStats.player.level == 13){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level13.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level13.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level13.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 23592]
+                };
+                if(playerStats.player.level == 14){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level14.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level14.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level14.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 41608]
+                };
+                if(playerStats.player.level == 15){
+                    var MONSTER
+                    if(randomMonster == 0) MONSTER = MONSTERCONFIG.level15.monsterlvl1
+                    if(randomMonster == 1) MONSTER = MONSTERCONFIG.level15.monsterlvl2
+                    if(randomMonster == 2) MONSTER = MONSTERCONFIG.level15.monsterlvl3
+                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 72228]
+                };
+            }
+            // [================ END Function LEVEL ================]
 
             // [=========== BUTTON MESSAGE ===========]
+            var rM = Math.floor(Math.random() * 2)
+
             const row = new MessageActionRow()
                 .addComponents(
                     new MessageButton()
                         .setCustomId('yes')
-                        .setLabel('YES ::')
+                        .setLabel('ATTACK')
                         .setStyle('SUCCESS'),
                     
                     new MessageButton()
                         .setCustomId('no')
-                        .setLabel('NO !!')
+                        .setLabel('I AM AFRAID')
                         .setStyle('DANGER'),
                 );
 
-            const embed = new MessageEmbed()
+            const embedMessage = new MessageEmbed()
                 .setColor('#0099ff')
-                .setTitle('Some title')
+                .setTitle('Monster Attack - Stats')
+                .addFields(
+                    { name: '**📊 PLAYER :**\n', value: `${inlineCode("💥")}: ${playerStats.player.attack}\n${inlineCode("🛡️")}: ${playerStats.player.defense}\n${inlineCode("❤️")}: ${playerStats.player.health}`, inline: true},
+                    { name: '**🎯 MONSTER :**\n', value: `${inlineCode("💥")}: ${levelReturn(rM)[1]}\n${inlineCode("🛡️")}: ${levelReturn(rM)[4]}\n${inlineCode("❤️")}: ${levelReturn(rM)[3]}`, inline: true},
+                )
+                .setTimestamp()
 
-            const msg = await message.reply({ embeds: [embed], components: [row] });
+            const msg = await message.reply({ embeds: [embedMessage], components: [row] });
 
             const collector = msg.createMessageComponentCollector({
                 componentType: "BUTTON",
                 max: 1, // Seulement pour 1 joueur !
                 time: 15_000 // how long you want it to collect for, in ms (this is 15 seconds)
-            })
+            });
             
             collector.on('collect', async interaction => {
                 if (interaction.customId == 'yes') {
 
-                    // === Ad Squad Xp ===
+                    // ================ AD SQUAD XP ================
                     squad = await SQUADDATA.findOne({ squadName: playerStats.player.other.squadName })
 
                     var randomxp = Math.floor(Math.random() * (playerStats.player.health / 60)) + 1;
                     addSquadXp(squad, randomxp)
 
-
                     // ================= LEVEL CONFIG =================
-                    if(playerStats.player.level == 0){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level0.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level0.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level0.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 27)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 1){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level1.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level1.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level1.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 39)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 2){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level2.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level2.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level2.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 60)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 3){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level3.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level3.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level3.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 98)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 4){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level4.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level4.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level4.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 163)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 5){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level5.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level5.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level5.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 278)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 6){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level6.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level6.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level6.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 479)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 7){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level7.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level7.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level7.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 831)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 8){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level8.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level8.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level8.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 1447)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 9){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level9.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level9.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level9.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 2524)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 10){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level10.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level10.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level10.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 4410)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 11){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level11.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level11.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level11.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 7710)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 12){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level12.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level12.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level12.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 13485)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 13){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level13.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level13.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level13.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 23592)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 14){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level14.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level14.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level14.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 41278)], ephemeral: true });
-                    };
-                    if(playerStats.player.level == 15){
-                        var randomMonster = Math.floor(Math.random() * 2);
-                        // Choose monster between 1 and 3 :
-                        var MONSTER
-                        if(randomMonster == 0) MONSTER = MONSTERCONFIG.level15.monsterlvl1
-                        if(randomMonster == 1) MONSTER = MONSTERCONFIG.level15.monsterlvl2
-                        if(randomMonster == 2) MONSTER = MONSTERCONFIG.level15.monsterlvl3
-                        // Initialize MAX ATTACK Player and Monster :
-                        const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                        const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
-                        await interaction.reply({ embeds:[battle(MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 72228)], ephemeral: true });
-                    };
+                    await interaction.reply({ embeds:[battle(levelReturn(rM)[0], levelReturn(rM)[1], levelReturn(rM)[2], levelReturn(rM)[3], levelReturn(rM)[4], levelReturn(rM)[5], levelReturn(rM)[6], levelReturn(rM)[7])], ephemeral: true });
+
                 };
+                if(interaction.customId === 'no') await interaction.reply('YOU AFRAID HAHHAHAHAHH !!!!!!');
             });
             // [=========== BUTTON END ===========]
 

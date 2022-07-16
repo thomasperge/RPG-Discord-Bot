@@ -26,19 +26,17 @@ module.exports.run = async (client, message, args) => {
 
     const collector = msg.createMessageComponentCollector({
         componentType: "BUTTON",
-        max: 1, // Seulement pour 1 joueur !
+        // max: 1, // Seulement pour 1 joueur !
         time: 15_000 // how long you want it to collect for, in ms (this is 15 seconds)
     })
 
 
     collector.on('collect', async interaction => {
+        if(interaction.message.author.id = message.author.id) console.log('ok bon user')
         if (interaction.customId == 'yes') {
             await interaction.reply({ content: 'You click on YES !', ephemeral: true });
         };
     });
-
-
-
 };
 
 module.exports.info = {

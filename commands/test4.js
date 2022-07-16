@@ -25,16 +25,17 @@ module.exports.run = async (client, message, args) => {
     const filter = (interaction)  => {
         if(interaction.user.id === message.author.id) return true
         return interaction.reply({ content: 'You cant use this button bro' })
-    }
+    };
+
     const collector = message.channel.createMessageComponentCollector({
         filter, 
         max: 1
-    })
+    });
 
     collector.on('end', (ButtonInteraction) => {
-        // ButtonInteraction.first().deferUpdate()
+        ButtonInteraction.first().deferUpdate()
         const id = ButtonInteraction.first().customId
-        if(id === 'yes') ButtonInteraction.first().reply('YES !!')
+        if(id === 'yes') message.reply('YES !!')
         if(id === 'no') message.reply('NO !!')
     })
 

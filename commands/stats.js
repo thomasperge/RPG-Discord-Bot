@@ -68,17 +68,17 @@ module.exports.run = async (client, message, args) => {
 
         function main2() {
           var squad
-          if(playerStats.player.other.squadName == undefined) squad = 'No Squad'
-          else squad = playerStats.player.other.squadName
+          if(playerStats2.player.other.squadName == 'undefined') squad = 'No Squad'
+          else squad = playerStats2.player.other.squadName
 
           var statsEmbed = new Discord.MessageEmbed()
             .setColor('#fc9803')
             .setAuthor(`${userInput.username}'s Stats`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
             .addFields(
-              { name: '**📊 Info :**\n', value: `:pencil: ${inlineCode('Level')}}: ${playerStats2.player.level}`, inline: true },
+              { name: '**📊 Info :**\n', value: `:pencil: ${inlineCode('Level')}: ${playerStats2.player.level}`, inline: true },
               { name: '**🏦 Balance :**\n', value: `🪙: ${balance2.eco.coins}\n🏮: ${balance2.eco.xp}`, inline: true },
               { name: '**👥 Squad :**\n', value: `⚒️: ${squad}`, inline: false },
-              { name: '**📈 Stats :**\n', value: `:fire: ${inlineCode('Attack')}: ${playerStats2.player.attack}\n:shield: ${inlineCode('Defense')}: ${playerStats2.player.defense}\n:heart: ${inlineCode('Health')}: ${playerStats2.player.health}\n:dash: ${inlineCode('Dodge')}: ${playerStats2.player.dodge}%\n:boom: ${inlineCode('Critick')}: ${playerStats2.player.crit}%\n:heavy_multiplication_x: ${inlineCode('Critick Multplicator')}: ${playerStats2.player.critMultplicator}%\n:comet: ${inlineCode('Attack Speed')}: ${playerStats2.player.attackSpeed}%\n:heart_on_fire: ${inlineCode('Life Steal')}: ${playerStats2.player.lifeSteal}%\n:fire_extinguisher: ${inlineCode('Aegis')}: ${playerStats2.player.aegis}\n`, inline: false },
+              { name: '**📈 Stats :**\n', value: `:fire: ${inlineCode('Attack')}: ${playerStats2.player.attack}\n:shield: ${inlineCode('Defense')}: ${playerStats2.player.defense}\n:heart: ${inlineCode('Health')}: ${playerStats2.player.health}\n:dash: ${inlineCode('Dodge')}: ${playerStats2.player.dodge}%\n:boom: ${inlineCode('Critick')}: ${playerStats2.player.crit}%\n:heavy_multiplication_x: ${inlineCode('Critick Multplicator')}: ${playerStats2.player.critMultplicator}%\n:heart_on_fire: ${inlineCode('Life Steal')}: ${playerStats2.player.lifeSteal}%\n:fire_extinguisher: ${inlineCode('Aegis')}: ${playerStats2.player.aegis}\n`, inline: false },
               { name: '**⚔️ Ultimate :**\n', value: `:mirror: ${inlineCode('Reflect')}: ${playerStats2.player.ultimate.reflect}%\n:mending_heart: ${inlineCode('Heal')}: ${playerStats2.player.ultimate.heal}%\n:four_leaf_clover: ${inlineCode('Lucky Strike')}: ${playerStats2.player.ultimate.luckyStrike}%\n`, inline: true },
               { name: '**📰 Others :**\n', value: `📜 ${inlineCode('Battle Diary')} : ${playerStats2.player.other.dm}`, inline: true },
             )

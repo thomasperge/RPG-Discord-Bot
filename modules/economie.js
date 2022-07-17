@@ -6,6 +6,7 @@ const economieSchema = mongoose.Schema({
     eco: {
         coins: Number,
         xp: Number,
+        elo: Number,
     },
 })
 

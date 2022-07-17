@@ -18,6 +18,7 @@ module.exports.run = async (client, message, args) => {
                     pseudo: message.author.username,
                     player: {
                         level: 0,
+                        elo: 1500,
                         attack: 100,
                         defense: 20,
                         health: 2500,

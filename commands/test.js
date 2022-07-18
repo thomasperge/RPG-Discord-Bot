@@ -4,7 +4,7 @@ const { MessageActionRow, MessageButton } = require('discord.js');
 
 module.exports.run = async (client, message, args) => {
 
-    message.reply('TEst').then(message.react('👍').then(() => message.react('👎')));
+    message.react('👍').then(() => message.react('👎'));
 
     const filter = (reaction, user) => {
         return ['👍', '👎'].includes(reaction.emoji.name) && user.id === message.author.id;
@@ -15,10 +15,24 @@ module.exports.run = async (client, message, args) => {
             const reaction = collected.first();
     
             if (reaction.emoji.name === '👍') {
-                message.reply('You reacted 👍');
-            } 
-            if (reaction.emoji.name === '👎') {
-                message.reply('You reacted with 👎');
+
+                message.channel.send('my emote')
+                .then((msg)=> {
+
+                    function task(i) {
+                        setTimeout(function(){
+                            console.log(i)
+                            msg.edit(`my other emoji with : ${i}`);
+                        }, 5000 * i)
+                      }
+
+                    for (let i=0; i<10; i++) {
+                        task(i);
+                     }
+                });
+                                
+            } else {
+                message.reply('You reacted with a thumbs down.');
             }
         })
         .catch(collected => {
@@ -30,5 +44,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-    names: ['test'],
+    names: ['t'],
 };

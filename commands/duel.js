@@ -104,8 +104,8 @@ module.exports.run = async (client, message, args) => {
                                     .setAuthor(`${user.username}'s Battle`)
                                     .setDescription(`:crossed_swords: : ${user.username} ${inlineCode("🆚")} ${playerTwo.pseudo}\n`)
                                     .addFields(
-                                    { name: '**🎯 YOU :**\n', value: `**Attack** : ${maxAtkP1}\n**Defense** : ${DEFENSE_PLAYERONE}\n**Health** : ${HEALTH_PLAYERONE}\n`, inline: true },
-                                    { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${maxAtkP2}\n**Defense** : ${DEFENSE_PLAYERTWO}\n**Health** : ${HEALTH_PLAYERTWO}\n `, inline: true },
+                                    { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerOne.player.attack}\n**Defense** : ${playerOne.player.defense}\n**Health** : ${playerOne.player.health}\n`, inline: true },
+                                    { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${playerTwo.player.attack}\n**Defense** : ${playerTwo.player.defense}\n**Health** : ${playerTwo.player.health}\n `, inline: true },
                                     { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose -${loseELO} ELO`, inline: false },
                                     )
                                     .setFooter('© RPG Bot 2022 | ghelp')
@@ -132,9 +132,9 @@ module.exports.run = async (client, message, args) => {
                                     .setAuthor(`${user.username}'s Battle`)
                                     .setDescription(`:crossed_swords: : ${user.username} ${inlineCode("🆚")} ${playerTwo.pseudo}\n`)
                                     .addFields(
-                                    { name: '**🎯 YOU :**\n', value: `**Attack** : ${maxAtkP1}\n**Defense** : ${DEFENSE_PLAYERONE}\n**Health** : ${HEALTH_PLAYERONE}\n`, inline: true },
-                                    { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${maxAtkP2}\n**Defense** : ${DEFENSE_PLAYERTWO}\n**Health** : ${HEALTH_PLAYERTWO}\n `, inline: true },
-                                    { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} You lose +${earnELO} ELO`, inline: false },
+                                        { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerOne.player.attack}\n**Defense** : ${playerOne.player.defense}\n**Health** : ${playerOne.player.health}\n`, inline: true },
+                                        { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${playerTwo.player.attack}\n**Defense** : ${playerTwo.player.defense}\n**Health** : ${playerTwo.player.health}\n `, inline: true },
+                                        { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} You earn +${earnELO} ELO`, inline: false },
                                     )
                                     .setFooter('© RPG Bot 2022 | ghelp')
                                     .setTimestamp();

@@ -2,11 +2,13 @@ const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
 
 module.exports.run = async (client, message, args) => {
-    var user = message.author
 
-    PLAYERDATA.updateOne({userId: user.id},{$set:{ pseudo:["Test"]}})
+    // await interaction.guild.members.fetch()
+    console.log(await message.guild.members.fetch());
+
+
 
 };
 module.exports.info = {
-    names: ['f'],
+    names: ['t2'],
 };

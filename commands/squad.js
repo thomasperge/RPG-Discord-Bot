@@ -36,7 +36,7 @@ module.exports.run = async (client, message, args) => {
                 else memberLenght = squad.member.length
 
                 var squadEmbed = new Discord.MessageEmbed()
-                    .setColor('#4dca4d')
+                    .setColor('#6d4534')
                     .setAuthor(`🛖 Your Squad (leader)`)
                     .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : **You**\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(squad.squadbank + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squad.squadboss.bossattack)} **/** ❤️: ${inlineCode(squad.squadboss.bosshealth)}`)
                     .setFooter('© RPG Bot 2022 | ghelp')
@@ -50,7 +50,7 @@ module.exports.run = async (client, message, args) => {
 
                 // == User is a Member of Squad ==
                 var squadEmbed = new Discord.MessageEmbed()
-                    .setColor('#4dca4d')
+                    .setColor('#2f3136')
                     .setAuthor(`🛖 Your Squad`)
                     .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : ${squad.leader[1]}\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(squad.squadbank + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squad.squadboss.bossattack)} **/** ❤️: ${inlineCode(squad.squadboss.bosshealth)}`)
                     .setFooter('© RPG Bot 2022 | ghelp')

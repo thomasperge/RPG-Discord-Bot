@@ -14,6 +14,13 @@ const playerSchema = mongoose.Schema({
         lifeSteal: Number,
         execute: Number,
         aegis: Number, // bouclier
+        slotItem: {
+            slot1: Number,
+            slot2: Number,
+            slot3: Number,
+            slot4: Number,
+            slot5: Number,
+        },
         stuff: {
             stuffUnlock : Array,
             weaponID: Number,

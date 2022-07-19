@@ -25,18 +25,20 @@ module.exports.run = async (client, message, args) => {
     };
 
 
-    // === Player 1 : DataBase ===
-    let playerOne = await PLAYERDATA.findOne({ userId: message.author.id });
-    if (!playerOne) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
-    else {
 
-        // === Player 2 : DataBase ===
-        let playerTwo = await PLAYERDATA.findOne({ userId: userInput.id });
-        if (!playerTwo) return message.reply(`${inlineCode('❌')} player 2 are not a player : ${inlineCode('gstart')}`);
+
+
+    if(userReal(userInput)){
+
+        // === Player 1 : DataBase ===
+        let playerOne = await PLAYERDATA.findOne({ userId: message.author.id });
+        if (!playerOne) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
         else {
-
-
-            if(userReal(userInput)){
+    
+            // === Player 2 : DataBase ===
+            let playerTwo = await PLAYERDATA.findOne({ userId: userInput.id });
+            if (!playerTwo) return message.reply(`${inlineCode('❌')} player 2 are not a player : ${inlineCode('gstart')}`);
+            else {
 
 
                 var totalStatsP1 = playerOne.player.attack + playerOne.player.health + playerOne.player.defense
@@ -46,7 +48,7 @@ module.exports.run = async (client, message, args) => {
                 var percentageWin = (100 * totalStatsP1) / totalStats
 
                 var percentageWin = new Discord.MessageEmbed()
-                    .setColor('#1fa5ed')
+                    .setColor('#2f3136')
                     .setAuthor(`🧮 ${user.username}'s Win %`)
                     .setDescription(`📰 ${inlineCode(user.username)} vs ${inlineCode(playerTwo.pseudo)}\n`)
                     .addFields(
@@ -57,11 +59,9 @@ module.exports.run = async (client, message, args) => {
                     .setFooter('© RPG Bot 2022 | ghelp')
                     .setTimestamp();
                 return message.channel.send({embeds: [percentageWin]});
-
-            } else return message.reply(`${inlineCode('❌')} player undefined : ${inlineCode("gduel <@user>")}`);
-            
+            };
         };
-    };
+    } else return message.reply(`${inlineCode('❌')} player undefined : ${inlineCode("gduel <@user>")}`);
 };
 
 module.exports.info = {

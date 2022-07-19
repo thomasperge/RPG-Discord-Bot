@@ -28,10 +28,12 @@ module.exports.run = async (client, message, args) => {
                         lifeSteal: 0,
                         execute: 100,
                         aegis: 125,
-                        ultimate:{
-                            reflect: 0,
-                            heal: 0,
-                            luckyStrike: 0,
+                        slotItem: {
+                            slot1: -1,
+                            slot2: -1,
+                            slot3: -1,
+                            slot4: -1,
+                            slot5: -1,
                         },
                         stuff: {
                             stuffUnlock: [],
@@ -39,6 +41,11 @@ module.exports.run = async (client, message, args) => {
                             bootsID: -1,
                             armorID: -1,
                             magicItemID: -1,
+                        },
+                        ultimate:{
+                            reflect: 0,
+                            heal: 0,
+                            luckyStrike: 0,
                         },
                         other:{
                             dm: false,

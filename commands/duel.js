@@ -83,19 +83,21 @@ module.exports.run = async (client, message, args) => {
 
                             HEALTH_PLAYERONE -= attackDamagePLayerTwo;
                             
-        
+                            
+                            function eloAdd(){
+                                if(playerOne.player.elo >= playerTwo.player.elo){
+                                    return Math.floor(Math.random() * 30) + 16;
+                                } else {
+                                    return Math.floor(Math.random() * 16) + 2;
+                                }
+                            };
         
                             if (HEALTH_PLAYERONE <= 0){
                                 // =================================
                                 // ======== PLAYER ONE LOSE ========
 
-                                if(playerOne.player.elo >= playerTwo.player.elo){
-                                    var loseELO = Math.floor(Math.random() * 30) + 16;
-                                } else if(playerOne.player.elo < playerTwo.player.elo){
-                                    var loseELO = Math.floor(Math.random() * 16) + 2;
-                                }
-
-                                balance.elo -= loseELO
+                                var eloLoseVar = eloAdd()
+                                balance.elo -= eloLoseVar
                                 balance.save()
         
                                 // == Embed LOSE : ==
@@ -106,7 +108,7 @@ module.exports.run = async (client, message, args) => {
                                     .addFields(
                                     { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerOne.player.attack}\n**Defense** : ${playerOne.player.defense}\n**Health** : ${playerOne.player.health}\n`, inline: true },
                                     { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${playerTwo.player.attack}\n**Defense** : ${playerTwo.player.defense}\n**Health** : ${playerTwo.player.health}\n `, inline: true },
-                                    { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose -${loseELO} ELO`, inline: false },
+                                    { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose -${eloLoseVar} ELO`, inline: false },
                                     )
                                     .setFooter('© RPG Bot 2022 | ghelp')
                                     .setTimestamp();
@@ -116,14 +118,8 @@ module.exports.run = async (client, message, args) => {
                                 // ======================================
                                 // =========== PLAYER ONE WIN ===========
 
-                                if(playerOne.player.elo >= playerTwo.player.elo){
-                                    var earnELO = Math.floor(Math.random() * 30) + 16;
-                                } else if(playerOne.player.elo < playerTwo.player.elo){
-                                    var earnELO = Math.floor(Math.random() * 16) + 2;
-                                }
-
-
-                                balance.elo += earnELO
+                                var eloAddVar = eloAdd()
+                                balance.elo += eloAddVar
                                 balance.save()
         
                                 // == Embed WIN : ==
@@ -134,7 +130,7 @@ module.exports.run = async (client, message, args) => {
                                     .addFields(
                                         { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerOne.player.attack}\n**Defense** : ${playerOne.player.defense}\n**Health** : ${playerOne.player.health}\n`, inline: true },
                                         { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${playerTwo.player.attack}\n**Defense** : ${playerTwo.player.defense}\n**Health** : ${playerTwo.player.health}\n `, inline: true },
-                                        { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} You earn +${earnELO} ELO`, inline: false },
+                                        { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} You earn +${eloAddVar} ELO`, inline: false },
                                     )
                                     .setFooter('© RPG Bot 2022 | ghelp')
                                     .setTimestamp();

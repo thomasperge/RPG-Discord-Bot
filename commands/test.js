@@ -24,11 +24,11 @@ module.exports.run = async (client, message, args) => {
                             console.log(i)
                             msg.edit(`my other emoji with : ${i}`);
                         }, 5000 * i)
-                      }
+                    };
 
                     for (let i=0; i<10; i++) {
                         task(i);
-                     }
+                    }
                 });
                                 
             } else {

@@ -3,6 +3,7 @@ const BALANCEDATA = require('../modules/economie.js');
 const PLAYERDATA = require('../modules/player.js');
 const SQUADDATA = require('../modules/squad.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
+const player = require('../modules/player.js');
 
 // Config Cooldown :
 const shuffleTime = 0;
@@ -27,7 +28,7 @@ module.exports.run = async (client, message, args) => {
     if (!balance) return message.reply("`❌` you are not player ! : `gstart`");
     else {
 
-        if (balance.eco.coins <= 500000) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode('500000')} 🪙 to create a squad...`)
+        if (balance.eco.coins <= 100000) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode('500000')} 🪙 to create a squad...`)
         else {
 
             if(squadName === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gcreatesquad <squad name>")}`)
@@ -76,9 +77,8 @@ module.exports.run = async (client, message, args) => {
 
                         var squadEmbed = new Discord.MessageEmbed()
                             .setColor('#4dca4d')
-                            .setAuthor(`🛖 New Squad by ${user.username}`)
+                            .setTitle(`🛖 New Squad by ${user.username}`)
                             .setDescription(`👊 You created ${inlineCode(squadName + "'s")} squad\n📰 Squad Bank : ${inlineCode("0")} 🪙\n👑 Leader : ${user.username}\n👥 Member: ${inlineCode("1")}`)
-                            .setFooter('© RPG Bot 2022 | ghelp')
                             .setTimestamp();
                         return message.channel.send({embeds: [squadEmbed]});
                     } else return message.reply(`${inlineCode("😵‍💫")} you are already in a squad...`) 

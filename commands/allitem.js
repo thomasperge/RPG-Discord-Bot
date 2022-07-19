@@ -13,25 +13,19 @@ module.exports.run = async (client, message, args) => {
         else {
 
 
-            function itemExist(){
-                for(const allItem of playerStats.player.stuff.stuffUnlock){
-                    console.log(allItem)
-                }
-            };
-
-            itemExist()
-
-
-
-            var itemEmbed = new Discord.MessageEmbed()
+            var itemEmbed = new MessageEmbed()
                 .setColor('#9696ab')
                 .setTitle(`📦 ${user.username}'s Item(s)`)
-                .addFields(
-                    { name: '**📊 STATS :**\n', value: ``, inline: false },
-                )
-                .setFooter('© RPG Bot 2022 | ghelp')
                 .setTimestamp();
-            return itemEmbed
+
+            var numberItem = 1
+            for(const allItem of playerStats.player.stuff.stuffUnlock){
+                console.log(allItem.name)
+                itemEmbed.addField(`Item ${numberItem} :`,`${allItem.name}`)
+                numberItem += 1
+            };
+
+            message.reply({ embeds: [itemEmbed] })
 
     };
 };

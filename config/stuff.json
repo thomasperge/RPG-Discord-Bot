@@ -4,15 +4,15 @@
         "name": "Wind Of Nature",
         "alias": ["windofnature", "WindOfNature", "WindofNature", "Windofnature", "won", "WON", "WoN"],
         "categorie": "weapon",
-        "cost": 1000000,
+        "cost": 325000,
         "rarety": "Epic",
-        "costperenhancement": 500000,
+        "costperenhancement": 325000,
         "levelAttack": {
-            "level1": 3,
-            "level2": 6,
-            "level3": 9,
-            "level4": 12,
-            "level5": 15
+            "level1": 108,
+            "level2": 128,
+            "level3": 148,
+            "level4": 168,
+            "level5": 188
         },
         "levelDefense": {
             "level1": 0,
@@ -22,11 +22,32 @@
             "level5": 0
         },
         "levelDodge": {
+            "level1": 10,
+            "level2": 10,
+            "level3": 20,
+            "level4": 20,
+            "level5": 30
+        },
+        "levelCrit": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
             "level4": 0,
             "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 2,
+            "level2": 4,
+            "level3": 6,
+            "level4": 8,
+            "level5": 10
         },
         "levelHealth": {
             "level1": 0,
@@ -42,15 +63,15 @@
         "name": "Berserker's Fury",
         "alias": ["BerserkersFury", "berserkersfury", "Berserkersfury", "bf", "BF", "Bf", "Berserker", "Berserkers", "berserker", "berserkers"],
         "categorie": "weapon",
-        "cost": 1000000,
+        "cost": 425000,
         "rarety": "Epic",
-        "costperenhancement": 500000,
+        "costperenhancement": 425000,
         "levelAttack": {
-            "level1": 15,
-            "level2": 30,
-            "level3": 45,
-            "level4": 60,
-            "level5": 75
+            "level1": 156,
+            "level2": 226,
+            "level3": 376,
+            "level4": 326,
+            "level5": 406
         },
         "levelDefense": {
             "level1": 0,
@@ -60,6 +81,27 @@
             "level5": 0
         },
         "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelCrit": {
+            "level1": 25,
+            "level2": 27,
+            "level3": 30,
+            "level4": 34,
+            "level5": 39
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
@@ -80,24 +122,45 @@
         "name": "Malefic Roar",
         "alias": ["MaleficRoar", "Maleficroar", "maleficroar", "malefic", "Malefic", "mr", "MR", "Mr"],
         "categorie": "weapon",
-        "cost": 1000000,
+        "cost": 500000,
         "rarety": "Epic",
-        "costperenhancement": 300000,
+        "costperenhancement": 500000,
         "levelAttack": {
-            "level1": 12,
-            "level2": 24,
-            "level3": 36,
-            "level4": 48,
-            "level5": 60
+            "level1": 175,
+            "level2": 225,
+            "level3": 275,
+            "level4": 325,
+            "level5": 375
         },
         "levelDefense": {
+            "level1": 20,
+            "level2": 20,
+            "level3": 30,
+            "level4": 30,
+            "level5": 50
+        },
+        "levelDodge": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
             "level4": 0,
             "level5": 0
         },
-        "levelDodge": {
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 15,
+            "level2": 20,
+            "level3": 25,
+            "level4": 30,
+            "level5": 35
+        },
+        "levelLifeSteal": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
@@ -118,15 +181,15 @@
         "name": "Sea Halberd",
         "alias": ["SeaHalberd", "seahalberd", "sea", "Seahalberd", "SH", "Sh", "sh"],
         "categorie": "weapon",
-        "cost": 1000000,
+        "cost": 400000,
         "rarety": "Epic",
-        "costperenhancement": 500000,
+        "costperenhancement": 400000,
         "levelAttack": {
-            "level1": 14,
-            "level2": 28,
-            "level3": 42,
-            "level4": 56,
-            "level5": 70
+            "level1": 168,
+            "level2": 236,
+            "level3": 388,
+            "level4": 336,
+            "level5": 438
         },
         "levelDefense": {
             "level1": 0,
@@ -141,6 +204,27 @@
             "level3": 0,
             "level4": 0,
             "level5": 0
+        },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 2,
+            "level2": 5,
+            "level3": 10,
+            "level4": 20,
+            "level5": 30
         },
         "levelHealth": {
             "level1": 0,
@@ -156,15 +240,15 @@
         "name": "Bloodlust Axe",
         "alias": ["BloodlustAxe", "Bloodlustaxe", "bloodlustaxe", "Blood", "blood", "BA", "ba"],
         "categorie": "weapon",
-        "cost": 1000000,
+        "cost": 375000,
         "rarety": "Epic",
-        "costperenhancement": 200000,
+        "costperenhancement": 375000,
         "levelAttack": {
-            "level1": 14,
-            "level2": 28,
-            "level3": 42,
-            "level4": 56,
-            "level5": 70
+            "level1": 50,
+            "level2": 100,
+            "level3": 250,
+            "level4": 300,
+            "level5": 500
         },
         "levelDefense": {
             "level1": 0,
@@ -179,6 +263,27 @@
             "level3": 0,
             "level4": 0,
             "level5": 0
+        },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 7,
+            "level2": 11,
+            "level3": 15,
+            "level4": 17,
+            "level5": 20
         },
         "levelHealth": {
             "level1": 20,
@@ -218,6 +323,27 @@
             "level4": 20,
             "level5": 25
         },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
         "levelHealth": {
             "level1": 20,
             "level2": 40,
@@ -250,6 +376,27 @@
             "level5": 15
         },
         "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
@@ -294,6 +441,27 @@
             "level4": 0,
             "level5": 0
         },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
         "levelHealth": {
             "level1": 0,
             "level2": 0,
@@ -332,6 +500,27 @@
             "level4": 4,
             "level5": 5
         },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
         "levelHealth": {
             "level1": 10,
             "level2": 20,
@@ -346,15 +535,15 @@
         "name": "Golden Staff",
         "alias": ["GoldenStaff", "Goldenstaff", "goldenstaff", "Golden", "golden", "GS", "gs"],
         "categorie": "weapon",
-        "cost": 5000000,
+        "cost": 475000,
         "rarety": "Legend",
-        "costperenhancement": 200000,
+        "costperenhancement": 475000,
         "levelAttack": {
-            "level1": 13,
-            "level2": 26,
-            "level3": 39,
-            "level4": 52,
-            "level5": 65
+            "level1": 156,
+            "level2": 226,
+            "level3": 376,
+            "level4": 326,
+            "level5": 406
         },
         "levelDefense": {
             "level1": 0,
@@ -364,6 +553,27 @@
             "level5": 0
         },
         "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelCrit": {
+            "level1": 5,
+            "level2": 10,
+            "level3": 15,
+            "level4": 20,
+            "level5": 25
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
@@ -384,22 +594,22 @@
         "name": "Rose Gold Meteor",
         "alias": ["RoseGoldMeteor", "Rosegoldmeteor", "rosegoldmeteor", "rosegold", "rose", "RGM", "rgm"],
         "categorie": "weapon",
-        "cost": 5000000,
+        "cost": 325000,
         "rarety": "Legend",
-        "costperenhancement": 400000,
+        "costperenhancement": 325000,
         "levelAttack": {
-            "level1": 10,
-            "level2": 20,
-            "level3": 30,
-            "level4": 40,
-            "level5": 50
+            "level1": 175,
+            "level2": 225,
+            "level3": 275,
+            "level4": 325,
+            "level5": 375
         },
         "levelDefense": {
-            "level1": 6,
-            "level2": 12,
-            "level3": 18,
-            "level4": 24,
-            "level5": 36
+            "level1": 108,
+            "level2": 128,
+            "level3": 148,
+            "level4": 168,
+            "level5": 188
         },
         "levelDodge": {
             "level1": 0,
@@ -408,12 +618,33 @@
             "level4": 0,
             "level5": 0
         },
-        "levelHealth": {
+        "levelCrit": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
             "level4": 0,
             "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 5,
+            "level2": 5,
+            "level3": 5,
+            "level4": 5,
+            "level5": 5
+        },
+        "levelHealth": {
+            "level1": 350,
+            "level2": 450,
+            "level3": 550,
+            "level4": 650,
+            "level5": 750
         }
     },
 
@@ -422,15 +653,15 @@
         "name": "Haas's Claws",
         "alias": ["HaasClaws", "Haasclaws", "haashlaws", "hass", "HC", "hc"],
         "categorie": "weapon",
-        "cost": 5000000,
+        "cost": 400000,
         "rarety": "Legend",
-        "costperenhancement": 500000,
+        "costperenhancement": 400000,
         "levelAttack": {
-            "level1": 14,
-            "level2": 28,
-            "level3": 42,
-            "level4": 56,
-            "level5": 70
+            "level1": 168,
+            "level2": 236,
+            "level3": 388,
+            "level4": 336,
+            "level5": 438
         },
         "levelDefense": {
             "level1": 0,
@@ -445,6 +676,27 @@
             "level3": 0,
             "level4": 0,
             "level5": 0
+        },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 5,
+            "level2": 10,
+            "level3": 15,
+            "level4": 20,
+            "level5": 25
         },
         "levelHealth": {
             "level1": 0,
@@ -478,6 +730,27 @@
             "level5": 0
         },
         "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
@@ -522,6 +795,27 @@
             "level4": 0,
             "level5": 0
         },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
         "levelHealth": {
             "level1": 310,
             "level2": 525,
@@ -536,15 +830,15 @@
         "name": "Blade of Despair",
         "alias": ["BladeofDespair", "Bladeofdespair", "bladeofdespair", "BOF", "bof", "Blade", "blade"],
         "categorie": "weapon",
-        "cost": 10000000,
+        "cost": 450000,
         "rarety": "Mythic",
-        "costperenhancement": 2000000,
+        "costperenhancement": 450000,
         "levelAttack": {
-            "level1": 32,
-            "level2": 64,
-            "level3": 128,
-            "level4": 256,
-            "level5": 512
+            "level1": 250,
+            "level2": 450,
+            "level3": 600,
+            "level4": 850,
+            "level5": 1000
         },
         "levelDefense": {
             "level1": 0,
@@ -554,6 +848,27 @@
             "level5": 0
         },
         "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelCrit": {
+            "level1": 11,
+            "level2": 12,
+            "level3": 13,
+            "level4": 14,
+            "level5": 15
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
@@ -574,15 +889,15 @@
         "name": "War Axe",
         "alias": ["WarAxe", "Waraxe", "waraxe", "WA", "wa"],
         "categorie": "weapon",
-        "cost": 10000000,
+        "cost": 500000,
         "rarety": "Mythic",
-        "costperenhancement": 1000000,
+        "costperenhancement": 500000,
         "levelAttack": {
-            "level1": 70,
-            "level2": 140,
-            "level3": 280,
-            "level4": 560,
-            "level5": 1120
+            "level1": 50,
+            "level2": 75,
+            "level3": 125,
+            "level4": 180,
+            "level5": 220
         },
         "levelDefense": {
             "level1": 0,
@@ -598,19 +913,40 @@
             "level4": 0,
             "level5": 0
         },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 5,
+            "level2": 7,
+            "level3": 8,
+            "level4": 9,
+            "level5": 10
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
         "levelHealth": {
-            "level1": 110,
-            "level2": 220,
-            "level3": 330,
-            "level4": 440,
-            "level5": 550
+            "level1": 1125,
+            "level2": 1600,
+            "level3": 2150,
+            "level4": 2950,
+            "level5": 3450
         }
     },
 
     {
         "id": 16,
         "name": "Glowing Wand",
-        "alias": ["GlowingHand", "glowinghand", "Glowing", "glowing", "BH", "gh"],
+        "alias": ["GlowingHand", "glowinghand", "Glowing", "glowing", "GH", "gh"],
         "categorie": "magic-item",
         "cost": 10000000,
         "rarety": "Mythic",
@@ -630,6 +966,27 @@
             "level5": 0
         },
         "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
@@ -674,6 +1031,27 @@
             "level4": 0,
             "level5": 0
         },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
         "levelHealth": {
             "level1": 60,
             "level2": 120,
@@ -706,6 +1084,27 @@
             "level5": 0
         },
         "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
@@ -750,6 +1149,27 @@
             "level4": 0,
             "level5": 0
         },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
         "levelHealth": {
             "level1": 154,
             "level2": 308,
@@ -788,6 +1208,27 @@
             "level4": 0,
             "level5": 0
         },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
         "levelHealth": {
             "level1": 240,
             "level2": 480,
@@ -802,15 +1243,15 @@
         "name": "Scarlet Phantom",
         "alias": ["ScarletPhantom", "Scarletphantom", "scarletphantom", "Scarlet", "scarlet", "SP", "sp"],
         "categorie": "magic-item",
-        "cost": 15000000,
+        "cost": 600000,
         "rarety": "Mythical Glory",
-        "costperenhancement": 2500000,
+        "costperenhancement": 600000,
         "levelAttack": {
-            "level1": 160,
-            "level2": 320,
-            "level3": 640,
-            "level4": 1280,
-            "level5": 2560
+            "level1": 108,
+            "level2": 128,
+            "level3": 148,
+            "level4": 168,
+            "level5": 188
         },
         "levelDefense": {
             "level1": 0,
@@ -820,6 +1261,27 @@
             "level5": 0
         },
         "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelCrit": {
+            "level1": 10,
+            "level2": 20,
+            "level3": 30,
+            "level4": 40,
+            "level5": 50
+        },
+        "levelPenetration": {
+            "level1": 5,
+            "level2": 10,
+            "level3": 15,
+            "level4": 20,
+            "level5": 25
+        },
+        "levelLifeSteal": {
             "level1": 0,
             "level2": 0,
             "level3": 0,
@@ -864,6 +1326,27 @@
             "level4": 0,
             "level5": 0
         },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
         "levelHealth": {
             "level1": 100,
             "level2": 200,
@@ -902,6 +1385,27 @@
             "level4": 0,
             "level5": 0
         },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
         "levelHealth": {
             "level1": 180,
             "level2": 270,
@@ -913,18 +1417,18 @@
 
     {
         "id": 24,
-        "name": "Blade Armor",
-        "alias": ["BladeArmor", "Bladearmor", "bladearmor", "BA", "ba"],
+        "name": "Blade of Heptaseas",
+        "alias": ["BladeHeptaseas", "Bladeheptaseas", "bladeheptaseas", "BH", "bh"],
         "categorie": "armor",
-        "cost": 15000000,
+        "cost": 1000000,
         "rarety": "Mythical Glory",
-        "costperenhancement": 3500000,
+        "costperenhancement": 1000000,
         "levelAttack": {
-            "level1": 0,
-            "level2": 0,
-            "level3": 0,
-            "level4": 0,
-            "level5": 0
+            "level1": 168,
+            "level2": 236,
+            "level3": 388,
+            "level4": 336,
+            "level5": 438
         },
         "levelDefense": {
             "level1": 160,
@@ -940,12 +1444,33 @@
             "level4": 0,
             "level5": 0
         },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 15,
+            "level2": 20,
+            "level3": 25,
+            "level4": 35,
+            "level5": 45
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
         "levelHealth": {
-            "level1": 100,
-            "level2": 200,
-            "level3": 300,
-            "level4": 400,
-            "level5": 500
+            "level1": 300,
+            "level2": 600,
+            "level3": 900,
+            "level4": 1300,
+            "level5": 1550
         }
     } 
 ]

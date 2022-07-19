@@ -12,51 +12,55 @@ module.exports.run = async (client, message, args) => {
     var item = args[0]
     var user = message.author
 
+    if(item == undefined || item == '' || item == ' ') return message.reply(`${inlineCode("😵‍💫")} item error : ${inlineCode("gbuyitem <item name>")}`);
+
     let playerStats = await PLAYERDATA.findOne({ userId: user.id });
     if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
     else {
 
-        let balance = await BALANCEDATA.findOne({ userId: message.author.id });
+        let balance = await BALANCEDATA.findOne({ userId: user.id });
         if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
         else {
 
             if(balance.eco.coins <= 0) return message.reply(`${inlineCode("😵‍💫")} balance error...`)
 
-            for(let pas = 0; pas < CONFIGITEM.length; pas++){
-
-                if(balance.eco.coins < CONFIGITEM[pas].cost) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${CONFIGITEM[pas].cost - balance.eco.coins}`)
-
-                for(const alias of CONFIGITEM[pas].alias){
-
-                    if(item === alias){
-                        if(balance.eco.coins >= CONFIGITEM[pas].cost) {
-
-                            function alreadyBuy(){
-                                for(const itemPlayerAll of playerStats.player.stuff.stuffUnlock){
-                                    if(itemPlayerAll.id === CONFIGITEM[pas].id) return true
-                                }
-                                return false
-                            }
-
-                            if(alreadyBuy()) return message.reply(`${inlineCode("😵‍💫")} you have already this item !`)
-                            else {
-                                balance.eco.coins -= CONFIGITEM[pas].cost
-                                balance.save()
-
-                                playerStats.player.stuff.stuffUnlock.push({id: CONFIGITEM[pas].id, level: 1})
-                                playerStats.save()
-
-                                return message.reply(`✅ Purchase made!\n**NEW** ITEM ${CONFIGITEM[pas].name}`)
-
-                            };
-                        };
-                    };
-                };
+            function itemExist(item){
+                for(let pas = 0; pas < CONFIGITEM.length; pas++){
+                    for(const alias of CONFIGITEM[pas].alias){
+                        if(item == alias) return [true, CONFIGITEM[pas].id, CONFIGITEM[pas].cost, CONFIGITEM[pas].name]
+                    }
+                }
+                return [false, -1, 0, 'undefined']
             };
+
+            if(balance.eco.coins < itemExist(item)[2]) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${itemExist(item)[2] - balance.eco.coins}`)
+  
+            if(itemExist(item)[0]){
+                if(balance.eco.coins >= itemExist(item)[2]) {
+
+                    function alreadyBuy(){
+                        for(const itemPlayerAll of playerStats.player.stuff.stuffUnlock){
+                            if(itemPlayerAll.id === itemExist(item)[1]) return true
+                        }
+                        return false
+                    };
+
+                    if(alreadyBuy()) return message.reply(`${inlineCode("😵‍💫")} you have already this item !`);
+                    else {
+                        balance.eco.coins -= itemExist(item)[2]
+                        balance.save()
+
+                        playerStats.player.stuff.stuffUnlock.push({id: itemExist(item)[1], name: itemExist(item)[3], level: 1})
+                        playerStats.save()
+
+                        return message.reply(`✅ Purchase made!\n**NEW** ITEM ${itemExist(item)[3]}`)
+                    };
+                } return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${itemExist(item)[2] - balance.eco.coins}`);
+            } else return message.reply(`${inlineCode("😵‍💫")} this item does not exist...`);
         };
     };
 };
 
 module.exports.info = {
-    names: ['b', 'itembuy'],
+    names: ['b', 'itembuy', 'buyitem'],
 };

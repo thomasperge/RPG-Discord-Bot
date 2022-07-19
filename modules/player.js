@@ -8,12 +8,10 @@ const playerSchema = mongoose.Schema({
         attack: Number,
         defense: Number,
         health: Number,
-        dodge: Number, // Esquive
-        crit: Number, // Chance de coup critique
-        critMultplicator: Number, // attack * critMultplicator
+        dodge: Number,
+        crit: Number,
+        penetration: Number,
         lifeSteal: Number,
-        execute: Number,
-        aegis: Number, // bouclier
         slotItem: {
             slot1: Number,
             slot2: Number,

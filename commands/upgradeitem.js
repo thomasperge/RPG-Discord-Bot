@@ -12,6 +12,9 @@ module.exports.run = async (client, message, args) => {
     var user = message.author
     var item = args[0]
 
+    if(item == undefined || item == '' || item == ' ') return message.reply(`${inlineCode("😵‍💫")} item error : ${inlineCode("gupgradeitem <item name>")}`);
+
+
     let playerStats = await PLAYERDATA.findOne({ userId: user.id });
     if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
     else {
@@ -68,5 +71,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-    names: ['m'],
+    names: ['m', 'upgradeitem', 'itemupgrade', 'improveitem', 'itemimprove', 'uitem'],
 };

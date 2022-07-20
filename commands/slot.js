@@ -27,7 +27,7 @@ module.exports.run = async (client, message, args) => {
 
         const slotEmbed = new MessageEmbed()
             .setColor('#4dca4d')
-            .setAuthor(`🪧 ${user.username}'s item slot`)
+            .setTitle(`🪧 ${user.username}'s item slot`)
             .setDescription(`📦 Slot 1: ${inlineCode(slotDisplay(playerStats.player.slotItem.slot1))}\n📦 Slot 2: ${inlineCode(slotDisplay(playerStats.player.slotItem.slot2))}\n📦 Slot 3: ${inlineCode(slotDisplay(playerStats.player.slotItem.slot3))}\n📦 Slot 4: ${inlineCode(slotDisplay(playerStats.player.slotItem.slot4))}\n📦 Slot 5: ${inlineCode(slotDisplay(playerStats.player.slotItem.slot5))}\n`)
             .setTimestamp();
         message.reply({embeds: [slotEmbed] });

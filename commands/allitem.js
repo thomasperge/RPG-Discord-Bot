@@ -20,8 +20,7 @@ module.exports.run = async (client, message, args) => {
 
             var numberItem = 1
             for(const allItem of playerStats.player.stuff.stuffUnlock){
-                console.log(allItem.name)
-                itemEmbed.addField(`Item ${numberItem} :`,`${allItem.name}`)
+                itemEmbed.addField(`Item ${numberItem} :`,`${allItem.name} (level: ${allItem.level})`)
                 numberItem += 1
             };
 

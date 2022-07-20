@@ -31,10 +31,10 @@ module.exports.run = async (client, message, args) => {
                     for(const alias of CONFIGITEM[pas].alias){
                         if(item == alias) return [true, CONFIGITEM[pas].id, CONFIGITEM[pas].cost, CONFIGITEM[pas].name, CONFIGITEM[pas].categorie, CONFIGITEM[pas].rarety]
                     }
-                };
+                }
                 return [false, -1, 0, 'undefined', 'undefined', 'undefined']
             };
-
+            
             if(itemExist(item)[0]){
 
                 function ifItemInInventory(item){
@@ -71,6 +71,14 @@ module.exports.run = async (client, message, args) => {
                     // == Delete Array ==
                     var index = playerStats.player.stuff.stuffUnlock.indexOf(ifItemInInventory()[1])
                     playerStats.player.stuff.stuffUnlock.splice(index, 1)
+
+                    // == Item in Slot ==
+                    const IDITEM = itemExist(item)[1]
+                    if(playerStats.player.slotItem.slot1 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
+                    if(playerStats.player.slotItem.slot2 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
+                    if(playerStats.player.slotItem.slot3 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
+                    if(playerStats.player.slotItem.slot4 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
+                    if(playerStats.player.slotItem.slot5 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
 
                     const row = new MessageActionRow()
                     .addComponents(
@@ -113,11 +121,14 @@ module.exports.run = async (client, message, args) => {
 
                             // ================ SLOT ITEM VERIF ================
                             if(ifItemInInventory(item)[0]){
-                                for(const i of playerStats.player.slotItem){
-                                    
-                                }
 
+                                if(slotItem == 1) playerStats.player.slotItem.slot1 = -1
+                                if(slotItem == 2) playerStats.player.slotItem.slot2 = -1
+                                if(slotItem == 3) playerStats.player.slotItem.slot3 = -1
+                                if(slotItem == 4) playerStats.player.slotItem.slot4 = -1
+                                if(slotItem == 5) playerStats.player.slotItem.slot5 = -1
                                 playerStats.save()
+
                             } else playerStats.save()
 
                             // ================= LEVEL CONFIG =================

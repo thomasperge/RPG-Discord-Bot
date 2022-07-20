@@ -2,20 +2,26 @@ const PLAYER = require('../modules/player.js')
 const ECONOMIE = require('../modules/economie.js')
 const BOSS = require('../modules/boss.js')
 const BOSSCONFIG = require('../config/boss.json')
+const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const { inlineCode } = require('@discordjs/builders')
 
 module.exports.run = async (client, message, args) => {
     var user = message.author
+
+    var playerCreateEmbed = new MessageEmbed()
+        .setColor('#9696ab')
+        .setTitle(`✅ ${user.username}'s Account`)
+        .setDescription("📭 : The bot is in Beta version, if there is a problem/bug, please let us know.")
+        .setTimestamp();
+    
     // ======= ACCOUNT PLAYER =======
-    PLAYER.findOne(
-        {
-            userId: message.author.id,
-        },
+    PLAYER.findOne({userId: user.idw},
         (err, player) => {
             if (err) console.log(err)
             if (!player) {
                 var accountPLayer = new PLAYER({
-                    userId: message.author.id,
-                    pseudo: message.author.username,
+                    userId: user.id,
+                    pseudo: user.username,
                     player: {
                         level: 0,
                         elo: 1500,
@@ -53,36 +59,34 @@ module.exports.run = async (client, message, args) => {
                             squadCoinGiven: 0,
                         },
                     },
-                })
-                accountPLayer.save()
-                message.reply('`✅` Account create ! - New player joins the adventure!')
+                });
+                accountPLayer.save();
+                playerCreateEmbed.addField(`${inlineCode("✅")} Account create !`,`📜 New player joins the adventure!`);
             } else {
-                message.reply('`❌` You are already a player... !')
-            }
+                message.reply(`${inlineCode("❌")} You are already a player... !`);
+            };
         }
     );
 
     // ======= ECONOMIE PLAYER =======
-    ECONOMIE.findOne(
-        {
-            userId: message.author.id,
-        },
+    ECONOMIE.findOne({ userId: user.id },
         (err, economie) => {
             if (err) console.log(err)
             if (!economie) {
                 var economiePLayer = new ECONOMIE({
-                    userId: message.author.id,
-                    pseudo: message.author.username,
+                    userId: user.id,
+                    pseudo: user.username,
                     eco: {
                         coins: 25_000_000,
                         xp: 99_750_000,
                     },
                 })
                 economiePLayer.save()
-                message.reply('`✅` Balance create ! - To you the conquest towards wealth!')
+                playerCreateEmbed.addField(`${inlineCode("✅")} Balance create !`,`📜 To you the conquest towards wealth!`);
+                message.reply({ embeds: [playerCreateEmbed] })
             } else {
-                message.reply('`❌` You already have a bank account... !')
-            }
+                message.reply(`${inlineCode("❌")} You are already a player... !`);
+            };
         }
     );
 

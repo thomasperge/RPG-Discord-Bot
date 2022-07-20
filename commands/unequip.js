@@ -6,13 +6,11 @@ const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 module.exports.run = async (client, message, args) => {
-    var item = args[0]
-    var slotItem = args[1]
+    var slotItem = args[0]
     var user = message.author
 
-    if(item == undefined || item == '' || item == ' ') return message.reply(`${inlineCode("😵‍💫")} item error : ${inlineCode("gequip <item> <1/2/3/4/5>")}`);
-
     if(isNaN(slotItem) == false && slotItem <= 5 && slotItem >= 0){
+
         let playerStats = await PLAYERDATA.findOne({ userId: user.id });
         if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
         else {
@@ -21,43 +19,44 @@ module.exports.run = async (client, message, args) => {
             if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
             else {
 
-                function itemExist(item){
-                    for(let pas = 0; pas < CONFIGITEM.length; pas++){
-                        for(const alias of CONFIGITEM[pas].alias){
-                            if(item == alias) return [true, CONFIGITEM[pas].id, CONFIGITEM[pas].name]
+                function slotDisplay(slotID){
+                    if(slotID == -1) return 'no item'
+                    else {
+                        for(let pas = 0; pas < CONFIGITEM.length; pas++){
+                            if(slotID == CONFIGITEM[pas].id) return CONFIGITEM[pas].name
                         }
-                    }
-                    return [false, -1]
+                        return 'no item'
+                    };
                 };
 
-                if(itemExist(item)[0]){
+                var itemname
+                if(slotItem == 1){
+                    itemname = slotDisplay(playerStats.player.slotItem.slot1)
+                    playerStats.player.slotItem.slot1 = -1
+                };
+                if(slotItem == 2){
+                    itemname = slotDisplay(playerStats.player.slotItem.slot2)
+                    playerStats.player.slotItem.slot2 = -1
+                };
+                if(slotItem == 3){
+                    itemname = slotDisplay(playerStats.player.slotItem.slot3)
+                    playerStats.player.slotItem.slot3 = -1
+                };
+                if(slotItem == 4){
+                    itemname = slotDisplay(playerStats.player.slotItem.slot4)
+                    playerStats.player.slotItem.slot4 = -1
+                };
+                if(slotItem == 5){
+                    itemname = slotDisplay(playerStats.player.slotItem.slot5)
+                    playerStats.player.slotItem.slot5 = -1
+                };
+                playerStats.save()
 
-                    function ifItemInInventory(item){
-                        for(const itemPlayerAll of playerStats.player.stuff.stuffUnlock){
-                            var itemPlayer = itemPlayerAll.id
-                            var itemPlayerExist = itemExist(item)[1]
+                return message.reply(`You de-equip your: **${itemname}** to slot number : **${slotItem}**`)
 
-                            if(itemPlayer == itemPlayerExist) return [true, itemPlayerExist]
-                        }
-                        return [false, -1]
-                    };
-
-                    if(ifItemInInventory(item)[0]){
-
-                        if(slotItem == 1) playerStats.player.slotItem.slot1 = -1
-                        if(slotItem == 2) playerStats.player.slotItem.slot2 = -1
-                        if(slotItem == 3) playerStats.player.slotItem.slot3 = -1
-                        if(slotItem == 4) playerStats.player.slotItem.slot4 = -1
-                        if(slotItem == 5) playerStats.player.slotItem.slot5 = -1
-                        playerStats.save()
-
-                        message.reply(`You unequip your: **${itemExist(item)[2]}** in the slot number : **${slotItem}**`)
-
-                    };
-                } else return message.reply(`${inlineCode("😵‍💫")} this item does not exist...`);
             };
         };
-    } else return message.reply(`${inlineCode("😵‍💫")} please specify a correct slot: ${inlineCode("gequip <item> <1/2/3/4/5>")}`);
+    } else return message.reply(`${inlineCode("😵‍💫")} please specify a correct slot: ${inlineCode("gunequip <1/2/3/4/5>")}`);
 };
 
 module.exports.info = {

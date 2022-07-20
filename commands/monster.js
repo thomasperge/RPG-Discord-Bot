@@ -185,7 +185,6 @@ module.exports.run = async (client, message, args) => {
                             { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER} times** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} And get: **${randomxp}** 🏮 and **${randomcoin}** 🪙`, inline: false },
 
                             )
-                            .setFooter('© RPG Bot 2022 | ghelp')
                             .setTimestamp();
                         return battleEmbed
                     };
@@ -340,8 +339,34 @@ module.exports.run = async (client, message, args) => {
                     const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 72228]
                 };
-            }
+            };
             // [================ END Function LEVEL ================]
+
+            function winPercentage(randomMonster){
+                var monsterA = levelReturn(randomMonster)[1]
+                var monsterH = levelReturn(randomMonster)[3]
+                var monsterD = levelReturn(randomMonster)[4]
+
+                var totalStatsP1 = playerStats.player.attack + playerStats.player.health + playerStats.player.defense
+                var totalStatsMonster = monsterA + monsterH + monsterD
+
+                var totalStats = totalStatsP1 + totalStatsMonster
+
+                var percentageWin = (100 * totalStatsP1) / totalStats
+
+                var percentageWin = new Discord.MessageEmbed()
+                    .setColor('#2f3136')
+                    .setTitle(`🧮 ${user.username}'s Win %`)
+                    .setDescription(`📰 ${inlineCode(user.username)} vs ${inlineCode('Monster')}\n`)
+                    .addFields(
+                        {name: `🪧 Your Stats:`, value:`${inlineCode("💥")}: ${playerStats.player.attack}\n${inlineCode("🛡️")}: ${playerStats.player.defense}\n${inlineCode("❤️")}: ${playerStats.player.health}`, inline: true},
+                        {name: `🪧 Monster Stats:`, value:`${inlineCode("💥")}: ${monsterA}\n${inlineCode("🛡️")}: ${monsterD}\n${inlineCode("❤️")}: ${monsterH}`, inline: true},
+                        {name: `📭 Result :`, value:`🍀 Your percentage chance of winning is : **${Math.floor(percentageWin)}%**`, inline: false},
+                    )
+                    .setTimestamp();
+                return percentageWin
+            };
+
 
             // [=========== BUTTON MESSAGE ===========]
             var rM = Math.floor(Math.random() * 2)
@@ -357,6 +382,11 @@ module.exports.run = async (client, message, args) => {
                         .setCustomId('no')
                         .setLabel('I AM AFRAID')
                         .setStyle('DANGER'),
+                    
+                    new MessageButton()
+                        .setCustomId('percentage')
+                        .setLabel('WIN %')
+                        .setStyle('SECONDARY'),
                 );
 
             const embedMessage = new MessageEmbed()
@@ -369,11 +399,11 @@ module.exports.run = async (client, message, args) => {
                 .setTimestamp()
 
             const msg = await message.reply({ embeds: [embedMessage], components: [row] });
-
+            
             const collector = msg.createMessageComponentCollector({
                 componentType: "BUTTON",
-                max: 1, // Seulement pour 1 joueur !
-                time: 15_000 // how long you want it to collect for, in ms (this is 15 seconds)
+                max: 1,
+                time: 15_000
             });
             
             collector.on('collect', async interaction => {
@@ -389,14 +419,18 @@ module.exports.run = async (client, message, args) => {
                     await interaction.reply({ embeds:[battle(levelReturn(rM)[0], levelReturn(rM)[1], levelReturn(rM)[2], levelReturn(rM)[3], levelReturn(rM)[4], levelReturn(rM)[5], levelReturn(rM)[6], levelReturn(rM)[7])], ephemeral: true });
 
                 };
-                if(interaction.customId === 'no') await interaction.reply('YOU AFRAID HAHHAHAHAHH !!!!!!');
+                if (interaction.customId == 'percentage') {
+                    collector.options.max = 2
+
+                    await interaction.reply({ embeds: [winPercentage(rM)], ephemeral: true });
+                }
+                if(interaction.customId === 'no') await interaction.reply({content: `${inlineCode("😶‍🌫️")} You prefer to dodge the monster...`, ephemeral: true});
             });
             // [=========== BUTTON END ===========]
-
         };
     };
 };
 
 module.exports.info = {
-    names: ['monster'],
+    names: ['monster', 'm', 'mon'],
 };

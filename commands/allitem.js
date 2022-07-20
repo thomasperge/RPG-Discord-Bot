@@ -16,7 +16,7 @@ module.exports.run = async (client, message, args) => {
             var itemEmbed = new MessageEmbed()
                 .setColor('#9696ab')
                 .setTitle(`📦 ${user.username}'s Item(s)`)
-                .setTimestamp();
+                .setTimestamp()
 
             var numberItem = 1
             for(const allItem of playerStats.player.stuff.stuffUnlock){

@@ -175,7 +175,7 @@ module.exports.run = async (client, message, args) => {
                         // ====================== Embed WIN ======================
                         var battleEmbed = new Discord.MessageEmbed()
                             .setColor('#fc9803')
-                            .setAuthor(`${client.users.cache.get(user.id).username}'s Battle`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
+                            .setTitle(`${client.users.cache.get(user.id).username}'s Battle`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
                             .setDescription(`**:crossed_swords: BATTLE**\n${client.users.cache.get(user.id).username} ${"`🆚`"} Monster\n`)
                             .addFields(
                             { name: '**🎯 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n `, inline: true },
@@ -341,58 +341,56 @@ module.exports.run = async (client, message, args) => {
             }
             // [================ END Function LEVEL ================]
 
-            setTimeout(function(){
-                // [=========== BUTTON MESSAGE ===========]
-                var rM = Math.floor(Math.random() * 2)
+            // [=========== BUTTON MESSAGE ===========]
+            var rM = Math.floor(Math.random() * 2)
 
-                const row = new MessageActionRow()
-                    .addComponents(
-                        new MessageButton()
-                            .setCustomId('yes')
-                            .setLabel('ATTACK')
-                            .setStyle('SUCCESS'),
-                        
-                        new MessageButton()
-                            .setCustomId('no')
-                            .setLabel('I AM AFRAID')
-                            .setStyle('DANGER'),
-                    );
+            const row = new MessageActionRow()
+                .addComponents(
+                    new MessageButton()
+                        .setCustomId('yes')
+                        .setLabel('ATTACK')
+                        .setStyle('SUCCESS'),
+                    
+                    new MessageButton()
+                        .setCustomId('no')
+                        .setLabel('I AM AFRAID')
+                        .setStyle('DANGER'),
+                );
 
-                const embedMessage = new MessageEmbed()
-                    .setColor('#0099ff')
-                    .setTitle('Monster Attack - Stats')
-                    .addFields(
-                        { name: '**📊 PLAYER :**\n', value: `${inlineCode("💥")}: ${playerStats.player.attack}\n${inlineCode("🛡️")}: ${playerStats.player.defense}\n${inlineCode("❤️")}: ${playerStats.player.health}`, inline: true},
-                        { name: '**🎯 MONSTER :**\n', value: `${inlineCode("💥")}: ${levelReturn(rM)[1]}\n${inlineCode("🛡️")}: ${levelReturn(rM)[4]}\n${inlineCode("❤️")}: ${levelReturn(rM)[3]}`, inline: true},
-                    )
-                    .setTimestamp()
+            const embedMessage = new MessageEmbed()
+                .setColor('#0099ff')
+                .setTitle('Monster Attack - Stats')
+                .addFields(
+                    { name: '**📊 PLAYER :**\n', value: `${inlineCode("💥")}: ${playerStats.player.attack}\n${inlineCode("🛡️")}: ${playerStats.player.defense}\n${inlineCode("❤️")}: ${playerStats.player.health}`, inline: true},
+                    { name: '**🎯 MONSTER :**\n', value: `${inlineCode("💥")}: ${levelReturn(rM)[1]}\n${inlineCode("🛡️")}: ${levelReturn(rM)[4]}\n${inlineCode("❤️")}: ${levelReturn(rM)[3]}`, inline: true},
+                )
+                .setTimestamp()
 
-                const msg = await message.reply({ embeds: [embedMessage], components: [row] });
+            const msg = await message.reply({ embeds: [embedMessage], components: [row] });
 
-                const collector = msg.createMessageComponentCollector({
-                    componentType: "BUTTON",
-                    max: 1, // Seulement pour 1 joueur !
-                    time: 15_000 // how long you want it to collect for, in ms (this is 15 seconds)
-                });
-                
-                collector.on('collect', async interaction => {
-                    if (interaction.customId == 'yes') {
+            const collector = msg.createMessageComponentCollector({
+                componentType: "BUTTON",
+                max: 1, // Seulement pour 1 joueur !
+                time: 15_000 // how long you want it to collect for, in ms (this is 15 seconds)
+            });
+            
+            collector.on('collect', async interaction => {
+                if (interaction.customId == 'yes') {
 
-                        // ================ AD SQUAD XP ================
-                        squad = await SQUADDATA.findOne({ squadName: playerStats.player.other.squadName })
+                    // ================ AD SQUAD XP ================
+                    squad = await SQUADDATA.findOne({ squadName: playerStats.player.other.squadName })
 
-                        var randomxp = Math.floor(Math.random() * (playerStats.player.health / 60)) + 1;
-                        addSquadXp(squad, randomxp)
+                    var randomxp = Math.floor(Math.random() * (playerStats.player.health / 60)) + 1;
+                    addSquadXp(squad, randomxp)
 
-                        // ================= LEVEL CONFIG =================
-                        await interaction.reply({ embeds:[battle(levelReturn(rM)[0], levelReturn(rM)[1], levelReturn(rM)[2], levelReturn(rM)[3], levelReturn(rM)[4], levelReturn(rM)[5], levelReturn(rM)[6], levelReturn(rM)[7])], ephemeral: true });
+                    // ================= LEVEL CONFIG =================
+                    await interaction.reply({ embeds:[battle(levelReturn(rM)[0], levelReturn(rM)[1], levelReturn(rM)[2], levelReturn(rM)[3], levelReturn(rM)[4], levelReturn(rM)[5], levelReturn(rM)[6], levelReturn(rM)[7])], ephemeral: true });
 
-                    };
-                    if(interaction.customId === 'no') await interaction.reply('YOU AFRAID HAHHAHAHAHH !!!!!!');
-                });
-                // [=========== BUTTON END ===========]
+                };
+                if(interaction.customId === 'no') await interaction.reply('YOU AFRAID HAHHAHAHAHH !!!!!!');
+            });
+            // [=========== BUTTON END ===========]
 
-            }, 5000 * i)
         };
     };
 };

@@ -21,10 +21,11 @@ module.exports.run = async (client, message, args) => {
         else {
 
             if(balance.eco.coins <= 0) return message.reply(`${inlineCode("😵‍💫")} balance error...`)
+            if(playerStats.player.level < 10) return message.reply(`${inlineCode("😬")} You must be level 10 to improve your item...`)
 
             for(let pas = 0; pas < CONFIGITEM.length; pas++){
 
-                if(balance.eco.coins < CONFIGITEM[pas].cost) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${CONFIGITEM[pas].cost - balance.eco.coins}`)
+                if(balance.eco.coins < CONFIGITEM[pas].cost) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${CONFIGITEM[pas].cost - balance.eco.coins} 🪙`)
                 else {
 
                     for(const alias of CONFIGITEM[pas].alias){

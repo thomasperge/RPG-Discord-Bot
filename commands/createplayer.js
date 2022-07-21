@@ -47,16 +47,12 @@ module.exports.run = async (client, message, args) => {
                             armorID: -1,
                             magicItemID: -1,
                         },
-                        ultimate:{
-                            reflect: 0,
-                            heal: 0,
-                            luckyStrike: 0,
-                        },
                         other:{
                             dm: false,
                             bossattack: 0,
                             squadName: 'undefined',
                             squadCoinGiven: 0,
+                            monsterKill: 0,
                         },
                     },
                 });

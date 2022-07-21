@@ -123,74 +123,12 @@ module.exports.run = async (client, message, args) => {
                     
                     // ==== Squad Accout ====
                     let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
-                    if (squad) addSquadXp(squad, 4)
+                    if (squad) addSquadXp(squad, 3)
 
-                    upgradeLevel(CONFIGLEVEL.level4.XPcost, CONFIGLEVEL.level3.nextLevel)
-
-
-                    // ==== Choose Ultimate : ====
-                    const row = new MessageActionRow()
-                        .addComponents(
-                            new MessageButton()
-                                .setCustomId('reflect')
-                                .setLabel('Reflect')
-                                .setStyle('PRIMARY')
-                                .setEmoji('🪞'),
-                            
-                            new MessageButton()
-                                .setCustomId('lucky')
-                                .setLabel('Lucky Strike')
-                                .setStyle('DANGER')
-                                .setEmoji('❤️‍🩹'),
-
-                            new MessageButton()
-                                .setCustomId('heal')
-                                .setLabel('Heal')
-                                .setStyle('SUCCESS')
-                                .setEmoji('🍀'),
-                        );
-
-                    var ultimateEmbed = new Discord.MessageEmbed()
-                        .setColor('#fc9803')
-                        .setAuthor(`🪧 ${user.username}'s Ultimate`)
-                        .addFields(
-                        { name: '**📰 Choose Ultimate :**\n', value: `🪞 ${inlineCode('Reflect')}: **+5%**\n❤️‍🩹 ${inlineCode('Heal')}: **+5%**\n🍀 ${inlineCode('Lucky Strike')}: **+5%**`, inline: true },
-                        )
-                        .setTimestamp();
-                    message.reply({ embeds: [ultimateEmbed], components: [row], ephemeral: true });
-
-
-                    const filter = (interaction)  => {
-                        if(interaction.user.id === message.author.id) return true
-                        return interaction.reply({ content: 'You cant use this button', ephemeral: true })
-                    }
-                    const collector = message.channel.createMessageComponentCollector({
-                        filter, 
-                        max: 1
-                    })
-                
-                    collector.on('end', async (ButtonInteraction) => {
-                        const id = ButtonInteraction.first().customId
-                        if(id === 'reflect'){
-                            stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
-                            stats.save()
-                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.reflect}%** of Reflect`);
-                        }
-                        if(id === 'lucky'){
-                            stats.player.ultimate.heal = stats.player.ultimate.heal + 5
-                            stats.save()
-                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.heal}%** of Heal`);
-                        }
-                        if(id === 'heal'){
-                            stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
-                            stats.save()
-                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of Lucky Strike`);
-                        }
-                    });
-                    return
+                    return upgradeLevel(CONFIGLEVEL.level4.XPcost, CONFIGLEVEL.level3.nextLevel)
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level4.XPcost - balance.eco.xp}** 🏮 are missing`)
-                };
+                }
             };
             if(stats.player.level == 4){
                 if(checkPrice(CONFIGLEVEL.level5.XPcost)){
@@ -235,69 +173,8 @@ module.exports.run = async (client, message, args) => {
                     let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
                     if (squad) addSquadXp(squad, 8)
 
-                    upgradeLevel(CONFIGLEVEL.level8.XPcost, CONFIGLEVEL.level7.nextLevel)
-
-                    // ==== Choose Ultimate : ====
-                    const row = new MessageActionRow()
-                        .addComponents(
-                            new MessageButton()
-                                .setCustomId('reflect')
-                                .setLabel('Reflect')
-                                .setStyle('PRIMARY')
-                                .setEmoji('🪞'),
-                            
-                            new MessageButton()
-                                .setCustomId('lucky')
-                                .setLabel('Lucky Strike')
-                                .setStyle('DANGER')
-                                .setEmoji('❤️‍🩹'),
-
-                            new MessageButton()
-                                .setCustomId('heal')
-                                .setLabel('Heal')
-                                .setStyle('SUCCESS')
-                                .setEmoji('🍀'),
-                        );
-
-                    var ultimateEmbed = new Discord.MessageEmbed()
-                        .setColor('#fc9803')
-                        .setAuthor(`🪧 ${user.username}'s Ultimate`)
-                        .addFields(
-                        { name: '**📰 Choose Ultimate :**\n', value: `🪞 ${inlineCode('Reflect')}: **+5%**\n❤️‍🩹 ${inlineCode('Heal')}: **+5%**\n🍀 ${inlineCode('Lucky Strike')}: **+5%**`, inline: true },
-                        )
-                        .setTimestamp();
-                    message.reply({ embeds: [ultimateEmbed], components: [row], ephemeral: true });
-
-
-                    const filter = (interaction)  => {
-                        if(interaction.user.id === message.author.id) return true
-                        return interaction.reply({ content: 'You cant use this button', ephemeral: true })
-                    }
-                    const collector = message.channel.createMessageComponentCollector({
-                        filter, 
-                        max: 1
-                    })
-                
-                    collector.on('end', async (ButtonInteraction) => {
-                        const id = ButtonInteraction.first().customId
-                        if(id === 'reflect'){
-                            stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
-                            stats.save()
-                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.reflect}%** of Reflect`);
-                        }
-                        if(id === 'heal'){
-                            stats.player.ultimate.heal = stats.player.ultimate.heal + 5
-                            stats.save()
-                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.heal}%** of Heal`);
-                        }
-                        if(id === 'lucky'){
-                            stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
-                            stats.save()
-                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of Lucky Strike`);
-                        }
-                    });
-                    return
-                }  else {
+                    return upgradeLevel(CONFIGLEVEL.level8.XPcost, CONFIGLEVEL.level7.nextLevel)
+                } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level8.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
@@ -344,69 +221,8 @@ module.exports.run = async (client, message, args) => {
                     let squad = await SQUADDATA.findOne({ squadName: stats.player.other.squadName });
                     if (squad) addSquadXp(squad, 12)
 
-                    upgradeLevel(CONFIGLEVEL.level12.XPcost, CONFIGLEVEL.level11.nextLevel)
-
-                    // ==== Choose Ultimate : ====
-                    const row = new MessageActionRow()
-                        .addComponents(
-                            new MessageButton()
-                                .setCustomId('reflect')
-                                .setLabel('Reflect')
-                                .setStyle('PRIMARY')
-                                .setEmoji('🪞'),
-                            
-                            new MessageButton()
-                                .setCustomId('lucky')
-                                .setLabel('Lucky Strike')
-                                .setStyle('DANGER')
-                                .setEmoji('❤️‍🩹'),
-
-                            new MessageButton()
-                                .setCustomId('heal')
-                                .setLabel('Heal')
-                                .setStyle('SUCCESS')
-                                .setEmoji('🍀'),
-                        );
-
-                    var ultimateEmbed = new Discord.MessageEmbed()
-                        .setColor('#fc9803')
-                        .setAuthor(`🪧 ${user.username}'s Ultimate`)
-                        .addFields(
-                        { name: '**📰 Choose Ultimate :**\n', value: `🪞 ${inlineCode('Reflect')}: **+5%**\n❤️‍🩹 ${inlineCode('Heal')}: **+5%**\n🍀 ${inlineCode('Lucky Strike')}: **+5%**`, inline: true },
-                        )
-                        .setTimestamp();
-                    message.reply({ embeds: [ultimateEmbed], components: [row], ephemeral: true });
-
-
-                    const filter = (interaction)  => {
-                        if(interaction.user.id === message.author.id) return true
-                        return interaction.reply({ content: 'You cant use this button', ephemeral: true })
-                    }
-                    const collector = message.channel.createMessageComponentCollector({
-                        filter, 
-                        max: 1
-                    })
-                
-                    collector.on('end', async (ButtonInteraction) => {
-                        const id = ButtonInteraction.first().customId
-                        if(id === 'reflect'){
-                            stats.player.ultimate.reflect = stats.player.ultimate.reflect + 5
-                            stats.save()
-                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.reflect}%** of Reflect`);
-                        }
-                        if(id === 'heal'){
-                            stats.player.ultimate.heal = stats.player.ultimate.heal + 5
-                            stats.save()
-                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.heal}%** of Heal`);
-                        }
-                        if(id === 'lucky'){
-                            stats.player.ultimate.luckyStrike = stats.player.ultimate.luckyStrike + 5
-                            stats.save()
-                            return await ButtonInteraction.first().reply(`${inlineCode('✅')} Great! You now have : **${stats.player.ultimate.luckyStrike}%** of Lucky Strike`);
-                        }
-                    });
-                    return
-                }  else {
+                    return upgradeLevel(CONFIGLEVEL.level12.XPcost, CONFIGLEVEL.level11.nextLevel)
+                } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level12.XPcost - balance.eco.xp}** 🏮 are missing`)
                 }
             };
@@ -432,7 +248,7 @@ module.exports.run = async (client, message, args) => {
                     return upgradeLevel(CONFIGLEVEL.level14.XPcost, CONFIGLEVEL.level13.nextLevel)  
                 } else {
                     return message.reply(`❌ **${CONFIGLEVEL.level14.XPcost - balance.eco.xp}** 🏮 are missing`)
-                }
+                };
             };
             if(stats.player.level == 14){
                 if(checkPrice(CONFIGLEVEL.level15.XPcost)){
@@ -448,10 +264,9 @@ module.exports.run = async (client, message, args) => {
             };
             if(stats.player.level == 15){
                 return message.reply('Max Level')
-            }
-
-        }
-    }
+            };
+        };
+    };
 };
 
 module.exports.info = {

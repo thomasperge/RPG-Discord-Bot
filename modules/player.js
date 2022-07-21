@@ -26,16 +26,12 @@ const playerSchema = mongoose.Schema({
             armorID: Number,
             magicItemID: Number,
         },
-        ultimate:{
-            reflect: Number,
-            heal: Number,
-            luckyStrike: Number,
-        },
         other:{
             dm: Boolean,
             bossattack: Number,
             squadName: String,
             squadCoinGiven: Number,
+            monsterKill: Number,
         },
     },
 })

@@ -37,16 +37,14 @@ module.exports.run = async (client, message, args) => {
 
           var statsEmbed = new Discord.MessageEmbed()
             .setColor('#fc9803')
-            .setAuthor(`${user.username}'s Stats`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
+            .setTitle(`${user.username}'s Stats`)
             .addFields(
               { name: '**📊 Info :**\n', value: `:pencil: ${inlineCode('Level')}: ${playerStats.player.level}`, inline: true },
               { name: '**🏦 Balance :**\n', value: `🪙: ${balance.eco.coins}\n🏮: ${balance.eco.xp}`, inline: true },
-              { name: '**🛖 Squad :**\n', value: `🪧: ${squad}`, inline: false },
+              { name: '**🛖 Squad :**\n', value: `🪧: ${squad}`, inline: true },
               { name: '**📈 Stats :**\n', value: `:fire: ${inlineCode('Attack')}: ${playerStats.player.attack}\n:shield: ${inlineCode('Defense')}: ${playerStats.player.defense}\n:heart: ${inlineCode('Health')}: ${playerStats.player.health}\n:dash: ${inlineCode('Dodge')}: ${playerStats.player.dodge}%\n🏑 ${inlineCode('Penetration')}: ${playerStats.player.penetration}%\n:boom: ${inlineCode('Critick')}: ${playerStats.player.crit}%\n:heart_on_fire: ${inlineCode('Life Steal')}: ${playerStats.player.lifeSteal}`, inline: false },
-              { name: '**⚔️ Ultimate :**\n', value: `:mirror: ${inlineCode('Reflect')}: ${playerStats.player.ultimate.reflect}%\n:mending_heart: ${inlineCode('Heal')}: ${playerStats.player.ultimate.heal}%\n:four_leaf_clover: ${inlineCode('Lucky Strike')}: ${playerStats.player.ultimate.luckyStrike}%\n`, inline: true },
-              { name: '**📰 Others :**\n', value: `📜 ${inlineCode('Battle Diary')} : ${playerStats.player.other.dm}`, inline: true },
+              { name: '**📰 Others :**\n', value: `📜 ${inlineCode('Battle Diary')} : ${playerStats.player.other.dm}\n☠️ ${inlineCode("Monster killed")} : ${playerStats.player.other.monsterKill}`, inline: true },
             )
-            .setFooter('© RPG Bot 022 | ghelp')
             .setTimestamp();
           message.channel.send({embeds: [statsEmbed]});
         }
@@ -73,16 +71,14 @@ module.exports.run = async (client, message, args) => {
 
           var statsEmbed = new Discord.MessageEmbed()
             .setColor('#fc9803')
-            .setAuthor(`${userInput.username}'s Stats`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
+            .setTitle(`${userInput.username}'s Stats`)
             .addFields(
               { name: '**📊 Info :**\n', value: `:pencil: ${inlineCode('Level')}: ${playerStats2.player.level}`, inline: true },
               { name: '**🏦 Balance :**\n', value: `🪙: ${balance2.eco.coins}\n🏮: ${balance2.eco.xp}`, inline: true },
-              { name: '**👥 Squad :**\n', value: `⚒️: ${squad}`, inline: false },
+              { name: '**👥 Squad :**\n', value: `⚒️: ${squad}`, inline: true },
               { name: '**📈 Stats :**\n', value: `:fire: ${inlineCode('Attack')}: ${playerStats2.player.attack}\n:shield: ${inlineCode('Defense')}: ${playerStats2.player.defense}\n:heart: ${inlineCode('Health')}: ${playerStats2.player.health}\n:dash: ${inlineCode('Dodge')}: ${playerStats2.player.dodge}%\n:boom: ${inlineCode('Critick')}: ${playerStats2.player.crit}%\n:heavy_multiplication_x: ${inlineCode('Critick Multplicator')}: ${playerStats2.player.critMultplicator}%\n:heart_on_fire: ${inlineCode('Life Steal')}: ${playerStats2.player.lifeSteal}%\n:fire_extinguisher: ${inlineCode('Aegis')}: ${playerStats2.player.aegis}\n`, inline: false },
-              { name: '**⚔️ Ultimate :**\n', value: `:mirror: ${inlineCode('Reflect')}: ${playerStats2.player.ultimate.reflect}%\n:mending_heart: ${inlineCode('Heal')}: ${playerStats2.player.ultimate.heal}%\n:four_leaf_clover: ${inlineCode('Lucky Strike')}: ${playerStats2.player.ultimate.luckyStrike}%\n`, inline: true },
               { name: '**📰 Others :**\n', value: `📜 ${inlineCode('Battle Diary')} : ${playerStats2.player.other.dm}`, inline: true },
             )
-            .setFooter('© RPG Bot 2022 | ghelp')
             .setTimestamp();
           message.channel.send({embeds: [statsEmbed]});
         };

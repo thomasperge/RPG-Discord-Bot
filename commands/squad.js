@@ -25,10 +25,8 @@ module.exports.run = async (client, message, args) => {
 
         // == Squad Db ==
         let squad = await SQUADDATA.findOne({ squadName: playerStats.player.other.squadName });
-        if (!squad) return message.reply(`${inlineCode("😵‍💫")} squad are not available...`)
+        if (!squad) return message.reply(`${inlineCode("😵‍💫")} you have not joined any squad yet...`)
         else {
-
-            if(playerStats.player.other.squadName == 'undefined') return message.reply(`${inlineCode("😵‍💫")} you have not joined any squad yet...`)
 
             // === If user is the leader of the squad ===
             if(playerStats.userId === squad.leader[0]){
@@ -36,8 +34,6 @@ module.exports.run = async (client, message, args) => {
                 var memberLenght
                 if(squad.member.length == undefined) memberLenght = 0
                 else memberLenght = squad.member.length
-
-                
 
                 var squadEmbed = new Discord.MessageEmbed()
                     .setColor('#6d4534')

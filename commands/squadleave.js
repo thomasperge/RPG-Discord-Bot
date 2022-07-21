@@ -39,7 +39,7 @@ module.exports.run = async (client, message, args) => {
                 var banMessage = new Discord.MessageEmbed()
                     .setColor('#2a941a')
                     .setTitle(`🎓 Leaving the squad`)
-                    .setDescription(`🪧 Do you want to leave ${inlineCode(squad.squadName) + " 's"} squad?`)
+                    .setDescription(`🪧 Do you want to leave ${inlineCode(squad.squadName + " 's")} squad?`)
                     .setTimestamp();
                 const msg = await message.reply({embeds: [banMessage], components: [row]});
                 

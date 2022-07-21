@@ -830,15 +830,15 @@
         "name": "Blade of Despair",
         "alias": ["BladeofDespair", "Bladeofdespair", "bladeofdespair", "BOF", "bof", "Blade", "blade"],
         "categorie": "weapon",
-        "cost": 450000,
+        "cost": 475000,
         "rarety": "Mythic",
-        "costperenhancement": 450000,
+        "costperenhancement": 475000,
         "levelAttack": {
             "level1": 250,
             "level2": 450,
-            "level3": 600,
-            "level4": 850,
-            "level5": 1000
+            "level3": 575,
+            "level4": 675,
+            "level5": 750
         },
         "levelDefense": {
             "level1": 0,

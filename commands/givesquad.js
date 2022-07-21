@@ -21,9 +21,9 @@ module.exports.run = async (client, message, args) => {
     var coinGiven = args[0]
 
     if(coinGiven === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
-    else if(coinGiven === ' ') message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
-    else if(coinGiven === undefined) message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
-    else if(isNaN(coinGiven)) message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
+    else if(coinGiven === ' ') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
+    else if(coinGiven === undefined) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
+    else if(isNaN(coinGiven)) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
     else if(coinGiven != undefined && isNaN(coinGiven) == false && coinGiven > 0) {
 
 

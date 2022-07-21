@@ -107,9 +107,8 @@ module.exports.run = async (client, message, args) => {
 
                                         var upgradeDone = new Discord.MessageEmbed()
                                             .setColor('#4dca4d')
-                                            .setAuthor(`🗿 Boss Upgrade`)
+                                            .setTitle(`🗿 Boss Upgrade`)
                                             .setDescription(`✅ Squad Boss Upgrading !\n🪧 Improve ${done}: ${inlineCode('+' + amoutUpgrade)} ${emojiDone}\n📝 Cost: ${inlineCode(price)} 🪙`)
-                                            .setFooter('© RPG Bot 2022 | ghelp')
                                             .setTimestamp();
                                         return message.reply({embeds: [upgradeDone]});
                                     }

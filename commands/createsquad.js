@@ -68,8 +68,8 @@ module.exports.run = async (client, message, args) => {
                             member: [message.author.id],
                             squadbank: 0,
                             squadboss: {
-                                bossattack: 1500,
-                                bosshealth: 1500
+                                bossattack: 550,
+                                bosshealth: 11250
                             }
                         });
 

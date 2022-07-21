@@ -63,24 +63,23 @@ module.exports.run = async (client, message, args) => {
                     // Embed :
                     var upgradeEmbed = new Discord.MessageEmbed()
                         .setColor('#fc9803')
-                        .setAuthor(`${user.username}'s Upgrade Level`)
+                        .setTitle(`${user.username}'s Upgrade Level`)
                         .setDescription(`** ${inlineCode('✅')} NEW LEVEL !**\n${inlineCode('➡️')} You are now levels: **${nextLevel}** !\n🪧 Cost: ${inlineCode(priceNextLevel)} 🏮`)
                         .addFields(
                             { name: '**📊 NEW STATS :**\n', value: `:fire: ${inlineCode('Attack')}: ${stats.player.attack}\n:shield: ${inlineCode('Defense')}: ${stats.player.defense}\n:heart: ${inlineCode('Health')}: ${stats.player.health}\n:dash: ${inlineCode('Dodge')}: ${stats.player.dodge}%\n🏑 ${inlineCode('Penetration')}: ${stats.player.penetration}%\n:boom: ${inlineCode('Critick')}: ${stats.player.crit}%\n:heart_on_fire: ${inlineCode('Life Steal')}: ${stats.player.lifeSteal}%`, inline: true },
                         )
-                        .setFooter('© RPG Bot 2022 | ghelp')
                         .setTimestamp();
                     return message.channel.send({embeds: [upgradeEmbed]});
                 }
-            }
+            };;
 
 
             function addSquadXp(squad, levelUser){
                 if(squad){
-                    squad.squadXp += Math.floor(levelUser * 1350)
+                    squad.squadXp += Math.floor(Math.random() * levelUser * 500)
                     squad.save()
                 }
-            }
+            };
 
             // === Leveling Function => Return Function ===
             if(stats.player.level == 0){

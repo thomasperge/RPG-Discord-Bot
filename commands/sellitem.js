@@ -107,7 +107,7 @@ module.exports.run = async (client, message, args) => {
                     const collector = msg.createMessageComponentCollector({
                         componentType: "BUTTON",
                         max: 1,
-                        time: 15_000
+                        time: 30_000
                     });
                     
                     collector.on('collect', async interaction => {

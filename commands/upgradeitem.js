@@ -31,6 +31,15 @@ module.exports.run = async (client, message, args) => {
                 if(balance.eco.coins < CONFIGITEM[pas].cost) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${CONFIGITEM[pas].cost - balance.eco.coins} 🪙`)
                 else {
 
+                    function itemExist(item){
+                        for(let pas = 0; pas < CONFIGITEM.length; pas++){
+                            for(const alias of CONFIGITEM[pas].alias){
+                                if(item == alias) return [true, CONFIGITEM[pas].id, CONFIGITEM[pas].cost, CONFIGITEM[pas].name, CONFIGITEM[pas].categorie, CONFIGITEM[pas].rarety]
+                            }
+                        }
+                        return [false, -1, 0, 'undefined', 'undefined', 'undefined']
+                    };
+
                     for(const alias of CONFIGITEM[pas].alias){
 
                         if(item === alias){
@@ -44,6 +53,13 @@ module.exports.run = async (client, message, args) => {
 
                                         if(allItemUnlock.level >= 5) return message.reply(`${inlineCode("😵‍💫")} item max level !`)
 
+                                        const IDITEM = itemExist(item)[1]
+                                        if(playerStats.player.slotItem.slot1 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
+                                        if(playerStats.player.slotItem.slot2 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
+                                        if(playerStats.player.slotItem.slot3 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
+                                        if(playerStats.player.slotItem.slot4 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
+                                        if(playerStats.player.slotItem.slot5 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
+
                                         // Upgrade Level : 
                                         balance.eco.coins -= CONFIGITEM[pas].costperenhancement
                                         balance.save()
@@ -55,7 +71,7 @@ module.exports.run = async (client, message, args) => {
                                         playerStats.player.stuff.stuffUnlock.splice(index, 1)
 
                                         // == Add array with level + 1 ==
-                                        playerStats.player.stuff.stuffUnlock.push({id: CONFIGITEM[pas].id, level: currencyLevel})
+                                        playerStats.player.stuff.stuffUnlock.push({id: CONFIGITEM[pas].id, name: CONFIGITEM[pas].name, level: currencyLevel})
                                         playerStats.save()
 
                                         return message.reply('✅ Upgrade Done !')

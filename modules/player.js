@@ -12,6 +12,7 @@ const playerSchema = mongoose.Schema({
         crit: Number,
         penetration: Number,
         lifeSteal: Number,
+        elo: Number,
         slotItem: {
             slot1: Number,
             slot2: Number,

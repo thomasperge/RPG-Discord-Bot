@@ -75,14 +75,12 @@ module.exports.run = async (client, message, args) => {
                             
                             HEALTH_PLAYERTWO -= attackDamagePLayerOne;
                             
-        
                             // ========= Player 2 Fight =========
                             var attackDamagePLayerTwo = Math.floor(Math.random() * MAXATK_PLAYERTWO) + 1;
                             NB_ATTACK_PLAYERTWO += 1;
                             ATK_SOMME_PLAYERTWO += attackDamagePLayerTwo;
 
                             HEALTH_PLAYERONE -= attackDamagePLayerTwo;
-                            
                             
                             function eloAdd(){
                                 if(playerOne.player.elo >= playerTwo.player.elo){
@@ -103,14 +101,13 @@ module.exports.run = async (client, message, args) => {
                                 // == Embed LOSE : ==
                                 var battleEmbed = new Discord.MessageEmbed()
                                     .setColor('#9696ab')
-                                    .setAuthor(`${user.username}'s Battle`)
+                                    .setTitle(`${user.username}'s Battle`)
                                     .setDescription(`:crossed_swords: : ${user.username} ${inlineCode("🆚")} ${playerTwo.pseudo}\n`)
                                     .addFields(
                                     { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerOne.player.attack}\n**Defense** : ${playerOne.player.defense}\n**Health** : ${playerOne.player.health}\n`, inline: true },
                                     { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${playerTwo.player.attack}\n**Defense** : ${playerTwo.player.defense}\n**Health** : ${playerTwo.player.health}\n `, inline: true },
                                     { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose -${eloLoseVar} ELO`, inline: false },
                                     )
-                                    .setFooter('© RPG Bot 2022 | ghelp')
                                     .setTimestamp();
                                 return battleEmbed
                             };
@@ -125,14 +122,13 @@ module.exports.run = async (client, message, args) => {
                                 // == Embed WIN : ==
                                 var battleEmbed = new Discord.MessageEmbed()
                                     .setColor('#fc9803')
-                                    .setAuthor(`${user.username}'s Battle`)
+                                    .setTitle(`${user.username}'s Battle`)
                                     .setDescription(`:crossed_swords: : ${user.username} ${inlineCode("🆚")} ${playerTwo.pseudo}\n`)
                                     .addFields(
                                         { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerOne.player.attack}\n**Defense** : ${playerOne.player.defense}\n**Health** : ${playerOne.player.health}\n`, inline: true },
                                         { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${playerTwo.player.attack}\n**Defense** : ${playerTwo.player.defense}\n**Health** : ${playerTwo.player.health}\n `, inline: true },
                                         { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n${ULTIMATEREFLECT}${ULTIMATEHEAL}${ULTIMATELUCKYSTRIKE}\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} You earn +${eloAddVar} ELO`, inline: false },
                                     )
-                                    .setFooter('© RPG Bot 2022 | ghelp')
                                     .setTimestamp();
                                 return battleEmbed
                             };

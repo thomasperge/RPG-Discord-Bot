@@ -8,7 +8,8 @@ const squadSchema = mongoose.Schema({
     squadbank: Number,
     squadboss: {
         bossattack: Number,
-        bosshealth: Number
+        bosshealth: Number,
+        bossdefense: Number,
     }
 })
 

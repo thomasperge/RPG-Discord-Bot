@@ -27,9 +27,8 @@ module.exports.run = async (client, message, args) => {
         else {
             var bossEmbed = new Discord.MessageEmbed()
                 .setColor('#fc9803')
-                .setAuthor(`${client.users.cache.get(user.id).username}'s Stats`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
+                .setTitle(`${client.users.cache.get(user.id).username}'s Stats`, 'https://media.discordapp.net/attachments/693829568720535664/697087222146400336/logo_GoodFarm.png?width=670&height=670')
                 .setDescription(`**${inlineCode('➡️')} 📊 CURRENTLY BOSS WORLD :**\n${inlineCode('⚔️')} **Current World Boss**: ${boss.bossname}\n${inlineCode('🔥')} **Attack** : ${boss.stats.attack}\n${inlineCode('❤️')} **Health** : ${boss.stats.health}\n(Attack the boss : ${inlineCode("gbossattack")})`)
-                .setFooter('© RPG Bot 2022 | ghelp')
                 .setTimestamp();
             return message.channel.send({embeds: [bossEmbed]});
         }

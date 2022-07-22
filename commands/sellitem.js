@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
 const SQUADDATA = require('../modules/squad.js')
+const STATS = require('../modules/statsBot.js');
 const BALANCEDATA = require('../modules/economie.js');
 const CONFIGITEM = require('../config/stuff.json')
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
@@ -67,6 +68,11 @@ module.exports.run = async (client, message, args) => {
                     // == Seling 5% of the prices ==
                     balance.eco.coins += finalprice
                     balance.save()
+
+                    let stats = await STATS.findOne({ botID: 899 });
+                    stats.amoutCoin += finalprice;
+                    stats.shop.amoutSale += 1;
+                    stats.save();
 
                     // == Delete Array ==
                     var index = playerStats.player.stuff.stuffUnlock.indexOf(ifItemInInventory()[1])

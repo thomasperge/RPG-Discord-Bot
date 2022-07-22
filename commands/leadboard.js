@@ -84,7 +84,7 @@ module.exports.run = async (client, message, args) => {
             var leadboardEmbed = new Discord.MessageEmbed()
                 .setColor('#ffd100')
                 .setTitle(`📊 Top 10 most powerful squads`)
-                .setDescription(`**🥇 #1 ** ${sortedArray[0].name}: ${inlineCode('kill ' + sortedArray[0].kill)}\n**🥈 #2 **${sortedArray[1].name}: ${inlineCode('kill ' + sortedArray[1].kill)}\n**🥉 #3 **${sortedArray[2].name}: ${inlineCode('kill ' + sortedArray[2].kill)}\n**📦 #4 **${sortedArray[3].name}: ${inlineCode('kill ' + sortedArray[3].kill)}\n**📦 #5 **${sortedArray[4].name}: ${inlineCode('kill ' + sortedArray[4].kill)}\n**📦 #6 **${sortedArray[5].name}: ${inlineCode('kill ' + sortedArray[5].kill)}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode('kill ' + sortedArray[6].kill)}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode('kill ' + sortedArray[6].kill)}\n**📦 #8 **${sortedArray[7].name}: ${inlineCode('kill ' + sortedArray[7].kill)}\n**📦 #9 **${sortedArray[8].name}: ${inlineCode('kill ' + sortedArray[8].kill)}\n**📦 #10 **${sortedArray[9].name}: ${inlineCode('kill ' + sortedArray[9].kill)}`)
+                .setDescription(`**🥇 #1 ** ${sortedArray[0].name}: ${inlineCode('level ' + sortedArray[0].level)}\n**🥈 #2 **${sortedArray[1].name}: ${inlineCode('level ' + sortedArray[1].level)}\n**🥉 #3 **${sortedArray[2].name}: ${inlineCode('level ' + sortedArray[2].level)}\n**📦 #4 **${sortedArray[3].name}: ${inlineCode('level ' + sortedArray[3].level)}\n**📦 #5 **${sortedArray[4].name}: ${inlineCode('level ' + sortedArray[4].level)}\n**📦 #6 **${sortedArray[5].name}: ${inlineCode('level ' + sortedArray[5].level)}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode('level ' + sortedArray[6].level)}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode('level ' + sortedArray[6].level)}\n**📦 #8 **${sortedArray[7].name}: ${inlineCode('level ' + sortedArray[7].level)}\n**📦 #9 **${sortedArray[8].name}: ${inlineCode('level ' + sortedArray[8].level)}\n**📦 #10 **${sortedArray[9].name}: ${inlineCode('level ' + sortedArray[9].level)}`)
                 .setTimestamp();
             return message.channel.send({embeds: [leadboardEmbed]});
         } else if (item == 'kill' || item == 'monstrer' || item == 'monstrekill'){
@@ -117,22 +117,22 @@ module.exports.run = async (client, message, args) => {
 
             for(const i of sortedCollection){
                 console.log(i)
-                sortedArray.push({name: i.pseudo, kill: i.player.other.monsterKill})
+                sortedArray.push({name: i.pseudo, elo: i.player.elo})
             }
 
-            sortedArray.sort((a, b) => a.kill - b.kill);
+            sortedArray.sort((a, b) => a.elo - b.elo);
             sortedArray.reverse()
 
             console.log(sortedArray)
 
             var leadboardEmbed = new Discord.MessageEmbed()
                 .setColor('#ffd100')
-                .setTitle(`📊 Top 10 players with the most kills`)
-                .setDescription(`**🥇 #1 ** ${sortedArray[0].name}: ${inlineCode('kill ' + sortedArray[0].kill)}\n**🥈 #2 **${sortedArray[1].name}: ${inlineCode('kill ' + sortedArray[1].kill)}\n**🥉 #3 **${sortedArray[2].name}: ${inlineCode('kill ' + sortedArray[2].kill)}\n**📦 #4 **${sortedArray[3].name}: ${inlineCode('kill ' + sortedArray[3].kill)}\n**📦 #5 **${sortedArray[4].name}: ${inlineCode('kill ' + sortedArray[4].kill)}\n**📦 #6 **${sortedArray[5].name}: ${inlineCode('kill ' + sortedArray[5].kill)}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode('kill ' + sortedArray[6].kill)}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode('kill ' + sortedArray[6].kill)}\n**📦 #8 **${sortedArray[7].name}: ${inlineCode('kill ' + sortedArray[7].kill)}\n**📦 #9 **${sortedArray[8].name}: ${inlineCode('kill ' + sortedArray[8].kill)}\n**📦 #10 **${sortedArray[9].name}: ${inlineCode('kill ' + sortedArray[9].kill)}`)
+                .setTitle(`📊 Top 10 players with the most ELO`)
+                .setDescription(`**🥇 #1 ** ${sortedArray[0].name}: ${inlineCode(sortedArray[0].elo + ' elo')}\n**🥈 #2 **${sortedArray[1].name}: ${inlineCode(sortedArray[1].elo + ' elo')}\n**🥉 #3 **${sortedArray[2].name}: ${inlineCode(sortedArray[2].elo + ' elo')}\n**📦 #4 **${sortedArray[3].name}: ${inlineCode(sortedArray[3].elo + ' elo')}\n**📦 #5 **${sortedArray[4].name}: ${inlineCode(sortedArray[4].elo + ' elo')}\n**📦 #6 **${sortedArray[5].name}: ${inlineCode(sortedArray[5].elo + ' elo')}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode(sortedArray[6].elo + ' elo')}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode(sortedArray[6].elo + ' elo')}\n**📦 #8 **${sortedArray[7].name}: ${inlineCode(sortedArray[7].elo + ' elo')}\n**📦 #9 **${sortedArray[8].name}: ${inlineCode(sortedArray[8].elo + ' elo')}\n**📦 #10 **${sortedArray[9].name}: ${inlineCode(sortedArray[9].elo + ' elo')}`)
                 .setTimestamp();
             return message.channel.send({embeds: [leadboardEmbed]});
         } else {
-            return message.reply(`${inlineCode("❌")} Use gleaderboard ${inlineCode("gold")} or ${inlineCode("xp")}!`)
+            return message.reply(`${inlineCode("❌")} Use gleaderboard ${inlineCode("xp/coin/squad/kill/elo")}!`)
         }
     }
 };

@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const BALANCEDATA = require('../modules/economie.js');
 const PLAYERDATA = require('../modules/player.js');
+const STATS = require('../modules/statsBot.js');
 const SQUADDATA = require('../modules/squad.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 const player = require('../modules/player.js');
@@ -68,12 +69,16 @@ module.exports.run = async (client, message, args) => {
                             member: [message.author.id],
                             squadbank: 0,
                             squadboss: {
-                                bossattack: 550,
-                                bosshealth: 11250
+                                bossattack: 500,
+                                bosshealth: 8000,
+                                bossdefense: 0,
                             }
                         });
-
                         newSquad.save()
+                        
+                        let stats = await STATS.findOne({ botID: 899 });
+                        stats.numberSquad += 1
+                        stats.save()
 
                         var squadEmbed = new Discord.MessageEmbed()
                             .setColor('#4dca4d')

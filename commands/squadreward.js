@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const SQUADDATA = require('../modules/squad.js')
 const PLAYERDATA = require('../modules/player.js');
+const STATS = require('../modules/statsBot.js');
 const BALANCEDATA = require('../modules/economie.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
@@ -37,11 +38,15 @@ module.exports.run = async (client, message, args) => {
                 message.reply(`🪧 Your reward of the day is ${inlineCode(rewardPlayer)} 🪙 thanks to your squad: ${inlineCode(squad.squadName + "'s")}`);
 
                 balance.eco.coins += rewardPlayer;
-                balance.save()
+                balance.save();
 
+                let stats = await STATS.findOne({ botID: 899 });
+                stats.amoutCoin += rewardPlayer;
+                stats.save();
+                
                 squad.squadXp += 50;
-                squad.save()
-            }
+                squad.save();
+            };
         };
     };
 };

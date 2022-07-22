@@ -709,18 +709,18 @@
 
     {
         "id": 12,
-        "name": "Ice Queen Wand",
-        "alias": ["IceQueenWand", "Icequeenwand", "icequeenwand", "IQW", "iqw", "icequeen"],
+        "name": "Blood Wings",
+        "alias": ["BloodWings", "Bloodwings", "BloodWing", "BloodWing", "bloodwings", "bloodwing", "BW", "bw"],
         "categorie": "magic-item",
-        "cost": 5000000,
+        "cost": 481250,
         "rarety": "Legend",
-        "costperenhancement": 300000,
+        "costperenhancement": 481250,
         "levelAttack": {
-            "level1": 15,
-            "level2": 30,
-            "level3": 45,
-            "level4": 60,
-            "level5": 75
+            "level1": 750,
+            "level2": 990,
+            "level3": 1320,
+            "level4": 1650,
+            "level5": 1875
         },
         "levelDefense": {
             "level1": 0,
@@ -758,11 +758,11 @@
             "level5": 0
         },
         "levelHealth": {
-            "level1": 30,
-            "level2": 60,
-            "level3": 90,
-            "level4": 120,
-            "level5": 150
+            "level1": 2200,
+            "level2": 3150,
+            "level3": 4025,
+            "level4": 5560,
+            "level5": 6250
         }
     },
 
@@ -945,18 +945,18 @@
 
     {
         "id": 16,
-        "name": "Glowing Wand",
-        "alias": ["GlowingHand", "glowinghand", "Glowing", "glowing", "GH", "gh"],
+        "name": "Holy Crystal",
+        "alias": ["HolyCrystal", "Holycrystal", "Holy", "holycrystal", "HC", "hc"],
         "categorie": "magic-item",
-        "cost": 10000000,
+        "cost": 425000,
         "rarety": "Mythic",
-        "costperenhancement": 2500000,
+        "costperenhancement": 2542500000000,
         "levelAttack": {
-            "level1": 15,
-            "level2": 30,
-            "level3": 60,
-            "level4": 120,
-            "level5": 240
+            "level1": 645,
+            "level2": 800,
+            "level3": 950,
+            "level4": 1100,
+            "level5": 1250
         },
         "levelDefense": {
             "level1": 0,
@@ -1004,18 +1004,18 @@
 
     {
         "id": 17,
-        "name": "Lightning Truncheon",
-        "alias": ["LightningTruncheon", "Lightningtruncheon", "lightningtruncheon", "Lightning", "Lightning", "LT", "lt"],
+        "name": "Divine Glaive",
+        "alias": ["DivineGlaive", "divineGlaive", "Divineglaive", "divineglaive", "divine", "DG", "dg"],
         "categorie": "magic-item",
-        "cost": 10000000,
+        "cost": 400000,
         "rarety": "Mythic",
-        "costperenhancement": 2750000,
+        "costperenhancement": 400000,
         "levelAttack": {
-            "level1": 175,
-            "level2": 200,
-            "level3": 250,
-            "level4": 275,
-            "level5": 300
+            "level1": 50,
+            "level2": 100,
+            "level3": 150,
+            "level4": 200,
+            "level5": 250
         },
         "levelDefense": {
             "level1": 0,
@@ -1039,11 +1039,11 @@
             "level5": 0
         },
         "levelPenetration": {
-            "level1": 0,
-            "level2": 0,
-            "level3": 0,
-            "level4": 0,
-            "level5": 0
+            "level1": 20,
+            "level2": 20,
+            "level3": 20,
+            "level4": 20,
+            "level5": 20
         },
         "levelLifeSteal": {
             "level1": 0,
@@ -1053,11 +1053,11 @@
             "level5": 0
         },
         "levelHealth": {
-            "level1": 60,
-            "level2": 120,
-            "level3": 240,
-            "level4": 480,
-            "level5": 960
+            "level1": 650,
+            "level2": 1250,
+            "level3": 1900,
+            "level4": 2500,
+            "level5": 3000
         }
     },
 
@@ -1240,18 +1240,18 @@
 
     {
         "id": 21,
-        "name": "Scarlet Phantom",
-        "alias": ["ScarletPhantom", "Scarletphantom", "scarletphantom", "Scarlet", "scarlet", "SP", "sp"],
+        "name": "Clock of Destiny",
+        "alias": ["ClockofDestiny", "Clockofdestiny", "clockofcestiny", "ClockDestiny", "clockdestiny", "CD", "cd"],
         "categorie": "magic-item",
-        "cost": 600000,
+        "cost": 437500,
         "rarety": "Mythical Glory",
-        "costperenhancement": 600000,
+        "costperenhancement": 437500,
         "levelAttack": {
-            "level1": 108,
-            "level2": 128,
-            "level3": 148,
-            "level4": 168,
-            "level5": 188
+            "level1": 350,
+            "level2": 490,
+            "level3": 570,
+            "level4": 690,
+            "level5": 750
         },
         "levelDefense": {
             "level1": 0,
@@ -1268,18 +1268,18 @@
             "level5": 0
         },
         "levelCrit": {
-            "level1": 10,
-            "level2": 20,
-            "level3": 30,
-            "level4": 40,
-            "level5": 50
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
         },
         "levelPenetration": {
-            "level1": 5,
-            "level2": 10,
-            "level3": 15,
-            "level4": 20,
-            "level5": 25
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
         },
         "levelLifeSteal": {
             "level1": 0,
@@ -1289,17 +1289,17 @@
             "level5": 0
         },
         "levelHealth": {
-            "level1": 0,
-            "level2": 0,
-            "level3": 0,
-            "level4": 0,
-            "level5": 0
+            "level1": 3688,
+            "level2": 4688,
+            "level3": 5688,
+            "level4": 6688,
+            "level5": 7688
         }
     },
 
     {
         "id": 22,
-        "name": "Dominance Ice",
+        "name": "Winter Truncheon",
         "alias": ["DominanceIce", "Dominanceice", "fominanceice", "Dominance", "dominance", "DI", "di"],
         "categorie": "armor",
         "cost": 375000,
@@ -1472,5 +1472,64 @@
             "level4": 1300,
             "level5": 1550
         }
-    } 
+    },
+    
+    {
+        "id": 25,
+        "name": "Winter Truncheon",
+        "alias": ["WinterTruncheon", "Wintertruncheon", "wintertruncheon", "winter", "Winter", "WT", "wt"],
+        "categorie": "magic-item",
+        "cost": 500000,
+        "rarety": "Mythical Glory",
+        "costperenhancement": 500000,
+        "levelAttack": {
+            "level1": 350,
+            "level2": 490,
+            "level3": 570,
+            "level4": 690,
+            "level5": 750
+        },
+        "levelDefense": {
+            "level1": 100,
+            "level2": 150,
+            "level3": 215,
+            "level4": 275,
+            "level5": 313
+        },
+        "levelDodge": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelCrit": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelPenetration": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelLifeSteal": {
+            "level1": 0,
+            "level2": 0,
+            "level3": 0,
+            "level4": 0,
+            "level5": 0
+        },
+        "levelHealth": {
+            "level1": 2250,
+            "level2": 3050,
+            "level3": 3650,
+            "level4": 4350,
+            "level5": 5000
+        }
+    }
 ]

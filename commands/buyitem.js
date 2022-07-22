@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
 const BALANCEDATA = require('../modules/economie.js');
+const STATS = require('../modules/statsBot.js');
 const CONFIGITEM = require('../config/stuff.json')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
@@ -52,6 +53,10 @@ module.exports.run = async (client, message, args) => {
 
                         playerStats.player.stuff.stuffUnlock.push({id: itemExist(item)[1], name: itemExist(item)[3], level: 1})
                         playerStats.save()
+
+                        let stats = await STATS.findOne({ botID: 899 });
+                        stats.amoutItem += 1;
+                        stats.save();
 
                         return message.reply(`✅ Purchase made!\n**NEW** ITEM ${itemExist(item)[3]}`)
                     };

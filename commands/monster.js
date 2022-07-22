@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const MONSTERCONFIG = require('../config/monster.json');
 const PLAYERDATA = require('../modules/player.js');
+const STATS = require('../modules/statsBot.js');
 const SQUADDATA = require('../modules/squad.js')
 const BALANCEDATA = require('../modules/economie.js');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
@@ -17,6 +18,8 @@ module.exports.run = async (client, message, args) => {
         let balance = await BALANCEDATA.findOne({ userId: message.author.id });
         if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
         else {
+
+            let stats = await STATS.findOne({ botID: 899 });
 
             function dodgeFunction(dodge){
                 // True = dodge, False = not dodge
@@ -55,9 +58,6 @@ module.exports.run = async (client, message, args) => {
                 var NB_ATTACK_MONSTER = 0
                 var ATK_SOMME_PLAYER = 0
                 var ATK_SOMME_MONSTER = 0
-                var ULTIMATEREFLECT = ''
-                var ULTIMATEHEAL = ''
-                var ULTIMATELUCKYSTRIKE = ''
 
                 while(HEALTH_PLAYER != 0 || HEALTH_MONSTER != 0){
                     // ==== Joueur attaque ====
@@ -134,6 +134,10 @@ module.exports.run = async (client, message, args) => {
 
                         playerStats.player.other.monsterKill += 1
                         playerStats.save()
+
+                        stats.amoutCoin += randomcoin;
+                        stats.amoutMonsterKilled += 1;
+                        stats.save();
 
                         balance.eco.coins = balance.eco.coins + randomcoin
                         balance.eco.xp = balance.eco.xp + randomxp

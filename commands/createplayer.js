@@ -1,5 +1,6 @@
 const PLAYER = require('../modules/player.js')
 const ECONOMIE = require('../modules/economie.js')
+const STATS = require('../modules/statsBot.js')
 const BOSS = require('../modules/boss.js')
 const BOSSCONFIG = require('../config/boss.json')
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
@@ -14,8 +15,11 @@ module.exports.run = async (client, message, args) => {
         .setDescription("📭 : The bot is in Beta version, if there is a problem/bug, please let us know.")
         .setTimestamp();
     
+
+    let stats = await STATS.findOne({ botID: 899 });
+
     // ======= ACCOUNT PLAYER =======
-    PLAYER.findOne({userId: user.idw},
+    PLAYER.findOne({userId: user.id},
         (err, player) => {
             if (err) console.log(err)
             if (!player) {
@@ -56,8 +60,13 @@ module.exports.run = async (client, message, args) => {
                         },
                     },
                 });
-                accountPLayer.save();
-                playerCreateEmbed.addField(`${inlineCode("✅")} Account create !`,`📜 New player joins the adventure!`);
+            accountPLayer.save();
+
+            stats.numberPlayer += 1;
+            stats.save();
+
+            playerCreateEmbed.addField(`${inlineCode("✅")} Account create !`,`📜 New player joins the adventure!`);
+
             } else {
                 message.reply(`${inlineCode("❌")} You are already a player... !`);
             };
@@ -77,15 +86,33 @@ module.exports.run = async (client, message, args) => {
                         xp: 99_750_000,
                     },
                 })
-                economiePLayer.save()
-                playerCreateEmbed.addField(`${inlineCode("✅")} Balance create !`,`📜 To you the conquest towards wealth!`);
-                message.reply({ embeds: [playerCreateEmbed] })
+            economiePLayer.save()
+
+            playerCreateEmbed.addField(`${inlineCode("✅")} Balance create !`,`📜 To you the conquest towards wealth!`);
+            message.reply({ embeds: [playerCreateEmbed] })
+
             } else {
                 message.reply(`${inlineCode("❌")} You are already a player... !`);
             };
         }
     );
 
+    // ======= STATS BOT =======
+    // var statsBot = new STATS({
+    //     botID: 899,
+    //     numberPlayer: 0,
+    //     numberSquad: 0,
+    //     amoutCoin: 0,
+    //     amoutItem: 0,
+    //     amoutMonsterKilled: 0,
+    //     shop: {
+    //         amoutSale: 0,
+    //     }
+    // })
+    // statsBot.save()
+
+
+    // ======= BOSS =======
     // BOSS.findOne(
     //     {
     //         bossname: 'Lithowanderer',

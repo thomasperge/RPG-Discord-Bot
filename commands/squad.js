@@ -4,10 +4,13 @@ const SQUADDATA = require('../modules/squad.js')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
-const shuffleTime = 3000;
+const shuffleTime = 0;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
+    var user = message.author
+    var squadMention = args[0]
+
     //  ======= CoolDowns: 3s =======
     if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
         message.channel.send('⌚ Please wait `' + Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000) + ' seconds` and try again.');
@@ -28,36 +31,74 @@ module.exports.run = async (client, message, args) => {
         if (!squad) return message.reply(`${inlineCode("😵‍💫")} you have not joined any squad yet...`)
         else {
 
-            // === If user is the leader of the squad ===
-            if(playerStats.userId === squad.leader[0]){
+            // == Squad Player ==
+            if(squadMention == '' || squadMention == ' ' || squadMention == undefined){
+                // === If user is the leader of the squad ===
+                if(playerStats.userId === squad.leader[0]){
 
-                var memberLenght
-                if(squad.member.length == undefined) memberLenght = 0
-                else memberLenght = squad.member.length
+                    // === If user is the leader of the squad ===
+                    if(playerStats.userId === squad.leader[0]){
+                        var memberLenght
+                        if(squad.member.length == undefined) memberLenght = 0
+                        else memberLenght = squad.member.length
 
-                var squadEmbed = new Discord.MessageEmbed()
-                    .setColor('#6d4534')
-                    .setTitle(`🛖 Your Squad (leader)`)
-                    .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : **You**\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(Math.floor(squad.squadbank) + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squad.squadboss.bossattack)} **/** ❤️: ${inlineCode(squad.squadboss.bosshealth)}`)
-                    .setTimestamp();
-                return message.reply({embeds: [squadEmbed]});
+                        var squadEmbed = new Discord.MessageEmbed()
+                            .setColor('#6d4534')
+                            .setTitle(`🛖 Your Squad (leader)`)
+                            .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : **You**\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(Math.floor(squad.squadbank) + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squad.squadboss.bossattack)} **/** ❤️: ${inlineCode(squad.squadboss.bosshealth)}`)
+                            .setTimestamp();
+                        return message.reply({embeds: [squadEmbed]});
+                    }
+                } else {
+                    // === User is a Member of Squad ===
+                    var memberLenght
+                    if(squad.member.length == undefined) memberLenght = 0
+                    else memberLenght = squad.member.length
+
+                    var squadEmbed = new Discord.MessageEmbed()
+                        .setColor('#6d4534')
+                        .setTitle(`🛖 Your Squad`)
+                        .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : ${squad.leader[1]}\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(Math.floor(squad.squadbank) + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squad.squadboss.bossattack)} **/** ❤️: ${inlineCode(squad.squadboss.bosshealth)}`)
+                        .setTimestamp();
+                    return message.reply({embeds: [squadEmbed]});
+                };
             } else {
-            // === User is a Member of Squad ===
 
-                var memberLenght
-                if(squad.member.length == undefined) memberLenght = 0
-                else memberLenght = squad.member.length
+                // == Squad Db ==
+                let squadMentionned = await SQUADDATA.findOne({ squadName: squadMention });
+                if (!squadMentionned) return message.reply(`${inlineCode("😵‍💫")} This squad does not exist...`)
+                else {
+                    // === If user is the leader of the squad ===
+                    if(playerStats.userId === squadMentionned.leader[0]){
 
-                var squadEmbed = new Discord.MessageEmbed()
-                    .setColor('#6d4534')
-                    .setTitle(`🛖 Your Squad`)
-                    .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : ${squad.leader[1]}\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(Math.floor(squad.squadbank) + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squad.squadboss.bossattack)} **/** ❤️: ${inlineCode(squad.squadboss.bosshealth)}`)
-                    .setTimestamp();
-                return message.reply({embeds: [squadEmbed]});
-            }
-        }
-    }
-}
+                        var memberLenght
+                        if(squadMentionned.member.length == undefined) memberLenght = 0
+                        else memberLenght = squadMentionned.member.length
+
+                        var squadEmbed = new Discord.MessageEmbed()
+                            .setColor('#6d4534')
+                            .setTitle(`🛖 Your Squad (leader)`)
+                            .setDescription(`🪵 ${inlineCode(squadMentionned.squadName + "'s")} squad\n👑 Leader : **You**\n🪧 Squad level : ${inlineCode(Math.floor(squadMentionned.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(Math.floor(squadMentionned.squadbank) + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squadMentionned.squadboss.bossattack)} **/** ❤️: ${inlineCode(squadMentionned.squadboss.bosshealth)}`)
+                            .setTimestamp();
+                        return message.reply({embeds: [squadEmbed]});
+                    } else {
+                    // === User is a Member of Squad ===
+                        var memberLenght
+                        if(squadMentionned.member.length == undefined) memberLenght = 0
+                        else memberLenght = squadMentionned.member.length
+
+                        var squadEmbed = new Discord.MessageEmbed()
+                            .setColor('#6d4534')
+                            .setTitle(`🛖 Your Squad`)
+                            .setDescription(`🪵 ${inlineCode(squadMentionned.squadName + "'s")} squad\n👑 Leader : ${squadMentionned.leader[1]}\n🪧 Squad level : ${inlineCode(Math.floor(squadMentionned.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(Math.floor(squadMentionned.squadbank) + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squadMentionned.squadboss.bossattack)} **/** ❤️: ${inlineCode(squadMentionned.squadboss.bosshealth)}`)
+                            .setTimestamp();
+                        return message.reply({embeds: [squadEmbed]});
+                    };
+                };
+            };
+        };
+    };
+};
 
 module.exports.info = {
   names: ['squad', 'mysquad', 'team', 'myteam', 'squd', 'squads'],

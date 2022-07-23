@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
 const SQUADDATA = require('../modules/squad.js')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
+const { numStr } = require('../functionNumber/functionNbr.js')
 
 // Config Cooldown :
 const shuffleTime = 0;
@@ -20,6 +21,7 @@ module.exports.run = async (client, message, args) => {
     // ===============================
 
     var user = message.author;
+
 
     // == Player Db ==
     let playerStats = await PLAYERDATA.findOne({ userId: user.id });
@@ -42,10 +44,16 @@ module.exports.run = async (client, message, args) => {
                         if(squad.member.length == undefined) memberLenght = 0
                         else memberLenght = squad.member.length
 
+                        // == Display All Members ==
+                        var allmember = ``
+                        for(const allPlayerInSquad of squad.member){
+                            allmember += `${inlineCode(allPlayerInSquad.pseudo)}, `
+                        }
+
                         var squadEmbed = new Discord.MessageEmbed()
                             .setColor('#6d4534')
                             .setTitle(`🛖 Your Squad (leader)`)
-                            .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : **You**\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(Math.floor(squad.squadbank) + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squad.squadboss.bossattack)} **/** ❤️: ${inlineCode(squad.squadboss.bosshealth)} **/** 🛡️: ${inlineCode(squad.squadboss.bossdefense)}`)
+                            .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : **You**\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(numStr(squad.squadbank))} ${inlineCode("🪙")}\n👥 Number of Members(s): ${inlineCode(memberLenght)}\n👥 Member(s) : ${allmember}\n🗿 Squad Bosses: 💥: ${inlineCode(squad.squadboss.bossattack)} **/** ❤️: ${inlineCode(squad.squadboss.bosshealth)} **/** 🛡️: ${inlineCode(squad.squadboss.bossdefense)}`)
                             .setTimestamp();
                         return message.reply({embeds: [squadEmbed]});
                     }
@@ -58,12 +66,11 @@ module.exports.run = async (client, message, args) => {
                     var squadEmbed = new Discord.MessageEmbed()
                         .setColor('#6d4534')
                         .setTitle(`🛖 Your Squad`)
-                        .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : ${squad.leader[1]}\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(Math.floor(squad.squadbank) + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squad.squadboss.bossattack)} **/** ❤️: ${inlineCode(squad.squadboss.bosshealth)} **/** 🛡️: ${inlineCode(squad.squadboss.bossdefense)}`)
+                        .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n👑 Leader : ${squad.leader[1]}\n🪧 Squad level : ${inlineCode(Math.floor(squad.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(numStr(squad.squadbank))} ${inlineCode("🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squad.squadboss.bossattack)} **/** ❤️: ${inlineCode(squad.squadboss.bosshealth)} **/** 🛡️: ${inlineCode(squad.squadboss.bossdefense)}`)
                         .setTimestamp();
                     return message.reply({embeds: [squadEmbed]});
                 };
             } else {
-
                 // == Squad Db ==
                 let squadMentionned = await SQUADDATA.findOne({ squadName: squadMention });
                 if (!squadMentionned) return message.reply(`${inlineCode("😵‍💫")} This squad does not exist...`)
@@ -78,7 +85,7 @@ module.exports.run = async (client, message, args) => {
                         var squadEmbed = new Discord.MessageEmbed()
                             .setColor('#6d4534')
                             .setTitle(`🛖 Your Squad (leader)`)
-                            .setDescription(`🪵 ${inlineCode(squadMentionned.squadName + "'s")} squad\n👑 Leader : **You**\n🪧 Squad level : ${inlineCode(Math.floor(squadMentionned.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(Math.floor(squadMentionned.squadbank) + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squadMentionned.squadboss.bossattack)} **/** ❤️: ${inlineCode(squadMentionned.squadboss.bosshealth)} **/** 🛡️: ${inlineCode(squadMentionned.squadboss.bossdefense)}`)
+                            .setDescription(`🪵 ${inlineCode(squadMentionned.squadName + "'s")} squad\n👑 Leader : **You**\n🪧 Squad level : ${inlineCode(Math.floor(squadMentionned.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(numStr(squad.squadbank))} ${inlineCode("🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squadMentionned.squadboss.bossattack)} **/** ❤️: ${inlineCode(squadMentionned.squadboss.bosshealth)} **/** 🛡️: ${inlineCode(squadMentionned.squadboss.bossdefense)}`)
                             .setTimestamp();
                         return message.reply({embeds: [squadEmbed]});
                     } else {
@@ -89,8 +96,8 @@ module.exports.run = async (client, message, args) => {
 
                         var squadEmbed = new Discord.MessageEmbed()
                             .setColor('#6d4534')
-                            .setTitle(`🛖 Your Squad`)
-                            .setDescription(`🪵 ${inlineCode(squadMentionned.squadName + "'s")} squad\n👑 Leader : ${squadMentionned.leader[1]}\n🪧 Squad level : ${inlineCode(Math.floor(squadMentionned.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(Math.floor(squadMentionned.squadbank) + " 🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squadMentionned.squadboss.bossattack)} **/** ❤️: ${inlineCode(squadMentionned.squadboss.bosshealth)} **/** 🛡️: ${inlineCode(squadMentionned.squadboss.bossdefense)}`)
+                            .setTitle(`🛖 ${squadMentionned.squadName} Squad`)
+                            .setDescription(`🪵 ${inlineCode(squadMentionned.squadName + "'s")} squad\n👑 Leader : ${squadMentionned.leader[1]}\n🪧 Squad level : ${inlineCode(Math.floor(squadMentionned.squadXp / 1000))}\n📰 Squad Bank : ${inlineCode(numStr(squad.squadbank))} ${inlineCode("🪙")}\n👥 Member(s): ${inlineCode(memberLenght)}\n🗿 Squad Bosses: 💥: ${inlineCode(squadMentionned.squadboss.bossattack)} **/** ❤️: ${inlineCode(squadMentionned.squadboss.bosshealth)} **/** 🛡️: ${inlineCode(squadMentionned.squadboss.bossdefense)}`)
                             .setTimestamp();
                         return message.reply({embeds: [squadEmbed]});
                     };

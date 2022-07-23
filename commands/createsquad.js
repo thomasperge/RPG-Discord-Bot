@@ -66,7 +66,7 @@ module.exports.run = async (client, message, args) => {
                             squadName : squadName,
                             squadXp: 0,
                             leader: [message.author.id, user.username],
-                            member: [message.author.id],
+                            member: [{id: user.id, pseudo: user.username}],
                             squadbank: 0,
                             squadboss: {
                                 bossattack: 500,

@@ -64,7 +64,7 @@ module.exports.run = async (client, message, args) => {
                         playerBan.save()
 
                         for(const allMember of squad.member){
-                            var index = squad.member.indexOf(userBan.id)
+                            var index = squad.member.id.indexOf(userBan.id)
                             squad.member.splice(index, 1)
                         }
                         squad.save()

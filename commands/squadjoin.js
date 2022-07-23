@@ -92,7 +92,7 @@ module.exports.run = async (client, message, args) => {
                                     const id = ButtonInteraction.first().customId
                                     if(id === 'yes'){
                                         // ========== YES: JOIN the SQUAD ==========
-                                        squad.member.push(message.author.id)
+                                        squad.member.push({id: user.id, pseudo: user.username})
                                         squad.save()
 
                                         playerStats.player.other.squadName = squadNameJoin

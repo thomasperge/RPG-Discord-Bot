@@ -32,7 +32,7 @@ module.exports.run = async (client, message, args) => {
 
             // == Squad Data ==
             let squad = await SQUADDATA.findOne({ squadName: playerStats.player.other.squadName });
-            if (!squad) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+            if (!squad) return message.reply(`${inlineCode('❌')} you haven't joined a squad yet : ${inlineCode('gjoinsquad <squad name>')}`);
             else {
                 var rewardPlayer = Math.floor( ((squad.squadXp / 1000) * playerStats.player.level) * (playerStats.player.other.squadCoinGiven / 250) );
                 message.reply(`🪧 Your reward of the day is ${inlineCode(rewardPlayer)} 🪙 thanks to your squad: ${inlineCode(squad.squadName + "'s")}`);

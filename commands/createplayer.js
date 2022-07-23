@@ -67,9 +67,7 @@ module.exports.run = async (client, message, args) => {
 
             playerCreateEmbed.addField(`${inlineCode("✅")} Account create !`,`📜 New player joins the adventure!`);
 
-            } else {
-                message.reply(`${inlineCode("❌")} You are already a player... !`);
-            };
+            }
         }
     );
 
@@ -105,9 +103,6 @@ module.exports.run = async (client, message, args) => {
     //     amoutCoin: 0,
     //     amoutItem: 0,
     //     amoutMonsterKilled: 0,
-    //     shop: {
-    //         amoutSale: 0,
-    //     }
     // })
     // statsBot.save()
 

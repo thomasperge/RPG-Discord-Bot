@@ -12,10 +12,10 @@ module.exports.run = async (client, message, args) => {
 
 
         var statsEmbed = new Discord.MessageEmbed()
-        .setColor('#fc9803')
-        .setTitle(`RPG BOT Stats`)
-        .setDescription(`👥 `)
-        .setTimestamp();
+            .setColor('#fc9803')
+            .setTitle(`RPG BOT Stats`)
+            .setDescription(`👥 Number of players : ${inlineCode(stats.numberPlayer)}\n🛖 Number of squads : ${inlineCode(stats.numberSquad)}\n💰 Total number of coins in circulation : ${inlineCode(numStr(stats.amoutCoin))}\n🪖 Total number of items in circulation : ${inlineCode(numStr(stats.amoutItem))}\n💀 Total number of dead monsters : ${inlineCode(numStr(stats.amoutMonsterKilled))}`)
+            .setTimestamp();
         message.channel.send({embeds: [statsEmbed]});
 
 
@@ -23,5 +23,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-  names: ['profile', 'statistics', 'user', 'p', 'pro', 'profil'],
+  names: ['stats', 'statistics', 'bot', 'botstats', 'rpgbot', 'statsbot', 'statisticsbot'],
 };

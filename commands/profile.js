@@ -90,5 +90,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-  names: ['profile', 'statistics', 'user', 'p', 'pro', 'profil'],
+  names: ['profile', 'user', 'p', 'pro', 'profil'],
 };

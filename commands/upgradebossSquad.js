@@ -21,11 +21,11 @@ module.exports.run = async (client, message, args) => {
     var itemUpgrade = args[0]
     var amoutUpgrade = parseInt(args[1])
 
-    if(itemUpgrade === '' || amoutUpgrade === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health> <amout>")}`);
-    else if(itemUpgrade === ' ' || amoutUpgrade === ' ') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health> <amout>")}`);
-    else if(itemUpgrade === undefined || amoutUpgrade === undefined) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health> <amout>")}`);
-    else if(isNaN(amoutUpgrade)) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gugradesquadboss/gusb <attack/health> <amout>")}`);
-    else if((itemUpgrade == 'attack' || itemUpgrade == 'atk' || itemUpgrade == 'a' || itemUpgrade == 'health' || itemUpgrade == 'hlh' || itemUpgrade == 'h') && isNaN(amoutUpgrade) == false) {
+    if(itemUpgrade === '' || amoutUpgrade === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
+    else if(itemUpgrade === ' ' || amoutUpgrade === ' ') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
+    else if(itemUpgrade === undefined || amoutUpgrade === undefined) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
+    else if(isNaN(amoutUpgrade)) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gugradesquadboss/gusb <attack/health/defense> <amout>")}`);
+    else if((itemUpgrade == 'attack' || itemUpgrade == 'atk' || itemUpgrade == 'a' || itemUpgrade == 'health' || itemUpgrade == 'hlh' || itemUpgrade == 'h' || itemUpgrade == 'defense' || itemUpgrade == 'dfs' || itemUpgrade == 'd') && isNaN(amoutUpgrade) == false) {
 
         function playerInSquad(playerStats){
             if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
@@ -33,7 +33,7 @@ module.exports.run = async (client, message, args) => {
                 if(playerStats.player.other.squadName != 'undefined') return true
             }
             return false
-        }
+        };
 
         // == Player DB ==
         let playerStats = await PLAYERDATA.findOne({ userId: user.id });
@@ -71,7 +71,7 @@ module.exports.run = async (client, message, args) => {
 
                                 const upgradeBoss = new MessageEmbed()
                                     .setColor('#4dca4d')
-                                    .setAuthor(`🗿 Upgrade Squad Boss`)
+                                    .setTitle(`🗿 Upgrade Squad Boss`)
                                     .setDescription(`🛖 Squad : ${inlineCode(squad.squadName)} by ${inlineCode(squad.leader[1])}\n🪧 Improve ${done}: ${inlineCode('+' + amoutUpgrade)} ${emojiDone}\n📝 Balance Squad Cost: ${inlineCode(price)} 🪙`)
                                     .setTimestamp();
                                 message.reply({embeds: [upgradeBoss], components: [row]});
@@ -105,6 +105,13 @@ module.exports.run = async (client, message, args) => {
                                             squad.save() 
                                         };
 
+                                        if(done == 'defense'){
+                                            squad.squadboss.bossdefense += amoutUpgrade
+                                            squad.squadbank -= price
+                                            squad.save() 
+                                        };
+                                        
+
                                         var upgradeDone = new Discord.MessageEmbed()
                                             .setColor('#4dca4d')
                                             .setTitle(`🗿 Boss Upgrade`)
@@ -118,11 +125,14 @@ module.exports.run = async (client, message, args) => {
                             // === End Function ===
 
                             if(itemUpgrade == 'attack' || itemUpgrade == 'atk' || itemUpgrade == 'a'){
-                                return upgradeBossMessage('attack', '💥', Math.floor(amoutUpgrade * 112.2), amoutUpgrade) 
+                                return upgradeBossMessage('attack', '💥', Math.floor(amoutUpgrade * 112.2), amoutUpgrade);
 
                             } else if(itemUpgrade == 'health' || itemUpgrade == 'hlh' || itemUpgrade == 'h'){
-                                return upgradeBossMessage('health', '❤️', Math.floor(amoutUpgrade * 7.4), amoutUpgrade) 
-                            };
+                                return upgradeBossMessage('health', '❤️', Math.floor(amoutUpgrade * 7.4), amoutUpgrade);
+
+                            } else if(itemUpgrade == 'defense' || itemUpgrade == 'dfs' || itemUpgrade == 'd'){
+                                return upgradeBossMessage('defense', '🛡️', Math.floor(amoutUpgrade * 75.5), amoutUpgrade);
+                            } else return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
 
                         } else return message.reply(`${inlineCode("😵‍💫")} you are not the leader of the squad...`);
                     } else return message.reply(`${inlineCode("😵‍💫")} your balance squad don't have enought money...`);

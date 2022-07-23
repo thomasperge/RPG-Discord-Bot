@@ -79,5 +79,5 @@ module.exports.run = async (client, message, args) => {
 }
 
 module.exports.info = {
-  names: ['squadgive', 'give', 'givesquad', 'givecoinsquad', 'squadcoin', 'coinsquad', 'teamgive', 'giveteam', 'ivesquad'],
+  names: ['squadgive', 'givesquad', 'givecoinsquad', 'squadcoin', 'coinsquad', 'teamgive', 'giveteam', 'ivesquad'],
 };

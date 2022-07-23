@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
 const BALANCEDATA = require('../modules/economie.js');
+const { numStr } = require('../functionNumber/functionNbr.js')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
@@ -39,11 +40,11 @@ module.exports.run = async (client, message, args) => {
             .setColor('#fc9803')
             .setTitle(`${user.username}'s Stats`)
             .addFields(
-              { name: '**📊 Info :**\n', value: `:pencil: ${inlineCode('Level')}: ${playerStats.player.level}`, inline: true },
-              { name: '**🏦 Balance :**\n', value: `🪙: ${balance.eco.coins}\n🏮: ${balance.eco.xp}`, inline: true },
-              { name: '**🛖 Squad :**\n', value: `🪧: ${squad}`, inline: true },
-              { name: '**📈 Stats :**\n', value: `:fire: ${inlineCode('Attack')}: ${playerStats.player.attack}\n:shield: ${inlineCode('Defense')}: ${playerStats.player.defense}\n:heart: ${inlineCode('Health')}: ${playerStats.player.health}\n:dash: ${inlineCode('Dodge')}: ${playerStats.player.dodge}%\n🏑 ${inlineCode('Penetration')}: ${playerStats.player.penetration}%\n:boom: ${inlineCode('Critick')}: ${playerStats.player.crit}%\n:heart_on_fire: ${inlineCode('Life Steal')}: ${playerStats.player.lifeSteal}`, inline: false },
-              { name: '**📰 Others :**\n', value: `📜 ${inlineCode('Battle Diary')} : ${playerStats.player.other.dm}\n☠️ ${inlineCode("Monster killed")} : ${playerStats.player.other.monsterKill}`, inline: true },
+              { name: '**📊 Info :**\n', value: `📝 Level: ${inlineCode(playerStats.player.level)}`, inline: true },
+              { name: '**🏦 Balance :**\n', value: `🪙: ${inlineCode(numStr(balance.eco.coins))}\n🏮: ${inlineCode(numStr(balance.eco.xp))}`, inline: true },
+              { name: '**🛖 Squad :**\n', value: `🪧: ${inlineCode(squad)}`, inline: true },
+              { name: '**📈 Stats :**\n', value: `🔥 Attack: ${inlineCode(playerStats.player.attack)}\n🛡️ Defense: ${inlineCode(playerStats.player.defense)}\n❤️ Health: ${inlineCode(playerStats.player.health)}\n💨 Dodge: ${inlineCode(playerStats.player.dodge + '%')}\n🏑 Penetration: ${inlineCode(playerStats.player.penetration + '%')}\n💥 Critick: ${inlineCode(playerStats.player.crit + '%')}\n❤️‍🔥 Life Steal: ${inlineCode(playerStats.player.lifeSteal)}`, inline: true },
+              { name: '**📰 Others :**\n', value: `📜 Battle Diary: ${inlineCode(playerStats.player.other.dm)}\n☠️ Monster killed: ${inlineCode(playerStats.player.other.monsterKill)}`, inline: true },
             )
             .setTimestamp();
           message.channel.send({embeds: [statsEmbed]});

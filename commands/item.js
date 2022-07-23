@@ -12,23 +12,28 @@ module.exports.run = async (client, message, args) => {
         if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
         else {
 
-
-            var itemEmbed = new MessageEmbed()
-                .setColor('#9696ab')
-                .setTitle(`📦 ${user.username}'s Item(s)`)
-                .setTimestamp()
-
+            var allITemEmbed = ``
             var numberItem = 1
+            var totalvalue = 0
+
             for(const allItem of playerStats.player.stuff.stuffUnlock){
-                itemEmbed.addField(`Item ${numberItem} :`,`${allItem.name} (level: ${allItem.level})`)
+                for(const itemConfig of CONFIGITEM){
+                    if(itemConfig.name == allItem.name) totalvalue += itemConfig.cost * allItem.level
+                }
+                allITemEmbed += `**#${numberItem}** **${inlineCode(allItem.name)}** ${inlineCode("lvl: " + allItem.level)}\n`
                 numberItem += 1
             };
 
-            message.reply({ embeds: [itemEmbed] })
+            var itemEmbed = new MessageEmbed()
+            .setColor('#9696ab')
+            .setTitle(`📦 ${user.username}'s Item(s)`)
+            .setDescription(`🪖 Number of items : ${inlineCode(playerStats.player.stuff.stuffUnlock.length)}\n💰 Total value : ${inlineCode(totalvalue)} ${inlineCode("🪙")}\n${allITemEmbed}`)
+            .setTimestamp()
 
+            message.reply({ embeds: [itemEmbed] });
     };
 };
 
 module.exports.info = {
-    names: ['allitem', 'item', 'allobject', 'object'],
+    names: ['item', 'allobject', 'object'],
 };

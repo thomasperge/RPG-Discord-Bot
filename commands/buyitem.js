@@ -3,6 +3,7 @@ const PLAYERDATA = require('../modules/player.js');
 const BALANCEDATA = require('../modules/economie.js');
 const STATS = require('../modules/statsBot.js');
 const CONFIGITEM = require('../config/stuff.json')
+const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
@@ -58,7 +59,12 @@ module.exports.run = async (client, message, args) => {
                         stats.amoutItem += 1;
                         stats.save();
 
-                        return message.reply(`✅ Purchase made!\n**NEW** ITEM ${itemExist(item)[3]}`)
+                        var itemEmbed = new MessageEmbed()
+                            .setColor('#9696ab')
+                            .setTitle(`📦 ${user.username}'s New Item(s)`)
+                            .setDescription(`✅ Purchase made!\n📦 **NEW ITEM** : **${inlineCode(itemExist(item)[3])}**\n🪧 Don't forget to equip yourself with : ${inlineCode(`gequip ${item} <1/2/3/4/5>`)}\n🏹 To see your items equip : ${inlineCode("gslot")}`)
+                            .setTimestamp()
+                        return message.reply({ embeds:[itemEmbed] })
                     };
                 } return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${itemExist(item)[2] - balance.eco.coins}`);
             } else return message.reply(`${inlineCode("😵‍💫")} this item does not exist...`);

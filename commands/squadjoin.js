@@ -72,7 +72,7 @@ module.exports.run = async (client, message, args) => {
                         
                                 const squadEmbedRow = new MessageEmbed()
                                     .setColor('#4dca4d')
-                                    .setAuthor(`🛖 Join ${squad.squadName}'s squad ?`)
+                                    .setTitle(`🛖 Join ${squad.squadName}'s squad ?`)
                                     .setDescription(`Click JOIN ✅ to join ${inlineCode('or')} Click CANCEL ❌ to canceled`)
                                     .setTimestamp();
                                 message.reply({embeds: [squadEmbedRow], components: [row] });
@@ -100,7 +100,7 @@ module.exports.run = async (client, message, args) => {
 
                                         var squadEmbed = new Discord.MessageEmbed()
                                             .setColor('#4dca4d')
-                                            .setAuthor(`🛖 You join ${squad.squadName + "'s"} squad`)
+                                            .setTitle(`🛖 You join ${squad.squadName + "'s"} squad`)
                                             .setDescription(`✅ New squad Member: ${inlineCode(user.username)}\n✨ Congrats you have sucessfully join your new squad !<\n👑 Leader : ${inlineCode(squad.leader[1])}\n👥 Member(s): ${inlineCode(squad.member.length), '+1'}\n📦 Earn Xp to improve your squad level !`)
                                             .setFooter('© RPG Bot 2022 | ghelp')
                                             .setTimestamp();

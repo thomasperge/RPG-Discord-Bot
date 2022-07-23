@@ -28,7 +28,6 @@ module.exports.run = async (client, message, args) => {
 
         var resultplace = 0
         var emoji
-
         for(const result of leaderboard){
             resultplace += 1
 
@@ -37,14 +36,20 @@ module.exports.run = async (client, message, args) => {
             else if(resultplace == 3) emoji = "🥉"
             else emoji = "🎖️"
 
-            messageEmbedResult += `${emoji} **#${resultplace}** ${inlineCode(result.squadName)} : ${result.aura} pts\n`
+            messageEmbedResult += `${emoji} **#${resultplace}** ${inlineCode(result.squadName)} : ${result.aura} pts\n`;
+
+            // == Add Reward for squad ==
+            let squadMention = await SQUADDATA.findOne({ squadName: result.squadName });
+            squadMention.squadbank += 1_750_000 / resultplace
+            squadMention.save()
+            
         };
 
         var squadTournamentEmbed = new Discord.MessageEmbed()
-                .setColor('#6d4534')
-                .setTitle(`🎪 Squad Tournament`)
-                .setDescription(`🪧 **${squadTournament.squadTournamentName}** Squad Tournament\n👑 Organizer: ${inlineCode(squadTournament.squadTournamantLeader[0].pseudo)}\n🛖 Number of squads: ${inlineCode(squadTournament.squadMember.length)} (max: ${squadTournament.maxSquad})\n\n🏹 Result of the tournament:\n${messageEmbedResult}\n`)
-                .setTimestamp();
+            .setColor('#6d4534')
+            .setTitle(`🎪 Squad Tournament`)
+            .setDescription(`🪧 **${squadTournament.squadTournamentName}** Squad Tournament\n👑 Organizer: ${inlineCode(squadTournament.squadTournamantLeader[0].pseudo)}\n🛖 Number of squads: ${inlineCode(squadTournament.squadMember.length)} (max: ${squadTournament.maxSquad})\n\n🏹 Result of the tournament:\n${messageEmbedResult}\n`)
+            .setTimestamp();
         return message.reply({embeds: [squadTournamentEmbed]});
     };
 
@@ -53,7 +58,7 @@ module.exports.run = async (client, message, args) => {
     if (!squadTournament) return message.reply(`${inlineCode("😵‍💫")} This tournament does not exist...`)
     else {
 
-        if(squadTournament.squadMember.length <= 2) return message.reply(`${inlineCode("😵‍💫")} the minimum to start a tournament is 3 squads...`) 
+        // if(squadTournament.squadMember.length <= 2) return message.reply(`${inlineCode("😵‍💫")} the minimum to start a tournament is 3 squads...`) 
 
         // == Check if user are the creator ==
         if(squadTournament.squadTournamantLeader[0].id == user.id){

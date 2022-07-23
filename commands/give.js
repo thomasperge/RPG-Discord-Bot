@@ -12,18 +12,15 @@ module.exports.run = async (client, message, args) => {
     var item = args[1]
     var amout = args[2]
 
-    console.log(item, amout)
+    if(user.id == '564050802566627358' || user.id == '369531783471038474'){
 
-    if(userInput == undefined || userInput == ' ' || userInput == '') return message.reply(`${inlineCode('❌')} bad command : ${inlineCode('ggive <@user> <item> <amout>')}`);
-    if(isNaN(amout) == false || amout >= 0){
+        if(userInput == undefined || userInput == ' ' || userInput == '') return message.reply(`${inlineCode('❌')} bad command : ${inlineCode('ggive <@user> <item> <amout>')}`);
+        if(isNaN(amout) == false || amout >= 0){
 
-        let balance = await BALANCEDATA.findOne({ userId: userInput.id });
-        if (!balance) return message.reply(`${inlineCode('😶‍🌫️')} ${userInput} are not a player... ! `);
-        else {
+            let balance = await BALANCEDATA.findOne({ userId: userInput.id });
+            if (!balance) return message.reply(`${inlineCode('😶‍🌫️')} ${userInput} are not a player... ! `);
+            else {
 
-            console.log(user.id)
-
-            if(user.id == '564050802566627358' || user.id == '369531783471038474'){
                 if(item == 'coin' || item == 'coins' || item == 'Coins' || item == 'Coin' || item == 'money'){
                     // == Give Coins ==
                     balance.eco.coins += amout;
@@ -37,9 +34,9 @@ module.exports.run = async (client, message, args) => {
                     return message.reply(`${inlineCode("✅")} you give ${inlineCode(amout)} 🏮 to ${userInput}`);
                 
                 } else return message.reply(`${inlineCode("🥱")} This item does not exist or is not recognized... : ${inlineCode('ggive <@user> <item> <amout>')}`);
-            } else return message.reply(`${inlineCode("🥱")} you are not administrator to execute this command...`);
-        };
-    } else return message.reply(`${inlineCode("😶‍🌫️")} please use a correct amout : ${inlineCode('ggive <@user> <item> <amout>')}`);
+            };
+        } else return message.reply(`${inlineCode("😶‍🌫️")} please use a correct amout : ${inlineCode('ggive <@user> <item> <amout>')}`);
+    } else return message.reply(`${inlineCode("🥱")} you are not administrator to execute this command...`);
 };
 
 module.exports.info = {

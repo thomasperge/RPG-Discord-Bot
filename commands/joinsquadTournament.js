@@ -68,7 +68,7 @@ module.exports.run = async (client, message, args) => {
                                     squadTournament.squadMember.push({ nameSquad: squad.squadName, squadLeader: squad.leader[1], totalMember: squad.member.length});
                                     squadTournament.save();
 
-                                    return message.reply(`${inlineCode("✅")} 🎪 You join the ${inlineCode(squadTournament.squadTournamentName + " 's")} tournament!`)
+                                    return message.reply(`${inlineCode("✅")} You join the ${inlineCode(squadTournament.squadTournamentName + " 's")} tournament 🎪\n(Check that your registration is complete by typing the command: ${inlineCode("gsquadTournament" + nameTournament)})`)
 
                                 } else return message.reply(`${inlineCode("😵‍💫")} There are too many squads in this tournament, the creator decided that the maximum number of squads would be : ${inlineCode(squadTournament.maxSquad)}`);
                             } else return message.reply(`${inlineCode("😵‍💫")} you are not the leader of the squad...`);

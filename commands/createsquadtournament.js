@@ -23,7 +23,7 @@ module.exports.run = async (client, message, args) => {
 
                 function ifPlayerAsAlreadyCreateTournament(allSquadTournament, user){
                     for(const squadT of allSquadTournament){
-                        if(squadT.squadTournamantLeader[0] === user.id) return false 
+                        if(squadT.squadTournamantLeader[0].id === user.id) return false 
                     }
                     return true
                 };
@@ -48,12 +48,12 @@ module.exports.run = async (client, message, args) => {
                             .setTimestamp();
                         return message.channel.send({embeds: [squadEmbed]});
                     } else return message.reply(`${inlineCode('❌')} you have already created a tournament, you can't create a second one...`)
-                } else return message.reply(`${inlineCode('❌')} the name ${inlineCode(squadName)} is already taken ! ${inlineCode('gcreatesquad <squad name>')}`)
+                } else return message.reply(`${inlineCode('❌')} the name ${inlineCode(squadTournamentName)} is already taken ! ${inlineCode('gcreatesquad <squad name> <max member>')}`)
             }; 
         } else return message.reply(`${inlineCode("❌")} a tournament must be composed of a minimum of 3 squads and a maximum of 15!`);
     } return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gcreatesquadtournament <tournament name> <max member>")}`);
 };
 
 module.exports.info = {
-  names: ['createsquadtournament', 'createSquadTournament', 'createST', 'createTournament'],
+    names: ['createsquadtournament', 'createSquadTournament', 'createST', 'createTournament', 'createtournament'],
 };

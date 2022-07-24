@@ -62,14 +62,13 @@ module.exports.run = async (client, message, args) => {
                 while(HEALTH_PLAYER != 0 || HEALTH_MONSTER != 0){
                     // ==== Joueur attaque ====
                     if(CRITPLAYER == false){
-
                         var attackDamagePLayer = Math.floor(Math.random() * MAXATK_PLAYER) + 1
                         NB_ATTACK_PLAYER = NB_ATTACK_PLAYER + 1
                         ATK_SOMME_PLAYER = ATK_SOMME_PLAYER + attackDamagePLayer
                         
                         HEALTH_MONSTER = HEALTH_MONSTER - attackDamagePLayer;
                     } else {
-                        var attackDamagePLayerCrit = Math.floor((Math.random() * (MAXATK_PLAYER)) * playerStats.player.critMultplicator) + 1
+                        var attackDamagePLayerCrit = Math.floor(Math.random() * (MAXATK_PLAYER + playerStats.player.crit)) + 1;
                         NB_CRIT += 1
                         NB_ATTACK_PLAYER = NB_ATTACK_PLAYER + 1
                         ATK_SOMME_PLAYER = ATK_SOMME_PLAYER + attackDamagePLayerCrit
@@ -79,7 +78,7 @@ module.exports.run = async (client, message, args) => {
 
                     // ==== Monstre attaque ====
                     if(DODGEPLAYER == false){
-                        var attackDamageMonster = Math.floor(Math.random() * MAXATK_MONSTER) + 1;
+                        var attackDamageMonster = Math.floor(Math.random() * MAXATK_MONSTER);
                         NB_ATTACK_MONSTER = NB_ATTACK_MONSTER + 1;
                         ATK_SOMME_MONSTER = ATK_SOMME_MONSTER + attackDamageMonster;
 
@@ -185,8 +184,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level0.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level0.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level0.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 27]
@@ -196,8 +195,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level1.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level1.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level1.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 39]
@@ -207,8 +206,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level2.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level2.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level2.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 60]
@@ -219,8 +218,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level3.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level3.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level3.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 98]
@@ -230,8 +229,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level4.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level4.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level4.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 163]
@@ -241,8 +240,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level5.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level5.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level5.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 608]
@@ -252,8 +251,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level6.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level6.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level6.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 779]
@@ -263,8 +262,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level7.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level7.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level7.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 831]
@@ -274,8 +273,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level8.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level8.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level8.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 1447]
@@ -285,8 +284,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level9.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level9.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level9.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 2524]
@@ -296,8 +295,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level10.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level10.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level10.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 4410]
@@ -307,8 +306,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level11.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level11.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level11.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 7710]
@@ -318,8 +317,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level12.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level12.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level12.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 13485]
@@ -329,8 +328,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level13.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level13.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level13.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 23592]
@@ -340,8 +339,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level14.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level14.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level14.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 41608]
@@ -351,8 +350,8 @@ module.exports.run = async (client, message, args) => {
                     if(randomMonster == 0) MONSTER = MONSTERCONFIG.level15.monsterlvl1
                     if(randomMonster == 1) MONSTER = MONSTERCONFIG.level15.monsterlvl2
                     if(randomMonster == 2) MONSTER = MONSTERCONFIG.level15.monsterlvl3
-                    const MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
-                    const MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
+                    var MAXATK_PLAYER = playerStats.player.attack - MONSTER.defense
+                    var MAXATK_MONSTER = MONSTER.attack - playerStats.player.defense
                     if(MAXATK_MONSTER <= 0) MAXATK_MONSTER = 0
                     if(MAXATK_PLAYER <= 0) MAXATK_PLAYER = 0
                     return [MAXATK_PLAYER, MAXATK_MONSTER, playerStats.player.health, MONSTER.health, MONSTER.defense, dodgeFunction(playerStats.player.dodge), critFunction(playerStats.player.crit), 72228]
@@ -365,12 +364,12 @@ module.exports.run = async (client, message, args) => {
                 var monsterH = levelReturn(randomMonster)[3]
                 var monsterD = levelReturn(randomMonster)[4]
 
-                var totalStatsP1 = playerStats.player.attack + playerStats.player.health + playerStats.player.defense
-                var totalStatsMonster = monsterA + monsterH + monsterD
+                var totalStatsPlayer = playerStats.player.attack * (playerStats.player.health + playerStats.player.defense)
+                var totalStatsMonster = monsterA * (monsterH + monsterD)
 
-                var totalStats = totalStatsP1 + totalStatsMonster
+                var totalStats = totalStatsPlayer + totalStatsMonster
 
-                var percentageWin = (100 * totalStatsP1) / totalStats
+                var percentageWin = (100 * totalStatsPlayer) / totalStats
 
                 var percentageWin = new Discord.MessageEmbed()
                     .setColor('#2f3136')

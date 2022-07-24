@@ -91,35 +91,35 @@ module.exports.run = async (client, message, args) => {
 
                 var itemname
                 if(slotItem == 1){
-                    if(playerStats.player.slotItem.slot1 == -1) return message.reply(`${inlineCode('❌')} No objects in this slot...`);
+                    if(playerStats.player.slotItem.slot1 == -1) return message.reply(`${inlineCode('📦')} No objects in this slot...`);
                     
                     itemname = slotDisplay(playerStats.player.slotItem.slot1)[0]
                     removeStatsPlayers(slotDisplay(playerStats.player.slotItem.slot1)[1], itemLevel(slotDisplay(playerStats.player.slotItem.slot1)[1]))
                     playerStats.player.slotItem.slot1 = -1;
                 };
                 if(slotItem == 2){
-                    if(playerStats.player.slotItem.slot2 == -1) return message.reply(`${inlineCode('❌')} No objects in this slot...`);
+                    if(playerStats.player.slotItem.slot2 == -1) return message.reply(`${inlineCode('📦')} No objects in this slot...`);
                     
                     itemname = slotDisplay(playerStats.player.slotItem.slot2)[0]
                     removeStatsPlayers(slotDisplay(playerStats.player.slotItem.slot2)[1], itemLevel(slotDisplay(playerStats.player.slotItem.slot2)[1]))
                     playerStats.player.slotItem.slot2 = -1;
                 };
                 if(slotItem == 3){
-                    if(playerStats.player.slotItem.slot3 == -1) return message.reply(`${inlineCode('❌')} No objects in this slot...`);
+                    if(playerStats.player.slotItem.slot3 == -1) return message.reply(`${inlineCode('📦')} No objects in this slot...`);
                     
                     itemname = slotDisplay(playerStats.player.slotItem.slot3)[0]
                     removeStatsPlayers(slotDisplay(playerStats.player.slotItem.slot3)[1], itemLevel(slotDisplay(playerStats.player.slotItem.slot3)[1]))
                     playerStats.player.slotItem.slot3 = -1;
                 };
                 if(slotItem == 4){
-                    if(playerStats.player.slotItem.slot4 == -1) return message.reply(`${inlineCode('❌')} No objects in this slot...`);
+                    if(playerStats.player.slotItem.slot4 == -1) return message.reply(`${inlineCode('📦')} No objects in this slot...`);
                     
                     itemname = slotDisplay(playerStats.player.slotItem.slot4)[0]
                     removeStatsPlayers(slotDisplay(playerStats.player.slotItem.slot4)[1], itemLevel(slotDisplay(playerStats.player.slotItem.slot4)[1]))
                     playerStats.player.slotItem.slot4 = -1;
                 };
                 if(slotItem == 5){
-                    if(playerStats.player.slotItem.slot5 == -1) return message.reply(`${inlineCode('❌')} No objects in this slot...`);
+                    if(playerStats.player.slotItem.slot5 == -1) return message.reply(`${inlineCode('📦')} No objects in this slot...`);
                     
                     itemname = slotDisplay(playerStats.player.slotItem.slot5)[0]
                     removeStatsPlayers(slotDisplay(playerStats.player.slotItem.slot5)[1], itemLevel(slotDisplay(playerStats.player.slotItem.slot5)[1]))

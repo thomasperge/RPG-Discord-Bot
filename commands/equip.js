@@ -126,7 +126,7 @@ module.exports.run = async (client, message, args) => {
 
                         message.reply(`${inlineCode("📦")} You equip your: **${inlineCode(itemExist(item)[2])}** in your slot number : **${inlineCode(slotItem)}**\nTo remove your equipment type : ${inlineCode("gunequip <1/2/3/4/5>")}`)
 
-                    };
+                    } else return message.reply(`${inlineCode("🪧")} you don't have this item, you have to buy it from NPCs: ${inlineCode(`gbuyitem ${item}`)}`);
                 } else return message.reply(`${inlineCode("😵‍💫")} this item does not exist...`);
             };
         };

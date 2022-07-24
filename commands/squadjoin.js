@@ -109,15 +109,14 @@ module.exports.run = async (client, message, args) => {
                                     }
                                     if(id === 'no') return message.reply(`You canceled ❌`)
                                 });
-
-                            } 
-                        }
-                    } else return message.reply(`${inlineCode("😵‍💫")} you are already in a squad...`) 
-                }
-            }
-        }
-    }
-}
+                            };
+                        };
+                    } else return message.reply(`${inlineCode("😵‍💫")} you are already in a squad...`);
+                };
+            };
+        };
+    };
+};
 
 module.exports.info = {
     names: ['joinsquad', 'squadjoin', 'jointeam', 'teamjoin'],

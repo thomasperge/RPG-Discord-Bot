@@ -127,7 +127,7 @@ module.exports.run = async (client, message, args) => {
                 };
                 playerStats.save();
 
-                return message.reply(`You de-equip your: **${itemname}** to slot number : **${slotItem}**`)
+                return message.reply(`${inlineCode("📦")} You de-equip your: **${inlineCode(itemname)}** to slot number : **${inlineCode(slotItem)}**`)
             };
         };
     } else return message.reply(`${inlineCode("😵‍💫")} please specify a correct slot: ${inlineCode("gunequip <1/2/3/4/5>")}`);

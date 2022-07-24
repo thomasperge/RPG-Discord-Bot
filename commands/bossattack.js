@@ -13,30 +13,29 @@ var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
     var user = message.author
-    // Stats
+
+    /**=== Account Player ===*/
     let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
     if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
     else {
-        /**=== Account BOSS ===*/
+        /**=== Account Boss ===*/
         let boss = await BOSSDATA.findOne({ idboss: 0 });
         if (!boss) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
         else {
-
             /**=== Account Economie ===*/
             let balance = await BALANCEDATA.find();
             if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
             else {
-            
-                /**=== Cooldown Commands: Daily: 24h */
-                if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
-                    var measuredTime = new Date(null);
-                    measuredTime.setSeconds(Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000)); // specify value of SECONDS
-                    var MHSTime = measuredTime.toISOString().substr(11, 8);
-                    message.channel.send('⌚ Please wait `' + MHSTime + ' hours` and try again.');
-                    return;
-                }
+                // /**=== Cooldown Commands: Daily: 24h */
+                // if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
+                //     var measuredTime = new Date(null);
+                //     measuredTime.setSeconds(Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000)); // specify value of SECONDS
+                //     var MHSTime = measuredTime.toISOString().substr(11, 8);
+                //     message.channel.send('⌚ Please wait `' + MHSTime + ' hours` and try again.');
+                //     return;
+                // };
 
-                cooldownPlayers.set(message.author.id, new Date().getTime());
+                // cooldownPlayers.set(message.author.id, new Date().getTime());
 
                 if(boss.stats.health >= 0){
                     // ==== Boss Attack Player ====
@@ -48,12 +47,13 @@ module.exports.run = async (client, message, args) => {
                     if (!balancePlayer) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
                     else {
                         
-                        message.reply(`You attack the boss and make ${damage} dmg\nThe Boss attack you and make ${damageBoss} dmg`)
+                        message.reply(`${inlineCode("🪧")} You attack the boss and make ${inlineCode(damage)} dmg\n${inlineCode("🪧")} The Boss attack you and did ${inlineCode(damageBoss)} dmg`)
 
                         // add dammage :
                         playerStats.player.other.bossattack += damage
                         // clear health player : 
                         playerStats.player.health -= damageBoss
+                        if(playerStats.player.health <= 0) playerStats.player.health = 0
                         
                         // ==== Player loses ====
                         if(playerStats.player.health <= 0){

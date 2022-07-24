@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const BOSSDATA = require('../modules/boss.js')
 const PLAYERDATA = require('../modules/player.js');
+const { numStr } = require('../functionNumber/functionNbr.js')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
@@ -28,7 +29,7 @@ module.exports.run = async (client, message, args) => {
             var bossEmbed = new Discord.MessageEmbed()
                 .setColor('#fc9803')
                 .setTitle(`${client.users.cache.get(user.id).username}'s Stats`)
-                .setDescription(`**${inlineCode('➡️')} 📊 CURRENTLY BOSS WORLD :**\n${inlineCode('⚔️')} **Current World Boss**: ${boss.bossname}\n${inlineCode('🔥')} **Attack** : ${boss.stats.attack}\n${inlineCode('❤️')} **Health** : ${boss.stats.health}\n(Attack the boss : ${inlineCode("gbossattack")})`)
+                .setDescription(`**${inlineCode('➡️')} 📊 CURRENTLY BOSS WORLD :**\n${inlineCode('⚔️')} **Current World Boss**: ${boss.bossname}\n${inlineCode('🔥')} **Attack** : ${numStr(boss.stats.attack)}\n${inlineCode('❤️')} **Health** : ${numStr(boss.stats.health)}\n(Attack the boss : ${inlineCode("gbossattack")})`)
                 .setTimestamp();
             return message.channel.send({embeds: [bossEmbed]});
         }

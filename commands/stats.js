@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const STATS = require('../modules/statsBot.js');
 const { numStr } = require('../functionNumber/functionNbr.js')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
@@ -13,7 +14,7 @@ module.exports.run = async (client, message, args) => {
         var statsEmbed = new Discord.MessageEmbed()
             .setColor('#fc9803')
             .setTitle(`RPG BOT Stats`)
-            .setDescription(`👥 **Number of players** : ${inlineCode(stats.numberPlayer)}\n🛖 **Number of squads** : ${inlineCode(stats.numberSquad)}\n💰 **Coins in circulation** : ${inlineCode(numStr(stats.amoutCoin))}  ${inlineCode("🪙")}\n🪖 **Items in circulation** : ${inlineCode(numStr(stats.amoutItem))}\n💀 **Total number of dead monsters** : ${inlineCode(numStr(stats.amoutMonsterKilled))}`)
+            .setDescription(`👥 **Number of players** : ${inlineCode(stats.numberPlayer)}\n🛖 **Number of squads** : ${inlineCode(stats.numberSquad)}\n💰 **Coins in circulation** : ${inlineCode(numStr(stats.amoutCoin))}  ${inlineCode(`${EMOJICONFIG.coin}`)}\n🪖 **Items in circulation** : ${inlineCode(numStr(stats.amoutItem))}\n💀 **Total number of dead monsters** : ${inlineCode(numStr(stats.amoutMonsterKilled))}`)
             .setTimestamp();
         message.channel.send({embeds: [statsEmbed]});
     };

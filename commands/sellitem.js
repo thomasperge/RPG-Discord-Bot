@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
 const SQUADDATA = require('../modules/squad.js')
 const STATS = require('../modules/statsBot.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const BALANCEDATA = require('../modules/economie.js');
 const CONFIGITEM = require('../config/stuff.json')
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
@@ -108,9 +109,9 @@ module.exports.run = async (client, message, args) => {
                     const embedMessage = new MessageEmbed()
                         .setColor('#0099ff')
                         .setTitle(`🛒 SELLING ${itemName}`)
-                        .setDescription(`🪧 Sale of ${itemName} for : ${inlineCode(finalprice)} 🪙\n🏷️ Tax (5%) : ${inlineCode(tax)} 🪙`)
+                        .setDescription(`🪧 Sale of ${itemName} for : ${inlineCode(finalprice)} ${EMOJICONFIG.coin}\n🏷️ Tax (5%) : ${inlineCode(tax)} ${EMOJICONFIG.coin}`)
                         .addFields(
-                            { name: `**📊 ${itemName} STATS :**\n`, value: `📦 Cost to NPC: ${inlineCode(itemExist(item)[2])} 🪙\n📜 Item category : ${itemExist(item)[4]}\n💎 Rarity of the item: : ${itemExist(item)[5]}`, inline: true},
+                            { name: `**📊 ${itemName} STATS :**\n`, value: `📦 Cost to NPC: ${inlineCode(itemExist(item)[2])} ${EMOJICONFIG.coin}\n📜 Item category : ${itemExist(item)[4]}\n💎 Rarity of the item: : ${itemExist(item)[5]}`, inline: true},
                         )
                         .setTimestamp()
 
@@ -146,7 +147,7 @@ module.exports.run = async (client, message, args) => {
                             } else playerStats.save()
 
                             // ================= LEVEL CONFIG =================
-                            await interaction.reply({ content: `${inlineCode('✅')} Sale successfully completed for **${finalprice}** 🪙`, ephemeral: true });
+                            await interaction.reply({ content: `${inlineCode('✅')} Sale successfully completed for **${finalprice}** ${EMOJICONFIG.coin}`, ephemeral: true });
 
                         };
                         if(interaction.customId === 'no') await interaction.reply({content: `${inlineCode("❌")} Sale cancelled...`, ephemeral: true});

@@ -95,7 +95,7 @@ module.exports.run = async (client, message, args) => {
                                         .addFields(
                                             { name: `🗿 ${inlineCode(squadEnemy.squadName + " Boss")}`, value: `${inlineCode("💥")}: ${squadEnemy.squadboss.bossattack}\n${inlineCode("🛡️")}: ${"soon"}\n${inlineCode("❤️")}: ${squadEnemy.squadboss.bosshealth}`, inline: true},
                                             { name: `🗿 ${inlineCode("Your Boss")}`, value: `${inlineCode("💥")}: ${squadPLayer.squadboss.bossattack}\n${inlineCode("🛡️")}: ${"soon"}\n${inlineCode("❤️")}: ${squadPLayer.squadboss.bosshealth}`, inline: true},
-                                            { name: `📊 STATS :`, value: `You attack ${inlineCode(round)} times and do ${inlineCode(totalDamageSquadPLayer)} damage to the enemy boss.\nThe enemy boss attacks ${inlineCode(round)} times and does ${inlineCode(totalDamageSquadEnemy)} damage to your boss.\n\n**${inlineCode("☠️ YOUR SQUAD LOSE!")}**\n${inlineCode("📜")} You lose ${loseCoin} 🪙 from your squad bank`, inline: false},
+                                            { name: `📊 STATS :`, value: `You attack ${inlineCode(round)} times and do ${inlineCode(totalDamageSquadPLayer)} damage to the enemy boss.\nThe enemy boss attacks ${inlineCode(round)} times and does ${inlineCode(totalDamageSquadEnemy)} damage to your boss.\n\n**${inlineCode("☠️ YOUR SQUAD LOSE!")}**\n${inlineCode("📜")} You lose ${loseCoin} ${EMOJICONFIG.coin} from your squad bank`, inline: false},
                                         )
                                         .setTimestamp();
                                     return squadPlayerLose
@@ -115,7 +115,7 @@ module.exports.run = async (client, message, args) => {
                                         .addFields(
                                             { name: `🗿 ${inlineCode(squadEnemy.squadName + " Boss")}`, value: `${inlineCode("💥")}: ${squadEnemy.squadboss.bossattack}\n${inlineCode("🛡️")}: ${"soon"}\n${inlineCode("❤️")}: ${squadEnemy.squadboss.bosshealth}`, inline: true},
                                             { name: `🗿 ${inlineCode("Your Boss")}`, value: `${inlineCode("💥")}: ${squadPLayer.squadboss.bossattack}\n${inlineCode("🛡️")}: ${"soon"}\n${inlineCode("❤️")}: ${squadPLayer.squadboss.bosshealth}`, inline: true},
-                                            { name: `📊 STATS :`, value: `You attack ${inlineCode(round)} times and do ${inlineCode(totalDamageSquadPLayer)} damage to the enemy boss.\nThe enemy boss attacks ${inlineCode(round)} times and does ${inlineCode(totalDamageSquadEnemy)} damage to your boss.\n\n**${inlineCode("🥱 YOUR SQUAD WINS!")}**\n${inlineCode("📜")} You earn ${earnCoin} 🪙 from your squad bank`, inline: false},
+                                            { name: `📊 STATS :`, value: `You attack ${inlineCode(round)} times and do ${inlineCode(totalDamageSquadPLayer)} damage to the enemy boss.\nThe enemy boss attacks ${inlineCode(round)} times and does ${inlineCode(totalDamageSquadEnemy)} damage to your boss.\n\n**${inlineCode("🥱 YOUR SQUAD WINS!")}**\n${inlineCode("📜")} You earn ${earnCoin} ${EMOJICONFIG.coin} from your squad bank`, inline: false},
                                         )
                                         .setTimestamp();
                                     return squadPlayerWin

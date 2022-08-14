@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const BALANCEDATA = require('../modules/economie.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const { numStr } = require('../functionNumber/functionNbr.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
@@ -12,7 +13,7 @@ module.exports.run = async (client, message, args) => {
     if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
       message.channel.send('⌚ Please wait `' + Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000) + ' seconds` and try again.');
       return;
-      }
+    }
     cooldownPlayers.set(message.author.id, new Date().getTime());
     // ===============================
 
@@ -28,7 +29,7 @@ module.exports.run = async (client, message, args) => {
         .setColor('#d1d72c')
         .setTitle(`🏦 ${user.username}'s Bank`)
         .addFields(
-          { name: '**📰 Bank Account :**\n', value: `🪙 **Coin** : ${inlineCode(numStr(balance.eco.coins))}\n🏮 **Xp** : ${inlineCode(numStr(balance.eco.xp))}`, inline: true },
+          { name: '**📰 Bank Account :**\n', value: `${EMOJICONFIG.coin} **Coin** : ${inlineCode(numStr(balance.eco.coins))}\n${EMOJICONFIG.xp} **Xp** : ${inlineCode(numStr(balance.eco.xp))}`, inline: true },
         )
         .setTimestamp();
       message.channel.send({embeds: [balanceEmbed]});

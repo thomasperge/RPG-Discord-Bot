@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const SQUADDATA = require('../modules/squad.js')
 const PLAYERDATA = require('../modules/player.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const BALANCEDATA = require('../modules/economie.js');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
@@ -42,7 +43,7 @@ module.exports.run = async (client, message, args) => {
                 else {
 
                     if(playerInSquad(playerStats) == false){
-                        if(balance.eco.coins <= 150) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode('150')} 🪙 to join a squad...`)
+                        if(balance.eco.coins <= 150) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode('150')} ${EMOJICONFIG.coin} to join a squad...`)
                         else {
 
                             if(squad.member.lenght >= 20) return message.reply(`${inlineCode("😵‍💫")} squad are full (max 20)...`)

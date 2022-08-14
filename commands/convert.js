@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const BALANCEDATA = require('../modules/economie.js');
 const { numStr } = require('../functionNumber/functionNbr.js')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
@@ -27,7 +28,7 @@ module.exports.run = async (client, message, args) => {
         if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
 
-            if(balance.eco.coins < amout) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${inlineCode(numStr(amout - balance.eco.coins))} 🪙`)
+            if(balance.eco.coins < amout) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${inlineCode(numStr(amout - balance.eco.coins))} ${EMOJICONFIG.coin}`)
 
 
             var amoutXP = Math.floor(amout * 2.95)
@@ -48,7 +49,7 @@ module.exports.run = async (client, message, args) => {
             const embed = new MessageEmbed()
                 .setColor('#a25cff')
                 .setTitle('🪧 Coins Converting')
-                .setDescription(`📝 Would you convert :\n➡️ ${inlineCode(numStr(amout) + '🪙')}  into ${inlineCode(numStr(amoutXP) + '🏮')}`);
+                .setDescription(`📝 Would you convert :\n➡️ ${inlineCode(numStr(amout) + `${EMOJICONFIG.coin}`)}  into ${inlineCode(numStr(amoutXP) + `${EMOJICONFIG.xp}`)}`);
             const msg = await message.reply({ embeds: [embed], components: [row] });
 
             // ========== Filter & Collector ==========
@@ -63,7 +64,7 @@ module.exports.run = async (client, message, args) => {
                     balance.eco.coins -= amout
                     balance.eco.xp += amoutXP
                     balance.save()
-                    await interaction.reply({ content: `✅ Converting successful !\n📭 You get **${inlineCode(numStr(amoutXP))}** ${inlineCode("🏮")} in your balance`, ephemeral: true })
+                    await interaction.reply({ content: `✅ Converting successful !\n📭 You get **${inlineCode(numStr(amoutXP))}** ${inlineCode(`${EMOJICONFIG.xp}`)} in your balance`, ephemeral: true })
                 }
                 if(interaction.customId === 'no') await interaction.reply({ content : 'You canceled ❌', ephemeral: true })
             })

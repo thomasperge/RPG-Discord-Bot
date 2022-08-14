@@ -49,7 +49,7 @@ module.exports.run = async (client, message, args) => {
                 }
             };
 
-            if(balance.eco.coins < ((itemExist(item)[2]*68)/100)) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${inlineCode(numStr((itemExist(item)[2]*68)/100 - balance.eco.coins))} 🪙`)
+            if(balance.eco.coins < ((itemExist(item)[2]*68)/100)) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${inlineCode(numStr((itemExist(item)[2]*68)/100 - balance.eco.coins))} ${CONFIGITEM.coin}`)
             
             else {
                 if(itemExist(item)[0]){
@@ -85,9 +85,8 @@ module.exports.run = async (client, message, args) => {
                             stats.amoutCoin += randomCoin;
                             stats.save();
                             
-                            return message.reply(`${inlineCode("📦")} Sorry, the box gave you nothing...\nTry again next time! 😶‍🌫️\nTo make you wait, here are ${inlineCode(numStr(randomCoin))} 🪙`);
-                    }
-
+                            return message.reply(`${inlineCode("📦")} Sorry, the box gave you nothing...\nTry again next time! 😶‍🌫️\nTo make you wait, here are ${inlineCode(numStr(randomCoin))} ${CONFIGITEM.coin}`);
+                        }
                     };
                 } else return message.reply(`${inlineCode("😵‍💫")} this item does not exist...`);
             };

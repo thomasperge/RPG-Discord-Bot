@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const SQUADDATA = require('../modules/squad.js')
 const PLAYERDATA = require('../modules/player.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const BALANCEDATA = require('../modules/economie.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
@@ -52,7 +53,7 @@ module.exports.run = async (client, message, args) => {
                 else {
 
                     if(playerInSquad(playerStats)){
-                        if(balance.eco.coins < coinGiven) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode(coinGiven)} 🪙 to give in the bank squad...`)
+                        if(balance.eco.coins < coinGiven) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode(coinGiven)} ${EMOJICONFIG.coin} to give in the bank squad...`)
                         else {
                             balance.eco.coins -= Math.floor(coinGiven)
                             balance.save()
@@ -66,7 +67,7 @@ module.exports.run = async (client, message, args) => {
                             var squadEmbed = new Discord.MessageEmbed()
                                 .setColor('#4dca4d')
                                 .setAuthor(`🛖 Squad Coin Given`)
-                                .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n🪧 You given : ${inlineCode(coinGiven)} 🪙\n📰 Current Squad Bank : ${inlineCode(squad.squadbank + "🪙")}`)
+                                .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n🪧 You given : ${inlineCode(coinGiven)} ${EMOJICONFIG.coin}\n📰 Current Squad Bank : ${inlineCode(squad.squadbank + `${EMOJICONFIG.coin}`)}`)
                                 .setFooter('© RPG Bot 2022 | ghelp')
                                 .setTimestamp();
                             return message.reply({embeds: [squadEmbed]});

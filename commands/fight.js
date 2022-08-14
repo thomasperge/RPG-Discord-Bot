@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const BALANCEDATA = require('../modules/economie.js');
 const SQUADDATA = require('../modules/squad.js')
 const PLAYERDATA = require('../modules/player.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { numStr } = require('../functionNumber/functionNbr.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
@@ -103,7 +104,7 @@ module.exports.run = async (client, message, args) => {
                                     .addFields(
                                     { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerOne.player.attack}\n**Defense** : ${playerOne.player.defense}\n**Health** : ${playerOne.player.health}\n`, inline: true },
                                     { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${playerTwo.player.attack}\n**Defense** : ${playerTwo.player.defense}\n**Health** : ${playerTwo.player.health}\n `, inline: true },
-                                    { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose ${inlineCode('-' + numStr(losecoin) + " 🪙")} (5% of your coins)`, inline: false },
+                                    { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose ${inlineCode('-' + numStr(losecoin) + `${EMOJICONFIG.coin}`)} (5% of your coins)`, inline: false },
                                     )
                                     .setTimestamp();
                                 return battleEmbed
@@ -124,7 +125,7 @@ module.exports.run = async (client, message, args) => {
                                     .addFields(
                                         { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerOne.player.attack}\n**Defense** : ${playerOne.player.defense}\n**Health** : ${playerOne.player.health}\n`, inline: true },
                                         { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${playerTwo.player.attack}\n**Defense** : ${playerTwo.player.defense}\n**Health** : ${playerTwo.player.health}\n `, inline: true },
-                                        { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} You earn ${inlineCode('+' + numStr(earnCoins))} 🪙`, inline: false },
+                                        { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} You earn ${inlineCode('+' + numStr(earnCoins))} ${EMOJICONFIG.coin}`, inline: false },
                                     )
                                     .setTimestamp();
                                 return battleEmbed

@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const BALANCEDATA = require('../modules/economie.js');
 const PLAYERDATA = require('../modules/player.js');
 const STATS = require('../modules/statsBot.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const SQUADDATA = require('../modules/squad.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
@@ -18,7 +19,7 @@ module.exports.run = async (client, message, args) => {
     if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
     else {
 
-        if (balance.eco.coins <= 100000) return message.reply(`${inlineCode("😬")} you don't have ${inlineCode('500000')} 🪙 to create a squad...`)
+        if (balance.eco.coins < 0) return message.reply(`${inlineCode("😬")} error, coin balance < 0, contact the developper : elthomas#2246`)
         else {
 
             if(squadName === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rcreatesquad <squad name>")}`)
@@ -83,7 +84,7 @@ module.exports.run = async (client, message, args) => {
                         var squadEmbed = new Discord.MessageEmbed()
                             .setColor('#4dca4d')
                             .setTitle(`🛖 New Squad by ${user.username}`)
-                            .setDescription(`👊 You created ${inlineCode(squadName + "'s")} squad\n📰 Squad Bank : ${inlineCode("0")} 🪙\n👑 Leader : ${user.username}\n👥 Member: ${inlineCode("1")}`)
+                            .setDescription(`👊 You created ${inlineCode(squadName + "'s")} squad\n📰 Squad Bank : ${inlineCode("0")} ${EMOJICONFIG.coin}\n👑 Leader : ${user.username}\n👥 Member: ${inlineCode("1")}`)
                             .setTimestamp();
                         message.channel.send({embeds: [squadEmbed]});
 

@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
 const BALANCEDATA = require('../modules/economie.js');
 const STATS = require('../modules/statsBot.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const CONFIGITEM = require('../config/stuff.json')
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { numStr } = require('../functionNumber/functionNbr.js')
@@ -52,7 +53,7 @@ module.exports.run = async (client, message, args) => {
                 }
             };
             
-            if(balance.eco.coins < itemExist(item)[2]) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${inlineCode(numStr(itemExist(item)[2] - balance.eco.coins))} 🪙`)
+            if(balance.eco.coins < itemExist(item)[2]) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${inlineCode(numStr(itemExist(item)[2] - balance.eco.coins))} ${EMOJICONFIG.coin}`)
 
             else {
                 if(itemExist(item)[0]){
@@ -84,7 +85,7 @@ module.exports.run = async (client, message, args) => {
                         const buyItemEmbed = new MessageEmbed()
                             .setColor('#4dca4d')
                             .setTitle(`🪖 Item Store`)
-                            .setDescription(`📦 **ITEM : ${inlineCode(returnStatsItem(item)[0])}\n💰 Price : ${inlineCode(numStr(itemExist(item)[2]))} ${inlineCode("🪙")}\n🪧 Categorie : ${inlineCode(returnStatsItem(item)[1])}\n💎 Rarety : ${inlineCode(returnStatsItem(item)[2])}**\n\n**📊 Stats :**\n${inlineCode("🔥")} : ${returnStatsItem(item)[3]}\n${inlineCode("🛡️")} : ${returnStatsItem(item)[4]}\n${inlineCode("💨")} : ${returnStatsItem(item)[5]}\n${inlineCode("💥")} : ${returnStatsItem(item)[6]}\n${inlineCode("🏑")} : ${returnStatsItem(item)[7]}\n${inlineCode("❤️‍🔥")} : ${returnStatsItem(item)[8]}\n${inlineCode("❤️")} : ${returnStatsItem(item)[9]}`)
+                            .setDescription(`📦 **ITEM : ${inlineCode(returnStatsItem(item)[0])}\n💰 Price : ${inlineCode(numStr(itemExist(item)[2]))} ${inlineCode(EMOJICONFIG.coin)}\n🪧 Categorie : ${inlineCode(returnStatsItem(item)[1])}\n💎 Rarety : ${inlineCode(returnStatsItem(item)[2])}**\n\n**📊 Stats :**\n${inlineCode("🔥")} : ${returnStatsItem(item)[3]}\n${inlineCode("🛡️")} : ${returnStatsItem(item)[4]}\n${inlineCode("💨")} : ${returnStatsItem(item)[5]}\n${inlineCode("💥")} : ${returnStatsItem(item)[6]}\n${inlineCode("🏑")} : ${returnStatsItem(item)[7]}\n${inlineCode("❤️‍🔥")} : ${returnStatsItem(item)[8]}\n${inlineCode("❤️")} : ${returnStatsItem(item)[9]}`)
                             .setTimestamp();
                         const msg = await message.reply({ embeds: [buyItemEmbed], components: [row] });
 
@@ -117,13 +118,13 @@ module.exports.run = async (client, message, args) => {
                                 var messageEmbed = new Discord.MessageEmbed()
                                     .setColor('#6d4534')
                                     .setTitle(`Log ${date}`)
-                                    .setDescription(`🪖 ${inlineCode(user.username)} bought the item : ${itemExist(item)[3]} for ${inlineCode(numStr(itemExist(item)[2]))} ${inlineCode("🪙")}`);
+                                    .setDescription(`🪖 ${inlineCode(user.username)} bought the item : ${itemExist(item)[3]} for ${inlineCode(numStr(itemExist(item)[2]))} ${inlineCode(EMOJICONFIG.coin)}`);
                                 logChannel.send({embeds: [messageEmbed], ephemeral: true });
 
                                 var itemEmbed = new MessageEmbed()
                                     .setColor('#6d4534')
                                     .setTitle(`📦 ${user.username}'s New Item(s)`)
-                                    .setDescription(`✅ **Purchase made!**\n📦 **NEW ITEM** : **${inlineCode(itemExist(item)[3])}**\n🪧 Don't forget to equip yourself with : ${inlineCode(`gequip ${item} <1/2/3/4/5>`)}\n🏹 To see your items equip : ${inlineCode("rslot")}`)
+                                    .setDescription(`✅ **Purchase made!**\n📦 **NEW ITEM** : **${inlineCode(itemExist(item)[3])}**\n🪧 Don't forget to equip yourself with : ${inlineCode(`requip ${item} <1/2/3/4/5>`)}\n🏹 To see your items equip : ${inlineCode("rslot")}`)
                                     .setTimestamp()
                                 await interaction.reply({embeds: [itemEmbed], ephemeral: true});
             

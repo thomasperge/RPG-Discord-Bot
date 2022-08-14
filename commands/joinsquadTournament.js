@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const SQUADDATA = require('../modules/squad.js')
 const PLAYERDATA = require('../modules/player.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const SQUADTOURNAMENT = require('../modules/squadtournament.js');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
@@ -84,7 +85,7 @@ module.exports.run = async (client, message, args) => {
 
                                 } else return message.reply(`${inlineCode("😵‍💫")} There are too many squads in this tournament, the creator decided that the maximum number of squads would be : ${inlineCode(squadTournament.maxSquad)}`);
                             } else return message.reply(`${inlineCode("😵‍💫")} you are not the leader of the squad...`);
-                        } else return message.reply(`${inlineCode("😵‍💫")} your balance squad don't have enought money...\nIt takes ${priceJoin} 🪙 to join a squad tournament`);
+                        } else return message.reply(`${inlineCode("😵‍💫")} your balance squad don't have enought money...\nIt takes ${priceJoin} ${EMOJICONFIG.coin} to join a squad tournament`);
                     } else return message.reply(`${inlineCode("😵‍💫")} you are already in a tournament...`);
                 } else return message.reply(`${inlineCode("😵‍💫")} you are not in a squad...`);
             };

@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const CONFIGITEM = require('../config/stuff.json')
 const { numStr } = require('../functionNumber/functionNbr.js')
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
@@ -32,14 +33,14 @@ module.exports.run = async (client, message, args) => {
             for(const itemConfig of CONFIGITEM){
                 if(itemConfig.name == allItem.name) totalvalue += itemConfig.cost * allItem.level
             }
-            allITemEmbed += `**#${numberItem}** **${inlineCode(allItem.name)}** ${inlineCode("lvl: " + allItem.level)}\n`
+            allITemEmbed += `**#${numberItem}** **${inlineCode(allItem.name)}** ${inlineCode("Lvl: " + allItem.level)}\n`
             numberItem += 1
         };
 
         var itemEmbed = new MessageEmbed()
         .setColor('#9696ab')
         .setTitle(`📦 ${user.username}'s Item(s)`)
-        .setDescription(`🪖 Number of items : ${inlineCode(playerStats.player.stuff.stuffUnlock.length)}\n💰 Total value : ${inlineCode(numStr(totalvalue))} ${inlineCode("🪙")}\n${allITemEmbed}`)
+        .setDescription(`🪖 Number of items : ${inlineCode(playerStats.player.stuff.stuffUnlock.length)}\n💰 Total value : ${inlineCode(numStr(totalvalue))} ${inlineCode(EMOJICONFIG.coin)}\n${allITemEmbed}`)
         .setTimestamp()
 
         message.reply({ embeds: [itemEmbed] });

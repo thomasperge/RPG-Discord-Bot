@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const SQUADDATA = require('../modules/squad.js')
 const PLAYERDATA = require('../modules/player.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const BALANCEDATA = require('../modules/economie.js');
 const { numStr } = require('../functionNumber/functionNbr.js')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
@@ -41,8 +42,8 @@ module.exports.run = async (client, message, args) => {
 
             var leadboardEmbed = new Discord.MessageEmbed()
                 .setColor('#4dca4d')
-                .setTitle(`📊 Top 10 Richest Xp Adventure 🏮`)
-                .setDescription(`**🥇 #1 ** ${sortedArray[0].name}: ${inlineCode(numStr(sortedArray[0].xp) + ' 🏮')}\n**🥈 #2 **${sortedArray[1].name}: ${inlineCode(numStr(sortedArray[1].xp) + ' 🏮')}\n**🥉 #3 **${sortedArray[2].name}: ${inlineCode(numStr(sortedArray[2].xp) + ' 🏮')}\n**📦 #4 **${sortedArray[3].name}: ${inlineCode(numStr(sortedArray[3].xp) + ' 🏮')}\n**📦 #5 **${sortedArray[4].name}: ${inlineCode(numStr(sortedArray[4].xp) + ' 🏮')}\n**📦 #6 **${sortedArray[5].name}: ${inlineCode(numStr(sortedArray[5].xp) + ' 🏮')}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode(numStr(sortedArray[6].xp) + ' 🏮')}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode(numStr(sortedArray[6].xp) + ' 🏮')}\n**📦 #8 **${sortedArray[7].name}: ${inlineCode(numStr(sortedArray[7].xp) + ' 🏮')}\n**📦 #9 **${sortedArray[8].name}: ${inlineCode(numStr(sortedArray[8].xp) + ' 🏮')}\n**📦 #10 **${sortedArray[9].name}: ${inlineCode(numStr(sortedArray[9].xp) + ' 🏮')}`)
+                .setTitle(`📊 Top 10 Richest Xp Adventure ${EMOJICONFIG.xp}`)
+                .setDescription(`**🥇 #1 ** ${sortedArray[0].name}: ${inlineCode(numStr(sortedArray[0].xp) + `${EMOJICONFIG.xp}`)}\n**🥈 #2 **${sortedArray[1].name}: ${inlineCode(numStr(sortedArray[1].xp) + `${EMOJICONFIG.xp}`)}\n**🥉 #3 **${sortedArray[2].name}: ${inlineCode(numStr(sortedArray[2].xp) + `${EMOJICONFIG.xp}`)}\n**📦 #4 **${sortedArray[3].name}: ${inlineCode(numStr(sortedArray[3].xp) + `${EMOJICONFIG.xp}`)}\n**📦 #5 **${sortedArray[4].name}: ${inlineCode(numStr(sortedArray[4].xp) + `${EMOJICONFIG.xp}`)}\n**📦 #6 **${sortedArray[5].name}: ${inlineCode(numStr(sortedArray[5].xp) + `${EMOJICONFIG.xp}`)}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode(numStr(sortedArray[6].xp) + `${EMOJICONFIG.xp}`)}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode(numStr(sortedArray[6].xp) + `${EMOJICONFIG.xp}`)}\n**📦 #8 **${sortedArray[7].name}: ${inlineCode(numStr(sortedArray[7].xp) + `${EMOJICONFIG.xp}`)}\n**📦 #9 **${sortedArray[8].name}: ${inlineCode(numStr(sortedArray[8].xp) + `${EMOJICONFIG.xp}`)}\n**📦 #10 **${sortedArray[9].name}: ${inlineCode(numStr(sortedArray[9].xp) + `${EMOJICONFIG.xp}`)}`)
                 .setTimestamp();
             return message.channel.send({embeds: [leadboardEmbed]});
 
@@ -61,8 +62,8 @@ module.exports.run = async (client, message, args) => {
 
             var leadboardEmbed = new Discord.MessageEmbed()
                 .setColor('#ffd100')
-                .setTitle(`📊 Top 10 Richest Coins Adventure 🪙`)
-                .setDescription(`**🥇 #1 ** ${sortedArray[0].name}: ${inlineCode(numStr(sortedArray[0].coins) + ' 🪙')}\n**🥈 #2 **${sortedArray[1].name}: ${inlineCode(numStr(sortedArray[1].coins) + ' 🪙')}\n**🥉 #3 **${sortedArray[2].name}: ${inlineCode(numStr(sortedArray[2].coins) + ' 🪙')}\n**📦 #4 **${sortedArray[3].name}: ${inlineCode(numStr(sortedArray[3].coins) + ' 🪙')}\n**📦 #5 **${sortedArray[4].name}: ${inlineCode(numStr(sortedArray[4].coins) + ' 🪙')}\n**📦 #6 **${sortedArray[5].name}: ${inlineCode(numStr(sortedArray[5].coins) + ' 🪙')}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode(numStr(sortedArray[6].coins) + ' 🪙')}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode(numStr(sortedArray[6].coins) + ' 🪙')}\n**📦 #8 **${sortedArray[7].name}: ${inlineCode(numStr(sortedArray[7].coins) + ' 🪙')}\n**📦 #9 **${sortedArray[8].name}: ${inlineCode(numStr(sortedArray[8].coins) + ' 🪙')}\n**📦 #10 **${sortedArray[9].name}: ${inlineCode(numStr(sortedArray[9].coins) + ' 🪙')}`)
+                .setTitle(`📊 Top 10 Richest Coins Adventure ${EMOJICONFIG.coin}`)
+                .setDescription(`**🥇 #1 ** ${sortedArray[0].name}: ${inlineCode(numStr(sortedArray[0].coins) + `${EMOJICONFIG.coin}`)}\n**🥈 #2 **${sortedArray[1].name}: ${inlineCode(numStr(sortedArray[1].coins) + `${EMOJICONFIG.coin}`)}\n**🥉 #3 **${sortedArray[2].name}: ${inlineCode(numStr(sortedArray[2].coins) + `${EMOJICONFIG.coin}`)}\n**📦 #4 **${sortedArray[3].name}: ${inlineCode(numStr(sortedArray[3].coins) + `${EMOJICONFIG.coin}`)}\n**📦 #5 **${sortedArray[4].name}: ${inlineCode(numStr(sortedArray[4].coins) + `${EMOJICONFIG.coin}`)}\n**📦 #6 **${sortedArray[5].name}: ${inlineCode(numStr(sortedArray[5].coins) + `${EMOJICONFIG.coin}`)}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode(numStr(sortedArray[6].coins) + `${EMOJICONFIG.coin}`)}\n**📦 #7 **${sortedArray[6].name}: ${inlineCode(numStr(sortedArray[6].coins) + `${EMOJICONFIG.coin}`)}\n**📦 #8 **${sortedArray[7].name}: ${inlineCode(numStr(sortedArray[7].coins) + `${EMOJICONFIG.coin}`)}\n**📦 #9 **${sortedArray[8].name}: ${inlineCode(numStr(sortedArray[8].coins) + `${EMOJICONFIG.coin}`)}\n**📦 #10 **${sortedArray[9].name}: ${inlineCode(numStr(sortedArray[9].coins) + `${EMOJICONFIG.coin}`)}`)
                 .setTimestamp();
             return message.channel.send({embeds: [leadboardEmbed]});
             

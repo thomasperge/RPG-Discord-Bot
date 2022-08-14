@@ -3,6 +3,7 @@ const MONSTERCONFIG = require('../config/monster.json');
 const PLAYERDATA = require('../modules/player.js');
 const STATS = require('../modules/statsBot.js');
 const SQUADDATA = require('../modules/squad.js')
+const EMOJICONFIG = require('../config/emoji.json');
 const BALANCEDATA = require('../modules/economie.js');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
@@ -108,7 +109,7 @@ module.exports.run = async (client, message, args) => {
                                 .setColor('#ff0000')
                                 .setTitle(`📜 ${client.users.cache.get(user.id).username}'s Battle Diary (Monster)`)
                                 .addFields(
-                                    { name: `${`🪦`} You Lose...\n`, value : `You lose ${losecoin} 🪙`},
+                                    { name: `${`🪦`} You Lose...\n`, value : `You lose ${losecoin} ${EMOJICONFIG.coin}`},
                                 )
                                 .setTimestamp();
                             message.author.send({embeds: [battleDiaryEmbed]}).catch(error => {
@@ -124,7 +125,7 @@ module.exports.run = async (client, message, args) => {
                             .addFields(
                                 { name: '**🪧 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
                                 { name: '**🪧 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n`, inline: true },
-                                { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER} times** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose **10%** of your 🪙 ( -**${losecoin}**)...`, inline: false },
+                                { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER} times** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}** of the attacks of the monster, and dealt **${NB_CRIT}** critical hits!\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose **10%** of your ${EMOJICONFIG.coin} ( -**${losecoin}**)...`, inline: false },
                             )
                             .setTimestamp();
                         return battleEmbed
@@ -132,8 +133,8 @@ module.exports.run = async (client, message, args) => {
                     if (HEALTH_MONSTER <= 0){
                     // =========== PLAYER WIN ===========
 
-                        var randomcoin = Math.floor((Math.random() * (MAXXP / 1.3)));
-                        var randomxp = Math.floor(Math.random() * (MAXXP)) + 1;
+                        var randomcoin = Math.floor((Math.random() * (MAXXP / (MAXXP/155)))) + 1;
+                        var randomxp = Math.floor(Math.random() * (MAXXP / (MAXXP/265))) + 1;
 
                         playerStats.player.other.monsterKill += 1
                         playerStats.save()
@@ -152,7 +153,7 @@ module.exports.run = async (client, message, args) => {
                                 .setColor('#17ff00')
                                 .setTitle(`📜 ${client.users.cache.get(user.id).username}'s Battle Diary (Monster)`)
                                 .addFields(
-                                    { name: `${`🥇`} You Win !\n`, value : `You get ${randomxp} 🏮 and ${randomcoin} 🪙`},
+                                    { name: `${`🥇`} You Win !\n`, value : `You get ${randomxp} ${EMOJICONFIG.xp} and ${randomcoin} ${EMOJICONFIG.coin}`},
                                 )
                                 .setTimestamp();
                             message.author.send({embeds: [battleDiaryEmbed]}).catch(error => {
@@ -171,7 +172,7 @@ module.exports.run = async (client, message, args) => {
                             .addFields(
                                 { name: '**🪧 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
                                 { name: '**🪧 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n `, inline: true },
-                                { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER} times** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} And get: **${randomxp}** 🏮 and **${randomcoin}** 🪙`, inline: false },
+                                { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER} times** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} And get: **${randomxp}** ${EMOJICONFIG.xp} and **${randomcoin}** ${EMOJICONFIG.coin}`, inline: false },
                             )
                             .setTimestamp();
                         return battleEmbed

@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
 const BALANCEDATA = require('../modules/economie.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const CONFIGITEM = require('../config/stuff.json')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
@@ -36,7 +37,7 @@ module.exports.run = async (client, message, args) => {
 
             for(let pas = 0; pas < CONFIGITEM.length; pas++){
 
-                if(balance.eco.coins < CONFIGITEM[pas].cost) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${CONFIGITEM[pas].cost - balance.eco.coins} 🪙`)
+                if(balance.eco.coins < CONFIGITEM[pas].cost) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${CONFIGITEM[pas].cost - balance.eco.coins} ${EMOJICONFIG.coin}`)
                 else {
 
                     function itemExist(item){

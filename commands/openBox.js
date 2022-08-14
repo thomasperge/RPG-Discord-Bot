@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js')
+const EMOJICONFIG = require('../config/emoji.json');
+const CONFIGITEM = require('../config/stuff.json')
 const BALANCEDATA = require('../modules/economie.js')
 const STATS = require('../modules/statsBot.js')
 const { numStr } = require('../functionNumber/functionNbr.js');
@@ -20,8 +22,6 @@ module.exports.run = async (client, message, args) => {
     // ===============================
 
     var user = message.author
-    var amoutBox = args[0]
-
     let stats = await STATS.findOne({ botID: 899 });
 
     /**=== Account Stats Mine ===*/
@@ -29,72 +29,34 @@ module.exports.run = async (client, message, args) => {
     if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
     else {
 
-        let balance = await BALANCEDATA.findOne({ userId: message.author.id });
+        let balance = await BALANCEDATA.findOne({ userId: user.id });
         if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
-
             // Ouvrir une Box : 
-            if(isNaN(amoutBox) || amoutBox == undefined){
-                if(playerStats.player.other.box >= 1){
-                    var randomItem = Math.floor(Math.random() * 2) + 1;
+            if(playerStats.player.other.box >= 1){
 
-                    if(randomItem == 1){
-                        var randomCoin = Math.floor(Math.random() * (playerStats.player.level * 90)) + 80
+                function randomitem(){
+                    var randomItem = Math.floor(Math.random() * 25);
 
-                        balance.eco.coins += randomCoin
-                        balance.save()
-                        playerStats.player.other.box -= 1
-                        playerStats.save()
-                        stats.boxOpen += 1
-                        stats.save()
-
-                        return message.reply(`${inlineCode('📦')} you get : ${inlineCode(numStr(randomCoin) + " 🪙")}`)
-                    } else {
-                        var randomXp = Math.floor(Math.random() * (playerStats.player.level * 170)) + 140
-                        
-                        balance.eco.coins += ranrandomXpdomCoin
-                        balance.save()
-                        playerStats.player.other.box -= 1
-                        playerStats.save()
-                        stats.boxOpen += 1
-                        stats.save()
-
-                        return message.reply(`${inlineCode('📦')} you get : ${inlineCode(numStr(randomXp) + " 🏮")}`)
+                    for(let pas = 0; pas < CONFIGITEM.length; pas++){
+                        for(const id of CONFIGITEM[pas].id){
+                            if(id == randomItem){
+                                for(const allitemPlayer of playerStats.player.stuff.stuffUnlock) if(allitemPlayer.id == id) return `📦 **NEW ITEM** : **${inlineCode(CONFIGITEM[pas].name)}** (You already have this item in your inventory)`
+                                playerStats.player.stuff.stuffUnlock.push({id: randomItem, name: CONFIGITEM[pas].name, level: 1})
+                                playerStats.save()
+                                return `📦 **NEW ITEM** : **${inlineCode(CONFIGITEM[pas].name)}**`
+                            }
+                        };
                     };
-                } else return message.reply(`${inlineCode('❌')} You don't have a box to open`)
-            };
+                };
 
-            if(isNaN(amoutBox) == false && amoutBox >= playerStats.player.other.box) {
-                if(amoutBox >= 0 && amoutBox >= 99){
-                    var randomItem = Math.floor(Math.random() * 2) + 1;
-
-                    if(randomItem == 1){
-                        var randomCoin = Math.floor(Math.random() * (playerStats.player.level * 90)) + 80
-                        randomCoin * amoutBox
-                        
-                        balance.eco.coins += randomCoin
-                        balance.save()
-                        playerStats.player.other.box -= amoutBox
-                        playerStats.save()
-                        stats.boxOpen += 1
-                        stats.save()
-
-                        return message.reply(`${inlineCode('📦')} you get : ${inlineCode(numStr(randomCoin) + " 🪙")}`)
-                    } else {
-                        var randomXp = Math.floor(Math.random() * (playerStats.player.level * 170)) + 140
-                        randomXp * amoutBox
-
-                        balance.eco.coins += ranrandomXpdomCoin
-                        balance.save()
-                        playerStats.player.other.box -= amoutBox
-                        playerStats.save()
-                        stats.boxOpen += 1
-                        stats.save()
-
-                        return message.reply(`${inlineCode('📦')} You open ${inlineCode(amoutBox)} boxes, and you get : ${inlineCode(numStr(randomXp) + " 🏮")}`)
-                    };
-                } else return message.reply(`${inlineCode('❌')} Error, you can only open between 0 and 99 boxes`);
-            };
+                var itemEmbed = new MessageEmbed()
+                    .setColor('#6d4534')
+                    .setTitle(`📦 ${user.username}'s New Item(s)`)
+                    .setDescription(`✅ **Box open!**\n${randomitem()}\n🪧 Don't forget to equip yourself with : ${inlineCode(`requip ${item} <1/2/3/4/5>`)}\n🏹 To see your items equip : ${inlineCode("rslot")}`)
+                    .setTimestamp()
+                return message.reply({ embeds: [itemEmbed]})
+            } else return message.reply(`${inlineCode('❌')} You don't have a box to open`)
         };
     };
 };

@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const SQUADDATA = require('../modules/squad.js')
+const EMOJICONFIG = require('../config/emoji.json');
 const PLAYERDATA = require('../modules/player.js');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
@@ -72,7 +73,7 @@ module.exports.run = async (client, message, args) => {
                                 const upgradeBoss = new MessageEmbed()
                                     .setColor('#4dca4d')
                                     .setTitle(`🗿 Upgrade Squad Boss`)
-                                    .setDescription(`🛖 Squad : ${inlineCode(squad.squadName)} by ${inlineCode(squad.leader[1])}\n🪧 Improve ${done}: ${inlineCode('+' + amoutUpgrade)} ${emojiDone}\n📝 Balance Squad Cost: ${inlineCode(price)} 🪙`)
+                                    .setDescription(`🛖 Squad : ${inlineCode(squad.squadName)} by ${inlineCode(squad.leader[1])}\n🪧 Improve ${done}: ${inlineCode('+' + amoutUpgrade)} ${emojiDone}\n📝 Balance Squad Cost: ${inlineCode(price)} ${EMOJICONFIG.coin}`)
                                     .setTimestamp();
                                 message.reply({embeds: [upgradeBoss], components: [row]});
 
@@ -115,7 +116,7 @@ module.exports.run = async (client, message, args) => {
                                         var upgradeDone = new Discord.MessageEmbed()
                                             .setColor('#4dca4d')
                                             .setTitle(`🗿 Boss Upgrade`)
-                                            .setDescription(`✅ Squad Boss Upgrading !\n🪧 Improve ${done}: ${inlineCode('+' + amoutUpgrade)} ${emojiDone}\n📝 Cost: ${inlineCode(price)} 🪙`)
+                                            .setDescription(`✅ Squad Boss Upgrading !\n🪧 Improve ${done}: ${inlineCode('+' + amoutUpgrade)} ${emojiDone}\n📝 Cost: ${inlineCode(price)} ${EMOJICONFIG.coin}`)
                                             .setTimestamp();
                                         return message.reply({embeds: [upgradeDone]});
                                     }

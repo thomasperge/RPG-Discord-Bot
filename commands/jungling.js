@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const BALANCEDATA = require('../modules/economie.js');
 const { numStr } = require('../functionNumber/functionNbr.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
@@ -34,7 +35,7 @@ module.exports.run = async (client, message, args) => {
             balance.eco.xp += randomXp;
             balance.save();
 
-            message.reply(`${inlineCode("📦")} You collect: ${inlineCode(numStr(randomCoin))} 🪙 and ${inlineCode(numStr(randomXp))} 🏮`);
+            message.reply(`${inlineCode("📦")} You collect: ${inlineCode(numStr(randomCoin))} ${EMOJICONFIG.coin} and ${inlineCode(numStr(randomXp))} ${EMOJICONFIG.xp}`);
 
 
         };

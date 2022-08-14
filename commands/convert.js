@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const BALANCEDATA = require('../modules/economie.js');
+const { numStr } = require('../functionNumber/functionNbr.js')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
@@ -23,8 +24,11 @@ module.exports.run = async (client, message, args) => {
 
         // == Balance Data ==
         let balance = await BALANCEDATA.findOne({ userId: user.id });
-        if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+        if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
+
+            if(balance.eco.coins < amout) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${inlineCode(numStr(amout - balance.eco.coins))} 🪙`)
+
 
             var amoutXP = Math.floor(amout * 2.95)
 
@@ -44,29 +48,24 @@ module.exports.run = async (client, message, args) => {
             const embed = new MessageEmbed()
                 .setColor('#a25cff')
                 .setTitle('🪧 Coins Converting')
-                .setDescription(`📝 Would you convert :\n➡️ ${inlineCode(amout + '🪙')}  into ${inlineCode(amoutXP + '🏮')}`);
-            message.reply({ embeds: [embed], components: [row] });
+                .setDescription(`📝 Would you convert :\n➡️ ${inlineCode(numStr(amout) + '🪙')}  into ${inlineCode(numStr(amoutXP) + '🏮')}`);
+            const msg = await message.reply({ embeds: [embed], components: [row] });
 
-            const filter = (interaction)  => {
-                if(interaction.user.id === message.author.id) return true
-                return interaction.reply({ content: 'You cant use this button bro' }),'📜🧾';
-            }
-            const collector = message.channel.createMessageComponentCollector({
-                filter, 
-                max: 1
-            })
+            // ========== Filter & Collector ==========
+            const collector = msg.createMessageComponentCollector({
+                componentType: "BUTTON",
+                max: 1,
+                time: 30_000
+            });
 
-            collector.on('end', (ButtonInteraction) => {
-                ButtonInteraction.first().deferUpdate()
-                const id = ButtonInteraction.first().customId
-                if(id === 'yes'){
+            collector.on('collect', async interaction => {
+                if (interaction.customId == 'yes') {
                     balance.eco.coins -= amout
                     balance.eco.xp += amoutXP
                     balance.save()
-
-                    return message.reply(`✅ Converting successful !\n📭 You get ${amoutXP} 🏮 in your balance`)
+                    await interaction.reply({ content: `✅ Converting successful !\n📭 You get **${inlineCode(numStr(amoutXP))}** ${inlineCode("🏮")} in your balance`, ephemeral: true })
                 }
-                if(id === 'no') return message.reply('NO.')
+                if(interaction.customId === 'no') await interaction.reply({ content : 'You canceled ❌', ephemeral: true })
             })
         };
     } else return message.reply(`${inlineCode("😶‍🌫️")} number of coins is invalid...`) ;

@@ -8,21 +8,29 @@ const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
-const shuffleTime = 3000;
+const shuffleTime = 4000;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
+    //  ======= CoolDowns: 5s =======
+    if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
+        message.channel.send('⌚ Please wait `' + Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000) + ' seconds` and try again.');
+        return;
+    }
+    cooldownPlayers.set(message.author.id, new Date().getTime());
+    // ===============================
+
     var item = args[0]
     var user = message.author
 
     if(item == undefined || item == '' || item == ' ') return message.reply(`${inlineCode("😵‍💫")} item error : ${inlineCode("gsellitem <item name>")}`);
 
     let playerStats = await PLAYERDATA.findOne({ userId: user.id });
-    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
     else {
 
         let balance = await BALANCEDATA.findOne({ userId: user.id });
-        if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+        if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
 
             if(balance.eco.coins <= 0) return message.reply(`${inlineCode("😵‍💫")} balance error..., contact Owner elthomas#2441`)
@@ -67,12 +75,10 @@ module.exports.run = async (client, message, args) => {
 
                     // == Seling 5% of the prices ==
                     balance.eco.coins += finalprice
-                    balance.save()
 
                     let stats = await STATS.findOne({ botID: 899 });
                     stats.amoutCoin += finalprice;
-                    stats.shop.amoutSale += 1;
-                    stats.save();
+                    stats.item -= 1;
 
                     // == Delete Array ==
                     var index = playerStats.player.stuff.stuffUnlock.indexOf(ifItemInInventory()[1])
@@ -134,6 +140,8 @@ module.exports.run = async (client, message, args) => {
                                 if(slotItem == 4) playerStats.player.slotItem.slot4 = -1
                                 if(slotItem == 5) playerStats.player.slotItem.slot5 = -1
                                 playerStats.save()
+                                balance.save()
+                                stats.save()
 
                             } else playerStats.save()
 

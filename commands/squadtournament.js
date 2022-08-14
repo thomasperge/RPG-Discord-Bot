@@ -27,7 +27,6 @@ module.exports.run = async (client, message, args) => {
             .setDescription(`🪧 **${squadTournament.squadTournamentName}** Squad Tournament\n👑 Organizer: ${inlineCode(squadTournament.squadTournamantLeader[0].pseudo)}\n🛖 Number of squads: ${inlineCode(squadTournament.squadMember.length)} (max: ${squadTournament.maxSquad})\n👥 Participating Squad(s) : ${allMember}`)
             .setTimestamp();
         return message.reply({embeds: [squadTournamentEmbed]});
-
     };
 };
 

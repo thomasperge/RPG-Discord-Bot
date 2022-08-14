@@ -3,10 +3,9 @@ const CONFIG = require('../config/stuff.json')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 module.exports.run = async (client, message, args) => {
-    var user = message.author
 
     var itemEmbed = new Discord.MessageEmbed()
-        .setColor('#4dca4d')
+        .setColor('#02c201')
         .setTitle(`📦 All Item`)
         .addFields(
           { name: '🏹 Weapon(s)', value: `${inlineCode(CONFIG[0].name)}, ${inlineCode(CONFIG[1].name)}, ${inlineCode(CONFIG[2].name)}, ${inlineCode(CONFIG[3].name)}, ${inlineCode(CONFIG[4].name)}, ${inlineCode(CONFIG[9].name)}, ${inlineCode(CONFIG[10].name)}, ${inlineCode(CONFIG[11].name)}, ${inlineCode(CONFIG[14].name)}, ${inlineCode(CONFIG[15].name)}`, inline: true },

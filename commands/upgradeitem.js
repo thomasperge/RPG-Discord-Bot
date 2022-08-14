@@ -5,22 +5,30 @@ const CONFIGITEM = require('../config/stuff.json')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
-const shuffleTime = 3000;
+const shuffleTime = 4000;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
+    //  ======= CoolDowns: 5min =======
+    if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
+        message.channel.send('⌚ Please wait `' + Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000) + ' seconds` and try again.');
+        return;
+        }
+    cooldownPlayers.set(message.author.id, new Date().getTime());
+    // ===============================
+
     var user = message.author
     var item = args[0]
 
-    if(item == undefined || item == '' || item == ' ') return message.reply(`${inlineCode("😵‍💫")} item error : ${inlineCode("gupgradeitem <item name>")}`);
+    if(item == undefined || item == '' || item == ' ') return message.reply(`${inlineCode("😵‍💫")} item error : ${inlineCode("rupgradeitem <item name>")}`);
 
 
     let playerStats = await PLAYERDATA.findOne({ userId: user.id });
-    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
     else {
 
         let balance = await BALANCEDATA.findOne({ userId: message.author.id });
-        if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+        if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
 
             if(balance.eco.coins <= 0) return message.reply(`${inlineCode("😵‍💫")} balance error...`)

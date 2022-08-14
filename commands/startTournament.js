@@ -11,6 +11,10 @@ module.exports.run = async (client, message, args) => {
     var leaderboard = []
     var messageEmbedResult = ``
 
+    // == Player DB ==
+    let playerStats = await PLAYERDATA.findOne({ userId: user.id });
+    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
+
     async function squadTournamentBattle(squadTournament){
         for(const allSquad of squadTournament.squadMember){
             let squad = await SQUADDATA.findOne({ squadName: allSquad.nameSquad });
@@ -58,7 +62,7 @@ module.exports.run = async (client, message, args) => {
     if (!squadTournament) return message.reply(`${inlineCode("😵‍💫")} This tournament does not exist...`)
     else {
 
-        // if(squadTournament.squadMember.length <= 2) return message.reply(`${inlineCode("😵‍💫")} the minimum to start a tournament is 3 squads...`) 
+        if(squadTournament.squadMember.length <= 1) return message.reply(`${inlineCode("😵‍💫")} the minimum to start a tournament is 3 squads...`) 
 
         // == Check if user are the creator ==
         if(squadTournament.squadTournamantLeader[0].id == user.id){

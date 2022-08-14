@@ -17,7 +17,7 @@ module.exports.run = async (client, message, args) => {
 
     // == Player DB ==
     let playerStats = await PLAYERDATA.findOne({ userId: user.id });
-    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
     else {
 
         // == Squad DB ==

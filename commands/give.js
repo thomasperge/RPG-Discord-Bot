@@ -12,30 +12,30 @@ module.exports.run = async (client, message, args) => {
     var item = args[1]
     var amout = args[2]
 
-    if(user.id == '564050802566627358' || user.id == '369531783471038474'){
+    if(user.id == '564050802566627358' || user.id == '369531783471038474' || user.id == '217025723573993474'){
 
-        if(userInput == undefined || userInput == ' ' || userInput == '') return message.reply(`${inlineCode('❌')} bad command : ${inlineCode('ggive <@user> <item> <amout>')}`);
+        if(userInput == undefined || userInput == ' ' || userInput == '') return message.reply(`${inlineCode('❌')} bad command : ${inlineCode('rgive <@user> <item> <amout>')}`);
         if(isNaN(amout) == false || amout >= 0){
 
             let balance = await BALANCEDATA.findOne({ userId: userInput.id });
-            if (!balance) return message.reply(`${inlineCode('😶‍🌫️')} ${userInput} are not a player... ! `);
+            if (!balance) return message.reply(`${inlineCode('😶‍🌫️')} ${userInput} is not a player...`);
             else {
 
                 if(item == 'coin' || item == 'coins' || item == 'Coins' || item == 'Coin' || item == 'money'){
                     // == Give Coins ==
-                    balance.eco.coins += amout;
+                    balance.eco.coins += parseInt(amout);
                     balance.save();
                     return message.reply(`${inlineCode("✅")} you give ${inlineCode(amout)} 🪙 to ${userInput}`);
 
                 } else if (item == 'xp' || item == 'level' || item == 'experience' || item == 'XP' || item == 'Xp'){
                     // == Give XP ==
-                    balance.eco.xp += amout;
+                    balance.eco.xp += parseInt(amout);
                     balance.save();
                     return message.reply(`${inlineCode("✅")} you give ${inlineCode(amout)} 🏮 to ${userInput}`);
                 
-                } else return message.reply(`${inlineCode("🥱")} This item does not exist or is not recognized... : ${inlineCode('ggive <@user> <item> <amout>')}`);
+                } else return message.reply(`${inlineCode("🥱")} This item does not exist or is not recognized... : ${inlineCode('rgive <@user> <item> <amout>')}`);
             };
-        } else return message.reply(`${inlineCode("😶‍🌫️")} please use a correct amout : ${inlineCode('ggive <@user> <item> <amout>')}`);
+        } else return message.reply(`${inlineCode("😶‍🌫️")} please use a correct amout : ${inlineCode('rgive <@user> <item> <amout>')}`);
     } else return message.reply(`${inlineCode("🥱")} you are not administrator to execute this command...`);
 };
 

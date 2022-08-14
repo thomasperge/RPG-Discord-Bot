@@ -7,36 +7,36 @@ const CONFIGPLAYER = require('../config/configLevel.json')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
-// const shuffleTime = 8.64e7; (= 24h)
-const shuffleTime = 15000;
+const shuffleTime = 8.64e7;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
+    //  ======= CoolDowns: 3s =======
+    if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
+        var measuredTime = new Date(null);
+        measuredTime.setSeconds(Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000)); // specify value of SECONDS
+        var MHSTime = measuredTime.toISOString().substr(11, 8);
+        message.channel.send('⌚ Please wait `' + MHSTime + ' hours` and try again.');
+        return;
+      }
+    
+      cooldownPlayers.set(message.author.id, new Date().getTime());
+    // ===============================
+
     var user = message.author
 
     /**=== Account Player ===*/
     let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
-    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
     else {
         /**=== Account Boss ===*/
         let boss = await BOSSDATA.findOne({ idboss: 0 });
-        if (!boss) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+        if (!boss) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
             /**=== Account Economie ===*/
             let balance = await BALANCEDATA.find();
-            if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+            if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
             else {
-                // /**=== Cooldown Commands: Daily: 24h */
-                // if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
-                //     var measuredTime = new Date(null);
-                //     measuredTime.setSeconds(Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000)); // specify value of SECONDS
-                //     var MHSTime = measuredTime.toISOString().substr(11, 8);
-                //     message.channel.send('⌚ Please wait `' + MHSTime + ' hours` and try again.');
-                //     return;
-                // };
-
-                // cooldownPlayers.set(message.author.id, new Date().getTime());
-
                 if(boss.stats.health >= 0){
                     // ==== Boss Attack Player ====
                     var damage = Math.floor(Math.random() * playerStats.player.attack)
@@ -44,10 +44,10 @@ module.exports.run = async (client, message, args) => {
 
                     // === Balance Player ===
                     let balancePlayer = await BALANCEDATA.findOne({userId: user.id});
-                    if (!balancePlayer) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+                    if (!balancePlayer) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
                     else {
                         
-                        message.reply(`${inlineCode("🪧")} You attack the boss and make ${inlineCode(damage)} dmg\n${inlineCode("🪧")} The Boss attack you and did ${inlineCode(damageBoss)} dmg`)
+                        message.reply(`${inlineCode("🪧")} You attack the boss **${boss.bossname}** and make ${inlineCode(damage + ' dmg')}\n${inlineCode("🗿")} The Boss attack you and did ${inlineCode(damageBoss + ' dmg')}`)
 
                         // add dammage :
                         playerStats.player.other.bossattack += damage
@@ -64,6 +64,8 @@ module.exports.run = async (client, message, args) => {
 
                             // delete coins of user : 
                             balancePlayer.eco.coins -= losecoin10
+                            if(balancePlayer.eco.coins <= 0) balancePlayer.eco.coins = 0
+
                             balancePlayer.save()
 
                             if(playerStats.player.level === 0) playerStats.player.health = CONFIGPLAYER.level0.stats.health
@@ -93,7 +95,17 @@ module.exports.run = async (client, message, args) => {
 
                 // ==== Boss Death - Player WIN ====
                 if(boss.stats.health <= 0){
-                    message.reply(`**BOSS DESTROY !!!**\nChaque Participant à voir attaquer le boss va recevoir une prime !`)
+                    message.reply(`${inlineCode("🪧")} **The boss is killed !**\nEach Participant who sees the boss attacked will receive a bonus!`)
+
+                    // == Log : ==
+                    const logChannel = client.channels.cache.get('1005480495003488297');
+                    var now = new Date();
+                    var date = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+                    var messageEmbed = new Discord.MessageEmbed()
+                        .setColor('#f15a2d')
+                        .setTitle(`Log ${date}`)
+                        .setDescription(`🗿 **BOSS KILLED !** by **${inlineCode(user.username)}**\n🪧 All players who participated in the fight will receive their reward (xp)`);
+                    logChannel.send({embeds: [messageEmbed], ephemeral: true });
 
                     const allPLayer = await PLAYERDATA.find()
 
@@ -126,16 +138,15 @@ module.exports.run = async (client, message, args) => {
                             if(randomBoss == 8) newBoss(CONFIGBOSS.boss8.name, CONFIGBOSS.boss8.health, CONFIGBOSS.boss8.attack)
                             if(randomBoss == 9) newBoss(CONFIGBOSS.boss9.name, CONFIGBOSS.boss9.health, CONFIGBOSS.boss9.attack)
                             if(randomBoss == 10) newBoss(CONFIGBOSS.boss10.name, CONFIGBOSS.boss10.health, CONFIGBOSS.boss10.attack)
-                        }
-
-                    }
-                    boss.save()
-                }
-            }
-        }
-    }
+                        };
+                    };
+                    boss.save();
+                };
+            };
+        };
+    };
 };
 
 module.exports.info = {
-    names: ['g'],
+    names: ['g', 'bossattack', 'attackboss', 'bossA', 'bossa', 'ba', 'BA'],
 };

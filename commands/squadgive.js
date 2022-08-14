@@ -20,16 +20,16 @@ module.exports.run = async (client, message, args) => {
     var user = message.author;
     var coinGiven = args[0]
 
-    if(coinGiven === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
-    else if(coinGiven === ' ') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
-    else if(coinGiven === undefined) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
-    else if(isNaN(coinGiven)) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("ggivesquad <coin amout>")}`)
+    if(coinGiven === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rgivesquad <coin amout>")}`)
+    else if(coinGiven === ' ') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rgivesquad <coin amout>")}`)
+    else if(coinGiven === undefined) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rgivesquad <coin amout>")}`)
+    else if(isNaN(coinGiven)) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rgivesquad <coin amout>")}`)
     else if(coinGiven != undefined && isNaN(coinGiven) == false && coinGiven > 0) {
 
 
         function playerInSquad(playerStats){
             // == Player Db ==
-            if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+            if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
             else {
                 if(playerStats.player.other.squadName != 'undefined') return true
             }
@@ -38,12 +38,12 @@ module.exports.run = async (client, message, args) => {
         
         // == Balance Db ==
         let balance = await BALANCEDATA.findOne({ userId: message.author.id });
-        if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+        if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
 
             // == Player Db ==
             let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
-            if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+            if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
             else {
 
                 // == Squad Db ==

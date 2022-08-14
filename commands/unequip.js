@@ -12,11 +12,11 @@ module.exports.run = async (client, message, args) => {
     if(isNaN(slotItem) == false && slotItem <= 5 && slotItem >= 0){
 
         let playerStats = await PLAYERDATA.findOne({ userId: user.id });
-        if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+        if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
 
             let balance = await BALANCEDATA.findOne({ userId: user.id });
-            if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+            if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
             else {
 
                 function slotDisplay(slotID){
@@ -130,7 +130,7 @@ module.exports.run = async (client, message, args) => {
                 return message.reply(`${inlineCode("📦")} You de-equip your: **${inlineCode(itemname)}** to slot number : **${inlineCode(slotItem)}**`)
             };
         };
-    } else return message.reply(`${inlineCode("😵‍💫")} please specify a correct slot: ${inlineCode("gunequip <1/2/3/4/5>")}`);
+    } else return message.reply(`${inlineCode("😵‍💫")} please specify a correct slot: ${inlineCode("runequip <1/2/3/4/5>")}`);
 };
 
 module.exports.info = {

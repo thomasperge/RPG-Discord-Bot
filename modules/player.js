@@ -33,6 +33,7 @@ const playerSchema = mongoose.Schema({
             squadName: String,
             squadCoinGiven: Number,
             monsterKill: Number,
+            box: Number,
         },
     },
 })

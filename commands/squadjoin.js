@@ -6,28 +6,20 @@ const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
-const shuffleTime = 0;
+const shuffleTime = 4.32e+7;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
-    //  ======= CoolDowns: 12h =======
-    if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
-        message.channel.send('⌚ Please wait `' + Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000) + ' seconds` and try again.');
-        return;
-    }
-    cooldownPlayers.set(message.author.id, new Date().getTime());
-    // ===============================
-
     var user = message.author;
     var squadNameJoin = args[0]
 
-    if(squadNameJoin === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gjoinsquad <squad name>")}`)
-    else if(squadNameJoin === ' ') message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gjoinsquad <squad name>")}`)
-    else if(squadNameJoin === undefined) message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gjoinsquad <squad name>")}`)
+    if(squadNameJoin === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rjoinsquad <squad name>")}`)
+    else if(squadNameJoin === ' ') message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rjoinsquad <squad name>")}`)
+    else if(squadNameJoin === undefined) message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rjoinsquad <squad name>")}`)
     else if(squadNameJoin != undefined) {
 
         function playerInSquad(playerStats){
-            if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+            if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
             else {
                 if(playerStats.player.other.squadName != 'undefined') return true
             }
@@ -41,12 +33,12 @@ module.exports.run = async (client, message, args) => {
 
             // == Balance Db ==
             let balance = await BALANCEDATA.findOne({ userId: message.author.id });
-            if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+            if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
             else {
 
                 // == Player Db ==
                 let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
-                if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+                if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
                 else {
 
                     if(playerInSquad(playerStats) == false){
@@ -91,6 +83,19 @@ module.exports.run = async (client, message, args) => {
                                     ButtonInteraction.first().deferUpdate()
                                     const id = ButtonInteraction.first().customId
                                     if(id === 'yes'){
+
+                                        //  ======= CoolDowns: 12h =======
+                                        if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
+                                            var measuredTime = new Date(null);
+                                            measuredTime.setSeconds(Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000)); // specify value of SECONDS
+                                            var MHSTime = measuredTime.toISOString().substr(11, 8);
+                                            message.channel.send('⌚ Please wait `' + MHSTime + ' hours` and try again.');
+                                            return;
+                                        }
+                                        
+                                        cooldownPlayers.set(message.author.id, new Date().getTime());
+                                        // ===============================
+
                                         // ========== YES: JOIN the SQUAD ==========
                                         squad.member.push({id: user.id, pseudo: user.username})
                                         squad.save()
@@ -119,5 +124,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-    names: ['joinsquad', 'squadjoin', 'jointeam', 'teamjoin'],
+    names: ['joinsquad', 'squadjoin', 'jointeam', 'teamjoin', 'joinS', 'joins', 'squadj', 'squadJ'],
 };

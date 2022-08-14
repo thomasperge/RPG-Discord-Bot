@@ -5,17 +5,17 @@ const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 
 // Config Cooldown :
-const shuffleTime = 15000;
+const shuffleTime = 4.32e+7;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
     var user = message.author;
     var squadNameAttack = args[0]
 
-    if(squadNameAttack == undefined || squadNameAttack == ' ' || squadNameAttack == '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gattacksquad <squadname>")}`);
+    if(squadNameAttack == undefined || squadNameAttack == ' ' || squadNameAttack == '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rattacksquad <squadname>")}`);
 
     function playerInSquad(playerStats){
-        if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+        if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
             if(playerStats.player.other.squadName != 'undefined') return true
         }
@@ -24,7 +24,7 @@ module.exports.run = async (client, message, args) => {
 
     // == Player DB ==
     let playerStats = await PLAYERDATA.findOne({ userId: user.id });
-    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
     else {
 
         // == Squad DB ==
@@ -151,6 +151,28 @@ module.exports.run = async (client, message, args) => {
 
                         collector.on('collect', async interaction => {
                             if (interaction.customId == 'yes') {
+
+                                //  ======= CoolDowns: 12h =======
+                                if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
+                                    var measuredTime = new Date(null);
+                                    measuredTime.setSeconds(Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000)); // specify value of SECONDS
+                                    var MHSTime = measuredTime.toISOString().substr(11, 8);
+                                    message.channel.send('⌚ Please wait `' + MHSTime + ' hours` and try again.');
+                                    return;
+                                }
+                                
+                                cooldownPlayers.set(message.author.id, new Date().getTime());
+                                // ===============================
+
+                                // == Log : ==
+                                const logChannel = client.channels.cache.get('1005480495003488297');
+                                var now = new Date();
+                                var date = `${now.getDate()}/${now.getMonth() + 1}/${now.getFullYear()} ${now.getHours()}:${now.getMinutes()}:${now.getSeconds()}`;
+                                var messageEmbed = new Discord.MessageEmbed()
+                                    .setColor('#e1e920')
+                                    .setTitle(`Log ${date}`)
+                                    .setDescription(`🪧 **SQUAD BATTLE!** between ${inlineCode(squadPLayer.squadName)} and ${inlineCode(squadEnemy.squadName)}\nThe fight is tough, but only one will win!`);
+                                logChannel.send({embeds: [messageEmbed], ephemeral: true });
 
                                 //  ======= CoolDowns: 15s =======
                                 if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {

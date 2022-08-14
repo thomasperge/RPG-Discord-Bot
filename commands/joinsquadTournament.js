@@ -5,15 +5,27 @@ const SQUADTOURNAMENT = require('../modules/squadtournament.js');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
+// Config Cooldown :
+const shuffleTime = 3000;
+var cooldownPlayers = new Discord.Collection();
+
 module.exports.run = async (client, message, args) => {
+    //  ======= CoolDowns: 3s =======
+    if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
+        message.channel.send('⌚ Please wait `' + Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000) + ' seconds` and try again.');
+        return;
+        }
+    cooldownPlayers.set(message.author.id, new Date().getTime());
+    // ===============================
+    
     var user = message.author;
     var nameTournament = args[0]
     var priceJoin = 250000
 
-    if(nameTournament === '' || nameTournament === '' || nameTournament == undefined) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gjoinTournament <name tournament>")}`);
+    if(nameTournament === '' || nameTournament === '' || nameTournament == undefined) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rjoinTournament <name tournament>")}`);
 
     function playerInSquad(playerStats){
-        if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+        if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
             if(playerStats.player.other.squadName != 'undefined') return true
         }
@@ -35,7 +47,7 @@ module.exports.run = async (client, message, args) => {
 
     // == Player DB ==
     let playerStats = await PLAYERDATA.findOne({ userId: user.id });
-    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
     else {
 
         // == Squad DB ==
@@ -68,7 +80,7 @@ module.exports.run = async (client, message, args) => {
                                     squadTournament.squadMember.push({ nameSquad: squad.squadName, squadLeader: squad.leader[1], totalMember: squad.member.length});
                                     squadTournament.save();
 
-                                    return message.reply(`${inlineCode("✅")} You join the ${inlineCode(squadTournament.squadTournamentName + " 's")} tournament 🎪\n(Check that your registration is complete by typing the command: ${inlineCode("gsquadTournament" + nameTournament)})`)
+                                    return message.reply(`${inlineCode("✅")} You join the ${inlineCode(squadTournament.squadTournamentName + " 's")} tournament 🎪\n(Check that your registration is complete by typing the command: ${inlineCode("rsquadTournament" + nameTournament)})`)
 
                                 } else return message.reply(`${inlineCode("😵‍💫")} There are too many squads in this tournament, the creator decided that the maximum number of squads would be : ${inlineCode(squadTournament.maxSquad)}`);
                             } else return message.reply(`${inlineCode("😵‍💫")} you are not the leader of the squad...`);

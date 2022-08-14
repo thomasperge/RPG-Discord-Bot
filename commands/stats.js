@@ -7,7 +7,7 @@ module.exports.run = async (client, message, args) => {
 
     /**=== Account Stats ===*/
     let stats = await STATS.findOne({ botID: 899 });
-    if (!stats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+    if (!stats) return message.reply(`${inlineCode('❌')} Error...`);
     else {
 
         var statsEmbed = new Discord.MessageEmbed()

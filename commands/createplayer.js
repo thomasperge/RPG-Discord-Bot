@@ -57,6 +57,7 @@ module.exports.run = async (client, message, args) => {
                             squadName: 'undefined',
                             squadCoinGiven: 0,
                             monsterKill: 0,
+                            box: 1,
                         },
                     },
                 });
@@ -65,8 +66,8 @@ module.exports.run = async (client, message, args) => {
             stats.numberPlayer += 1;
             stats.save();
 
-            playerCreateEmbed.addField(`${inlineCode("✅")} Account create !`,`📜 New player joins the adventure!`);
 
+            playerCreateEmbed.addField(`${inlineCode("✅")} Account create !`,`📜 New player joins the adventure!`);
             }
         }
     );
@@ -80,13 +81,13 @@ module.exports.run = async (client, message, args) => {
                     userId: user.id,
                     pseudo: user.username,
                     eco: {
-                        coins: 25_000_000,
-                        xp: 99_750_000,
+                        coins: 0,
+                        xp: 0,
                     },
                 })
             economiePLayer.save()
 
-            playerCreateEmbed.addField(`${inlineCode("✅")} Balance create !`,`📜 To you the conquest towards wealth!`);
+            playerCreateEmbed.addField(`${inlineCode("✅")} Balance create !`,`📜 To you the conquest towards wealth!\n\n${inlineCode("📦")} You get a box!`);
             message.reply({ embeds: [playerCreateEmbed] })
 
             } else {
@@ -103,36 +104,35 @@ module.exports.run = async (client, message, args) => {
     //     amoutCoin: 0,
     //     amoutItem: 0,
     //     amoutMonsterKilled: 0,
+    //     boxOpen: 0,
     // })
     // statsBot.save()
 
 
     // ======= BOSS =======
-    BOSS.findOne(
-        {
-            bossname: 'Lithowanderer',
-        },
-        (err, boss) => {
-            if (err) console.log(err)
-            if (!boss) {
-                var bossPLayer = new BOSS({
-                    idboss: 0,
-                    bossname: BOSSCONFIG.boss1.name,
-                    stats: {
-                        attack: BOSSCONFIG.boss1.attack,
-                        health: BOSSCONFIG.boss1.health,
-                    },
-                })
-                bossPLayer.save()
-                message.reply('`✅` Boss create !')
-            } else {
-                message.reply('`❌` Boss existing already !')
-            }
-        }
-    );
-
-
-}
+    // BOSS.findOne(
+    //     {
+    //         bossname: 'Lithowanderer',
+    //     },
+    //     (err, boss) => {
+    //         if (err) console.log(err)
+    //         if (!boss) {
+    //             var bossPLayer = new BOSS({
+    //                 idboss: 0,
+    //                 bossname: BOSSCONFIG.boss1.name,
+    //                 stats: {
+    //                     attack: BOSSCONFIG.boss1.attack,
+    //                     health: BOSSCONFIG.boss1.health,
+    //                 },
+    //             })
+    //             bossPLayer.save()
+    //             message.reply('`✅` Boss create !')
+    //         } else {
+    //             message.reply('`❌` Boss existing already !')
+    //         }
+    //     }
+    // );
+};
 
 module.exports.info = {
     names: ['create', 'start', 'account', 'newaccount', 'begin'],

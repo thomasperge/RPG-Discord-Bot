@@ -4,9 +4,19 @@ const BALANCEDATA = require('../modules/economie.js');
 const CONFIGITEM = require('../config/stuff.json')
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
-const player = require('../modules/player.js');
+
+// Config Cooldown :
+const shuffleTime = 3000;
+var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
+    //  ======= CoolDowns: 3s =======
+    if (cooldownPlayers.get(message.author.id) && new Date().getTime() - cooldownPlayers.get(message.author.id) < shuffleTime) {
+        message.channel.send('⌚ Please wait `' + Math.ceil((shuffleTime - (new Date().getTime() - cooldownPlayers.get(message.author.id))) / 1000) + ' seconds` and try again.');
+        return;
+        }
+    cooldownPlayers.set(message.author.id, new Date().getTime());
+    // ===============================
     var item = args[0]
     var slotItem = args[1]
     var user = message.author
@@ -16,11 +26,11 @@ module.exports.run = async (client, message, args) => {
     if(isNaN(slotItem) == false && slotItem <= 5 && slotItem >= 0){
         
         let playerStats = await PLAYERDATA.findOne({ userId: user.id });
-        if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+        if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
 
             let balance = await BALANCEDATA.findOne({ userId: user.id });
-            if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+            if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
             else {
 
                 if(slotItem == 1){ if(playerStats.player.slotItem.slot1 != -1) return message.reply(`${inlineCode('❌')} There is already an item in this slot, first remove it with : ${inlineCode("gunequip <1>")}`)}
@@ -124,13 +134,13 @@ module.exports.run = async (client, message, args) => {
                         if(slotItem == 5) playerStats.player.slotItem.slot5 = slotEquipItem
                         playerStats.save()
 
-                        message.reply(`${inlineCode("📦")} You equip your: **${inlineCode(itemExist(item)[2])}** in your slot number : **${inlineCode(slotItem)}**\nTo remove your equipment type : ${inlineCode("gunequip <1/2/3/4/5>")}`)
+                        message.reply(`${inlineCode("📦")} You equip your: **${inlineCode(itemExist(item)[2])}** in your slot number : **${inlineCode(slotItem)}**\nTo remove your equipment type : ${inlineCode("runequip <1/2/3/4/5>")}`)
 
-                    } else return message.reply(`${inlineCode("🪧")} you don't have this item, you have to buy it from NPCs: ${inlineCode(`gbuyitem ${item}`)}`);
+                    } else return message.reply(`${inlineCode("🪧")} you don't have this item, you have to buy it from NPCs: ${inlineCode(`rbuyitem ${item}`)}`);
                 } else return message.reply(`${inlineCode("😵‍💫")} this item does not exist...`);
             };
         };
-    } else return message.reply(`${inlineCode("😵‍💫")} please specify a correct slot: ${inlineCode("gequip <item> <1/2/3/4/5>")}`);
+    } else return message.reply(`${inlineCode("😵‍💫")} please specify a correct slot: ${inlineCode("requip <item> <1/2/3/4/5>")}`);
 };
 
 module.exports.info = {

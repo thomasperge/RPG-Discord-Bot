@@ -2,8 +2,8 @@ const Discord = require('discord.js');
 const BALANCEDATA = require('../modules/economie.js');
 const SQUADDATA = require('../modules/squad.js')
 const PLAYERDATA = require('../modules/player.js');
-const { numStr } = require('../functionNumber/functionNbr.js');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
+const { numStr } = require('../functionNumber/functionNbr.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
@@ -22,12 +22,11 @@ module.exports.run = async (client, message, args) => {
     
       cooldownPlayers.set(message.author.id, new Date().getTime());
     // ===============================
-
-
+    
     var user = message.author
     var userInput = message.mentions.users.first();
 
-    if (userInput === ' ' || userInput === '') return message.reply(`${inlineCode('❌')} player undefined : ${inlineCode("rduel <@user>")}`);
+    if (userInput === ' ' || userInput === '') return message.reply(`${inlineCode('❌')} player undefined : ${inlineCode("rfight <@user>")}`);
     if (user === userInput) return message.reply(`${inlineCode('❌')} it's not good to want to cheat...`);
 
     // === Try if player are real ===
@@ -87,23 +86,15 @@ module.exports.run = async (client, message, args) => {
 
                             HEALTH_PLAYERONE -= attackDamagePLayerTwo;
                             
-                            function eloAdd(){
-                                if(playerOne.player.elo >= playerTwo.player.elo){
-                                    return Math.floor(Math.random() * 30) + 16;
-                                } else {
-                                    return Math.floor(Math.random() * 16) + 2;
-                                }
-                            };
-        
                             if (HEALTH_PLAYERONE <= 0){
                                 // =================================
                                 // ======== PLAYER ONE LOSE ========
+                                var losecoin = Math.floor((balance.eco.coins*5)/100)
+                                balance.eco.coins -= losecoin
 
-                                var eloLoseVar = eloAdd()
-                                balance.elo -= eloLoseVar
-                                if(balance.eco.elo < 0) balance.eco.elo = 0
+                                if(balance.eco.coins <= 0) balance.eco.coins = 0
                                 balance.save()
-        
+
                                 // == Embed LOSE : ==
                                 var battleEmbed = new Discord.MessageEmbed()
                                     .setColor('#000000')
@@ -112,7 +103,7 @@ module.exports.run = async (client, message, args) => {
                                     .addFields(
                                     { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerOne.player.attack}\n**Defense** : ${playerOne.player.defense}\n**Health** : ${playerOne.player.health}\n`, inline: true },
                                     { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${playerTwo.player.attack}\n**Defense** : ${playerTwo.player.defense}\n**Health** : ${playerTwo.player.health}\n `, inline: true },
-                                    { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose ${inlineCode('-' +  numStr(eloLoseVar))} ELO`, inline: false },
+                                    { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose ${inlineCode('-' + numStr(losecoin) + " 🪙")} (5% of your coins)`, inline: false },
                                     )
                                     .setTimestamp();
                                 return battleEmbed
@@ -121,8 +112,8 @@ module.exports.run = async (client, message, args) => {
                                 // ======================================
                                 // =========== PLAYER ONE WIN ===========
 
-                                var eloAddVar = eloAdd()
-                                balance.eco.elo += eloAddVar
+                                var earnCoins = Math.floor(Math.random((playerOne.player.level * 55)));
+                                balance.eco.coins += earnCoins
                                 balance.save()
         
                                 // == Embed WIN : ==
@@ -133,7 +124,7 @@ module.exports.run = async (client, message, args) => {
                                     .addFields(
                                         { name: '**🎯 YOU :**\n', value: `**Attack** : ${playerOne.player.attack}\n**Defense** : ${playerOne.player.defense}\n**Health** : ${playerOne.player.health}\n`, inline: true },
                                         { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `**Attack** : ${playerTwo.player.attack}\n**Defense** : ${playerTwo.player.defense}\n**Health** : ${playerTwo.player.health}\n `, inline: true },
-                                        { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} You earn ${inlineCode('+' + numStr(eloAddVar))} ELO`, inline: false },
+                                        { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYERONE} times** and did **${ATK_SOMME_PLAYERONE}** damage to ${playerTwo.pseudo}\n${playerTwo.pseudo} attacked **${NB_ATTACK_PLAYERTWO} times** and did **${ATK_SOMME_PLAYERTWO}** damage to you\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} You earn ${inlineCode('+' + numStr(earnCoins))} 🪙`, inline: false },
                                     )
                                     .setTimestamp();
                                 return battleEmbed
@@ -142,7 +133,30 @@ module.exports.run = async (client, message, args) => {
                     };
                     // [================ Function Battle End ================]
 
-
+                    function winPercentage(){
+                        var playerA = playerTwo.player.attack
+                        var playerH = playerTwo.player.health
+                        var playerD = playerTwo.player.defense
+        
+                        var totalStatsPlayer = playerOne.player.attack * (playerOne.player.health + playerOne.player.defense)
+                        var totalStatsMonster = playerA * (playerH + playerD)
+        
+                        var totalStats = totalStatsPlayer + totalStatsMonster
+        
+                        var percentageWin = (100 * totalStatsPlayer) / totalStats
+        
+                        var percentageWin = new Discord.MessageEmbed()
+                            .setColor('#2f3136')
+                            .setTitle(`🧮 ${user.username}'s Win %`)
+                            .setDescription(`📰 ${inlineCode(user.username)} vs ${inlineCode(playerTwo.pseudo)}\n`)
+                            .addFields(
+                                {name: `🪧 Your Stats:`, value:`${inlineCode("💥")}: ${playerOne.player.attack}\n${inlineCode("🛡️")}: ${playerOne.player.defense}\n${inlineCode("❤️")}: ${playerOne.player.health}`, inline: true},
+                                {name: `🪧 ${playerTwo.pseudo.toUpperCase()} Stats:`, value:`${inlineCode("💥")}: ${playerA}\n${inlineCode("🛡️")}: ${playerD}\n${inlineCode("❤️")}: ${playerH}`, inline: true},
+                                {name: `📭 Result :`, value:`🍀 Your percentage chance of winning is : **${Math.floor(percentageWin)}%**`, inline: false},
+                            )
+                            .setTimestamp();
+                        return percentageWin
+                    };
 
                     // [=========== BUTTON MESSAGE ===========]
                     const row = new MessageActionRow()
@@ -156,11 +170,16 @@ module.exports.run = async (client, message, args) => {
                                 .setCustomId('no')
                                 .setLabel('I AM AFRAID')
                                 .setStyle('DANGER'),
+
+                            new MessageButton()
+                                .setCustomId('percentage')
+                                .setLabel('WIN %')
+                                .setStyle('SECONDARY'),
                         );
         
                     const embedMessage = new MessageEmbed()
                         .setColor('#ff0000')
-                        .setTitle(`${user.username}'s Duel`)
+                        .setTitle(`${user.username}'s Battle`)
                         .addFields(
                             { name: '**📊 YOU :**\n', value: `${inlineCode("💥")}: ${playerOne.player.attack}\n${inlineCode("🛡️")}: ${playerOne.player.defense}\n${inlineCode("❤️")}: ${playerOne.player.health}`, inline: true},
                             { name: `**🎯 ${playerTwo.pseudo.toUpperCase()} :**\n`, value: `${inlineCode("💥")}: ${playerTwo.player.attack}\n${inlineCode("🛡️")}: ${playerTwo.player.defense}\n${inlineCode("❤️")}: ${playerTwo.player.health}`, inline: true},
@@ -187,10 +206,15 @@ module.exports.run = async (client, message, args) => {
                         // ================= LEVEL CONFIG =================
                         if(interaction.user.id === message.author.id) await interaction.reply({ embeds:[battle(playerOne.player.attack , playerTwo.player.attack, playerOne.player.health, playerTwo.player.health, playerOne.player.defense, playerTwo.player.defense)], ephemeral: true });
                         else await interaction.reply({ content: 'Hummm... What do you want to do?', ephemeral: true });
-
-        
                         };
-                        if(interaction.customId === 'no') await interaction.reply('YOU AFRAID HAAHH !!');
+
+                        if (interaction.customId == 'percentage') {
+                            collector.options.max = 2
+        
+                            await interaction.reply({ embeds: [winPercentage()], ephemeral: true });
+                        };
+
+                        if(interaction.customId === 'no') await interaction.reply('YOU AFRAID HAHHAHAHAHH !!');
                     });
                 };
             };
@@ -199,5 +223,5 @@ module.exports.run = async (client, message, args) => {
 };
 
 module.exports.info = {
-  names: ['duel'],
+  names: ['fight'],
 };

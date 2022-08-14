@@ -21,14 +21,14 @@ module.exports.run = async (client, message, args) => {
     var itemUpgrade = args[0]
     var amoutUpgrade = parseInt(args[1])
 
-    if(itemUpgrade === '' || amoutUpgrade === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
-    else if(itemUpgrade === ' ' || amoutUpgrade === ' ') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
-    else if(itemUpgrade === undefined || amoutUpgrade === undefined) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
-    else if(isNaN(amoutUpgrade)) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gugradesquadboss/gusb <attack/health/defense> <amout>")}`);
+    if(itemUpgrade === '' || amoutUpgrade === '') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
+    else if(itemUpgrade === ' ' || amoutUpgrade === ' ') return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
+    else if(itemUpgrade === undefined || amoutUpgrade === undefined) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
+    else if(isNaN(amoutUpgrade)) return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rugradesquadboss/gusb <attack/health/defense> <amout>")}`);
     else if((itemUpgrade == 'attack' || itemUpgrade == 'atk' || itemUpgrade == 'a' || itemUpgrade == 'health' || itemUpgrade == 'hlh' || itemUpgrade == 'h' || itemUpgrade == 'defense' || itemUpgrade == 'dfs' || itemUpgrade == 'd') && isNaN(amoutUpgrade) == false) {
 
         function playerInSquad(playerStats){
-            if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+            if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
             else {
                 if(playerStats.player.other.squadName != 'undefined') return true
             }
@@ -37,7 +37,7 @@ module.exports.run = async (client, message, args) => {
 
         // == Player DB ==
         let playerStats = await PLAYERDATA.findOne({ userId: user.id });
-        if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+        if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
 
             // == Squad DB ==
@@ -132,7 +132,7 @@ module.exports.run = async (client, message, args) => {
 
                             } else if(itemUpgrade == 'defense' || itemUpgrade == 'dfs' || itemUpgrade == 'd'){
                                 return upgradeBossMessage('defense', '🛡️', Math.floor(amoutUpgrade * 75.5), amoutUpgrade);
-                            } else return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("gupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
+                            } else return message.reply(`${inlineCode("❌")} error command, type: ${inlineCode("rupgradesquadboss/gusb <attack/health/defense> <amout>")}`);
 
                         } else return message.reply(`${inlineCode("😵‍💫")} you are not the leader of the squad...`);
                     } else return message.reply(`${inlineCode("😵‍💫")} your balance squad don't have enought money...`);

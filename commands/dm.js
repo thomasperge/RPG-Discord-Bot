@@ -19,7 +19,7 @@ module.exports.run = async (client, message, args) => {
 
   /**=== Account Stats ===*/
   let playerStats = await PLAYERDATA.findOne({ userId: message.author.id });
-  if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+  if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
   else {
     if(playerStats.player.other.dm == false){
         playerStats.player.other.dm = true

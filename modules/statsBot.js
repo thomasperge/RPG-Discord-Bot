@@ -7,6 +7,7 @@ const statSchema = mongoose.Schema({
     amoutCoin: Number,
     amoutItem: Number,
     amoutMonsterKilled: Number,
+    boxOpen: Number,
 })
 
 module.exports = mongoose.model('Stats', statSchema)

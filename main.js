@@ -55,7 +55,7 @@ client.on('messageCreate', async (message) => {
 // BOT READY
 client.on('ready', () => {
    console.log('RPG Bot: Ready !');
-   client.user.setActivity(`rpg helping | ghelp`);
+   client.user.setActivity(`rpg bot | rhelp`);
 });
 
 client.login(config.token);

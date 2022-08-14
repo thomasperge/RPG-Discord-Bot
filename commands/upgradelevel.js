@@ -7,7 +7,7 @@ const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 
 // Config Cooldown :
-const shuffleTime = 0;
+const shuffleTime = 4000;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
@@ -25,12 +25,12 @@ module.exports.run = async (client, message, args) => {
 
     // ==== Economie Accout ====
     let balance = await BALANCEDATA.findOne({ userId: message.author.id });
-    if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+    if (!balance) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
     else {
 
         // ==== Player Accout ====
         let stats = await PLAYERSTATSDATA.findOne({ userId: user.id });
-        if (!stats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+        if (!stats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
         else {
                 
             function checkPrice(priceNextLevel){

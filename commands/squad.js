@@ -5,7 +5,7 @@ const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 const { numStr } = require('../functionNumber/functionNbr.js')
 
 // Config Cooldown :
-const shuffleTime = 0;
+const shuffleTime = 3000;
 var cooldownPlayers = new Discord.Collection();
 
 module.exports.run = async (client, message, args) => {
@@ -25,7 +25,7 @@ module.exports.run = async (client, message, args) => {
 
     // == Player Db ==
     let playerStats = await PLAYERDATA.findOne({ userId: user.id });
-    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('gstart')}`);
+    if (!playerStats) return message.reply(`${inlineCode('❌')} you are not player ! : ${inlineCode('rstart')}`);
     else {
 
         // == Squad Db ==

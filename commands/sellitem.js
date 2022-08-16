@@ -7,6 +7,7 @@ const BALANCEDATA = require('../modules/economie.js');
 const CONFIGITEM = require('../config/stuff.json')
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
+const { numStr } = require('../functionNumber/functionNbr.js');
 
 // Config Cooldown :
 const shuffleTime = 4000;
@@ -147,7 +148,7 @@ module.exports.run = async (client, message, args) => {
                             } else playerStats.save()
 
                             // ================= LEVEL CONFIG =================
-                            await interaction.reply({ content: `${inlineCode('✅')} Sale successfully completed for **${finalprice}** ${EMOJICONFIG.coin}`, ephemeral: true });
+                            await interaction.reply({ content: `${inlineCode('✅')} Sale successfully completed for **${inlineCode(numStr(finalprice))}** ${EMOJICONFIG.coin}`, ephemeral: true });
 
                         };
                         if(interaction.customId === 'no') await interaction.reply({content: `${inlineCode("❌")} Sale cancelled...`, ephemeral: true});

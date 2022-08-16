@@ -1,6 +1,6 @@
 function numStr(a, b) {
     a = '' + a;
-    b = b || ' ';
+    b = b || ',';
     var c = '',
       d = 0;
     while (a.match(/^0[0-9]/)) {

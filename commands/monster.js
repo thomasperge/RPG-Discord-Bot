@@ -7,6 +7,7 @@ const EMOJICONFIG = require('../config/emoji.json');
 const BALANCEDATA = require('../modules/economie.js');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
+const { numStr } = require('../functionNumber/functionNbr');
 
 // Config Cooldown :
 const shuffleTime = 15000;
@@ -109,7 +110,7 @@ module.exports.run = async (client, message, args) => {
                                 .setColor('#ff0000')
                                 .setTitle(`📜 ${client.users.cache.get(user.id).username}'s Battle Diary (Monster)`)
                                 .addFields(
-                                    { name: `${`🪦`} You Lose...\n`, value : `You lose ${losecoin} ${EMOJICONFIG.coin}`},
+                                    { name: `${`🪦`} You Lose...\n`, value : `You lose ${inlineCode(numStr(losecoin))} ${EMOJICONFIG.coin}`},
                                 )
                                 .setTimestamp();
                             message.author.send({embeds: [battleDiaryEmbed]}).catch(error => {
@@ -153,7 +154,7 @@ module.exports.run = async (client, message, args) => {
                                 .setColor('#17ff00')
                                 .setTitle(`📜 ${client.users.cache.get(user.id).username}'s Battle Diary (Monster)`)
                                 .addFields(
-                                    { name: `${`🥇`} You Win !\n`, value : `You get ${randomxp} ${EMOJICONFIG.xp} and ${randomcoin} ${EMOJICONFIG.coin}`},
+                                    { name: `${`🥇`} You Win !\n`, value : `You get ${inlineCode(numStr(randomxp))} ${EMOJICONFIG.xp} and ${inlineCode(numStr(randomcoin))} ${EMOJICONFIG.coin}`},
                                 )
                                 .setTimestamp();
                             message.author.send({embeds: [battleDiaryEmbed]}).catch(error => {
@@ -172,7 +173,7 @@ module.exports.run = async (client, message, args) => {
                             .addFields(
                                 { name: '**🪧 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
                                 { name: '**🪧 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n `, inline: true },
-                                { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER} times** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} And get: **${randomxp}** ${EMOJICONFIG.xp} and **${randomcoin}** ${EMOJICONFIG.coin}`, inline: false },
+                                { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER} times** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE} times** the attacks of the monster, and put **${NB_CRIT}** critical hits!\n\n**${inlineCode('▶ 🎉 YOU WIN !')}**\n${inlineCode('🎁')} And get: **${inlineCode(numStr(randomxp))}** ${EMOJICONFIG.xp} and **${inlineCode(numStr(randomcoin))}** ${EMOJICONFIG.coin}`, inline: false },
                             )
                             .setTimestamp();
                         return battleEmbed

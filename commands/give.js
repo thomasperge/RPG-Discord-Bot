@@ -1,6 +1,7 @@
 const Discord = require('discord.js');
 const EMOJICONFIG = require('../config/emoji.json');
 const BALANCEDATA = require('../modules/economie.js');
+const { numStr } = require('../functionNumber/functionNbr.js')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :
@@ -32,7 +33,7 @@ module.exports.run = async (client, message, args) => {
                     // == Give XP ==
                     balance.eco.xp += parseInt(amount);
                     balance.save();
-                    return message.reply(`${inlineCode("✅")} you give ${inlineCode(amount)} ${EMOJICONFIG.xp} to ${userInput}`);
+                    return message.reply(`${inlineCode("✅")} you give ${inlineCode(numStr(amount))} ${EMOJICONFIG.xp} to ${userInput}`);
                 
                 } else return message.reply(`${inlineCode("🥱")} This item does not exist or is not recognized... : ${inlineCode('rgive <@user> <item> <amount>')}`);
             };

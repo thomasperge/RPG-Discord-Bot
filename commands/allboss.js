@@ -2,6 +2,7 @@ const Discord = require('discord.js');
 const BOSSDATA = require('../modules/boss.js')
 const PLAYERDATA = require('../modules/player.js');
 const BOSSCONFIG = require('../config/boss.json');
+const { numStr } = require('../functionNumber/functionNbr.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 
 // Config Cooldown :

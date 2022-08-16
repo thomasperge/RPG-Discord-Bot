@@ -4,6 +4,7 @@ const PLAYERDATA = require('../modules/player.js');
 const EMOJICONFIG = require('../config/emoji.json');
 const BALANCEDATA = require('../modules/economie.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
+const { numStr } = require('../functionNumber/functionNbr.js');
 
 // Config Cooldown :
 const shuffleTime = 5000;
@@ -67,7 +68,7 @@ module.exports.run = async (client, message, args) => {
                             var squadEmbed = new Discord.MessageEmbed()
                                 .setColor('#4dca4d')
                                 .setAuthor(`🛖 Squad Coin Given`)
-                                .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n🪧 You given : ${inlineCode(coinGiven)} ${EMOJICONFIG.coin}\n📰 Current Squad Bank : ${inlineCode(squad.squadbank + `${EMOJICONFIG.coin}`)}`)
+                                .setDescription(`🪵 ${inlineCode(squad.squadName + "'s")} squad\n🪧 You given : ${inlineCode(numStr(coinGiven))} ${EMOJICONFIG.coin}\n📰 Current Squad Bank : ${inlineCode(numStr(squad.squadbank) + `${EMOJICONFIG.coin}`)}`)
                                 .setFooter('© RPG Bot 2022 | ghelp')
                                 .setTimestamp();
                             return message.reply({embeds: [squadEmbed]});

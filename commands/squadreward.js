@@ -5,6 +5,7 @@ const STATS = require('../modules/statsBot.js');
 const EMOJICONFIG = require('../config/emoji.json');
 const BALANCEDATA = require('../modules/economie.js');
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
+const { numStr } = require('../functionNumber/functionNbr.js');
 
 // Config Cooldown :
 const shuffleTime = 4.32e+7;
@@ -49,7 +50,7 @@ module.exports.run = async (client, message, args) => {
                 // ===============================
 
                 var rewardPlayer = Math.floor( ((squad.squadXp / 1000) * playerStats.player.level) * (playerStats.player.other.squadCoinGiven / 250) );
-                message.reply(`🪧 Your reward of the day is ${inlineCode(rewardPlayer)} ${EMOJICONFIG.coin} thanks to your squad: ${inlineCode(squad.squadName + "'s")}`);
+                message.reply(`🪧 Your reward of the day is ${inlineCode(numStr(rewardPlayer))} ${EMOJICONFIG.coin} thanks to your squad: ${inlineCode(squad.squadName + "'s")}`);
 
                 balance.eco.coins += rewardPlayer;
                 balance.save();

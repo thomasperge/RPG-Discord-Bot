@@ -63,11 +63,11 @@ module.exports.run = async (client, message, args) => {
                                         if(allItemUnlock.level >= 5) return message.reply(`${inlineCode("😵‍💫")} item max level !`)
 
                                         const IDITEM = itemExist(item)[1]
-                                        if(playerStats.player.slotItem.slot1 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
-                                        if(playerStats.player.slotItem.slot2 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
-                                        if(playerStats.player.slotItem.slot3 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
-                                        if(playerStats.player.slotItem.slot4 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
-                                        if(playerStats.player.slotItem.slot5 == IDITEM) return message.reply(`${inlineCode('❌')} You can't sell an item in a slot...`);
+                                        if(playerStats.player.slotItem.slot1 == IDITEM) return message.reply(`${inlineCode('❌')} You can't upgrade an item in a slot...`);
+                                        if(playerStats.player.slotItem.slot2 == IDITEM) return message.reply(`${inlineCode('❌')} You can't upgrade an item in a slot...`);
+                                        if(playerStats.player.slotItem.slot3 == IDITEM) return message.reply(`${inlineCode('❌')} You can't upgrade an item in a slot...`);
+                                        if(playerStats.player.slotItem.slot4 == IDITEM) return message.reply(`${inlineCode('❌')} You can't upgrade an item in a slot...`);
+                                        if(playerStats.player.slotItem.slot5 == IDITEM) return message.reply(`${inlineCode('❌')} You can't upgrade an item in a slot...`);
 
                                         // Upgrade Level : 
                                         balance.eco.coins -= CONFIGITEM[pas].costperenhancement

@@ -3,7 +3,6 @@ const BALANCEDATA = require('../modules/economie.js');
 const PLAYERSTATSDATA = require('../modules/player.js')
 const EMOJICONFIG = require('../config/emoji.json');
 const SQUADDATA = require('../modules/squad.js')
-const EMOJICONFIG = require('../config/emoji.json');
 const CONFIGLEVEL = require('../config/configLevel.json')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');

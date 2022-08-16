@@ -30,7 +30,6 @@ module.exports.run = async (client, message, args) => {
 
             if(balance.eco.coins < amout) return message.reply(`${inlineCode("😵‍💫")} you don't have enought money, missing ${inlineCode(numStr(amout - balance.eco.coins))} ${EMOJICONFIG.coin}`)
 
-
             var amoutXP = Math.floor(amout * 2.95)
 
             const row = new MessageActionRow()
@@ -49,7 +48,7 @@ module.exports.run = async (client, message, args) => {
             const embed = new MessageEmbed()
                 .setColor('#a25cff')
                 .setTitle('🪧 Coins Converting')
-                .setDescription(`📝 Would you convert :\n➡️ ${inlineCode(numStr(amout) + `${EMOJICONFIG.coin}`)}  into ${inlineCode(numStr(amoutXP) + `${EMOJICONFIG.xp}`)}`);
+                .setDescription(`📝 Would you convert :\n➡️ ${inlineCode(numStr(amout))} ${EMOJICONFIG.coin} into ${inlineCode(numStr(amoutXP))} ${EMOJICONFIG.xp}`);
             const msg = await message.reply({ embeds: [embed], components: [row] });
 
             // ========== Filter & Collector ==========
@@ -64,7 +63,7 @@ module.exports.run = async (client, message, args) => {
                     balance.eco.coins -= amout
                     balance.eco.xp += amoutXP
                     balance.save()
-                    await interaction.reply({ content: `✅ Converting successful !\n📭 You get **${inlineCode(numStr(amoutXP))}** ${inlineCode(`${EMOJICONFIG.xp}`)} in your balance`, ephemeral: true })
+                    await interaction.reply({ content: `✅ Converting successful !\n📭 You get **${inlineCode(numStr(amoutXP))}** ${EMOJICONFIG.xp} in your balance`, ephemeral: true })
                 }
                 if(interaction.customId === 'no') await interaction.reply({ content : 'You canceled ❌', ephemeral: true })
             })

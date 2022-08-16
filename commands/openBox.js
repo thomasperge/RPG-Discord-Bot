@@ -1,6 +1,5 @@
 const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js')
-const EMOJICONFIG = require('../config/emoji.json');
 const CONFIGITEM = require('../config/stuff.json')
 const BALANCEDATA = require('../modules/economie.js')
 const STATS = require('../modules/statsBot.js')

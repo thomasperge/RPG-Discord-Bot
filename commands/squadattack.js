@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const PLAYERDATA = require('../modules/player.js');
+const EMOJICONFIG = require('../config/emoji.json');
 const SQUADDATA = require('../modules/squad.js')
 const { bold, inlineCode, codeBlock } = require('@discordjs/builders');
 const { MessageActionRow, MessageButton, MessageEmbed } = require('discord.js');

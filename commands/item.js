@@ -40,7 +40,7 @@ module.exports.run = async (client, message, args) => {
         var itemEmbed = new MessageEmbed()
         .setColor('#9696ab')
         .setTitle(`📦 ${user.username}'s Item(s)`)
-        .setDescription(`🪖 Number of items : ${inlineCode(playerStats.player.stuff.stuffUnlock.length)}\n💰 Total value : ${inlineCode(numStr(totalvalue))} ${inlineCode(EMOJICONFIG.coin)}\n${allITemEmbed}`)
+        .setDescription(`🪖 Number of items : ${inlineCode(playerStats.player.stuff.stuffUnlock.length)}\n💰 Total value : ${inlineCode(numStr(totalvalue))} ${EMOJICONFIG.coin}\n${allITemEmbed}`)
         .setTimestamp()
 
         message.reply({ embeds: [itemEmbed] });

@@ -85,7 +85,7 @@ module.exports.run = async (client, message, args) => {
                         const buyItemEmbed = new MessageEmbed()
                             .setColor('#4dca4d')
                             .setTitle(`🪖 Item Store`)
-                            .setDescription(`📦 **ITEM : ${inlineCode(returnStatsItem(item)[0])}\n💰 Price : ${inlineCode(numStr(itemExist(item)[2]))} ${inlineCode(EMOJICONFIG.coin)}\n🪧 Categorie : ${inlineCode(returnStatsItem(item)[1])}\n💎 Rarety : ${inlineCode(returnStatsItem(item)[2])}**\n\n**📊 Stats :**\n${inlineCode("🔥")} : ${returnStatsItem(item)[3]}\n${inlineCode("🛡️")} : ${returnStatsItem(item)[4]}\n${inlineCode("💨")} : ${returnStatsItem(item)[5]}\n${inlineCode("💥")} : ${returnStatsItem(item)[6]}\n${inlineCode("🏑")} : ${returnStatsItem(item)[7]}\n${inlineCode("❤️‍🔥")} : ${returnStatsItem(item)[8]}\n${inlineCode("❤️")} : ${returnStatsItem(item)[9]}`)
+                            .setDescription(`📦 **ITEM : ${inlineCode(returnStatsItem(item)[0])}\n💰 Price : ${inlineCode(numStr(itemExist(item)[2]))} ${EMOJICONFIG.coin}\n🪧 Categorie : ${inlineCode(returnStatsItem(item)[1])}\n💎 Rarety : ${inlineCode(returnStatsItem(item)[2])}**\n\n**📊 Stats :**\n${inlineCode("🔥")} : ${returnStatsItem(item)[3]}\n${inlineCode("🛡️")} : ${returnStatsItem(item)[4]}\n${inlineCode("💨")} : ${returnStatsItem(item)[5]}\n${inlineCode("💥")} : ${returnStatsItem(item)[6]}\n${inlineCode("🏑")} : ${returnStatsItem(item)[7]}\n${inlineCode("❤️‍🔥")} : ${returnStatsItem(item)[8]}\n${inlineCode("❤️")} : ${returnStatsItem(item)[9]}`)
                             .setTimestamp();
                         const msg = await message.reply({ embeds: [buyItemEmbed], components: [row] });
 
@@ -118,7 +118,7 @@ module.exports.run = async (client, message, args) => {
                                 var messageEmbed = new Discord.MessageEmbed()
                                     .setColor('#6d4534')
                                     .setTitle(`Log ${date}`)
-                                    .setDescription(`🪖 ${inlineCode(user.username)} bought the item : ${itemExist(item)[3]} for ${inlineCode(numStr(itemExist(item)[2]))} ${inlineCode(EMOJICONFIG.coin)}`);
+                                    .setDescription(`🪖 ${inlineCode(user.username)} bought the item : ${itemExist(item)[3]} for ${inlineCode(numStr(itemExist(item)[2]))} ${EMOJICONFIG.coin}`);
                                 logChannel.send({embeds: [messageEmbed], ephemeral: true });
 
                                 var itemEmbed = new MessageEmbed()

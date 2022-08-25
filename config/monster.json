@@ -1,8 +1,9 @@
 {
     "level0":{
+        "name": "Lithowanderer",
         "monsterlvl1":{
-            "attack": 80,
-            "defense": 16,
+            "attack": 10,
+            "defense": 10,
             "health": 1800
         },
         "monsterlvl2":{

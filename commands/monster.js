@@ -182,9 +182,9 @@ module.exports.run = async (client, message, args) => {
             };
             // [===== Function Battle End =====]
 
-            var MonsterAttack = Math.floor(Math.random() * ((playerStats.player.attack * 30)/100) + (playerStats.player.attack * 10)/100) + (playerStats.player.attack * 86)/100
-            var MonsterDefense = Math.floor(Math.random() * ((playerStats.player.defense * 30)/100) + (playerStats.player.defense * 10)/100) + (playerStats.player.defense * 86)/100
-            var MonsterHealth = Math.floor(Math.random() * ((playerStats.player.health * 30)/100) + (playerStats.player.health * 10)/100) + (playerStats.player.health * 86)/100
+            var MonsterAttack = Math.floor(Math.random() * ((playerStats.player.attack * 30)/100) + (playerStats.player.attack * 10)/100) + Math.floor(playerStats.player.attack * 86)/100
+            var MonsterDefense = Math.floor(Math.random() * ((playerStats.player.defense * 30)/100) + (playerStats.player.defense * 10)/100) + Math.floor(playerStats.player.defense * 86)/100
+            var MonsterHealth = Math.floor(Math.random() * ((playerStats.player.health * 30)/100) + (playerStats.player.health * 10)/100) + Math.floor(playerStats.player.health * 86)/100
 
             var Player_Attack = playerStats.player.attack - MonsterDefense
             var Dodge_PLayer = dodgeFunction(playerStats.player.dodge)

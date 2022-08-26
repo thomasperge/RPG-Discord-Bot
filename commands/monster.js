@@ -181,25 +181,25 @@ module.exports.run = async (client, message, args) => {
                 };
             };
             // [===== Function Battle End =====]
-            var MonsterLevel = Math.floor(Math.random() * 3) + 1
+            var MonsterLevel = Math.floor(Math.random() * (3 - 1)) + 1
 
             if(MonsterLevel <= 1){
                 MonsterLevel = 1
-                var MonsterAttack = Math.floor(Math.random() * ((playerStats.player.attack * 110)/100) + ((playerStats.player.attack * 90)/100)) + Math.floor((playerStats.player.attack * 90)/100)
-                var MonsterDefense = Math.floor(Math.random() * ((playerStats.player.defense * 110)/100) + (playerStats.player.defense * 90)/100) + Math.floor((playerStats.player.defense * 90)/100)
-                var MonsterHealth = Math.floor(Math.random() * ((playerStats.player.health * 110)/100) + (playerStats.player.health * 90)/100) + Math.floor((playerStats.player.health * 90)/100)
+                var MonsterAttack = Math.floor(Math.random() * (((playerStats.player.attack * 110)/100) - (playerStats.player.attack * 90)/100) + ((playerStats.player.attack * 90)/100))
+                var MonsterDefense = Math.floor(Math.random() * (((playerStats.player.defense * 110)/100) - (playerStats.player.defense * 90)/100) + ((playerStats.player.defense * 90)/100))
+                var MonsterHealth = Math.floor(Math.random() * (((playerStats.player.health * 110)/100) - (playerStats.player.health * 90)/100) + ((playerStats.player.health * 90)/100))
             };
             if(MonsterLevel == 2){
                 MonsterLevel = 2
-                var MonsterAttack = Math.floor(Math.random() * ((playerStats.player.attack * 120)/100) + (playerStats.player.attack * 90)/100) + Math.floor((playerStats.player.attack * 90)/100)
-                var MonsterDefense = Math.floor(Math.random() * ((playerStats.player.defense * 120)/100) + (playerStats.player.defense * 90)/100) + Math.floor((playerStats.player.defense * 90)/100)
-                var MonsterHealth = Math.floor(Math.random() * ((playerStats.player.health * 120)/100) + (playerStats.player.health * 90)/100) + Math.floor((playerStats.player.health * 90)/100)
+                var MonsterAttack = Math.floor(Math.random() * (((playerStats.player.attack * 120)/100) - (playerStats.player.attack * 90)/100) + ((playerStats.player.attack * 90)/100))
+                var MonsterDefense = Math.floor(Math.random() * (((playerStats.player.defense * 120)/100) - (playerStats.player.defense * 90)/100) + ((playerStats.player.defense * 90)/100))
+                var MonsterHealth = Math.floor(Math.random() * (((playerStats.player.health * 120)/100) - (playerStats.player.health * 90)/100) + ((playerStats.player.health * 90)/100))
             };
             if(MonsterLevel >= 3){
                 MonsterLevel = 3
-                var MonsterAttack = Math.floor(Math.random() * ((playerStats.player.attack * 130)/100) + (playerStats.player.attack * 90)/100) + Math.floor((playerStats.player.attack * 90)/100)
-                var MonsterDefense = Math.floor(Math.random() * ((playerStats.player.defense * 130)/100) + (playerStats.player.defense * 90)/100) + Math.floor((playerStats.player.defense * 90)/100)
-                var MonsterHealth = Math.floor(Math.random() * ((playerStats.player.health * 130)/100) + (playerStats.player.health * 90)/100) + Math.floor((playerStats.player.health * 90)/100)
+                var MonsterAttack = Math.floor(Math.random() * (((playerStats.player.attack * 130)/100) - (playerStats.player.attack * 90)/100) + ((playerStats.player.attack * 90)/100))
+                var MonsterDefense = Math.floor(Math.random() * (((playerStats.player.defense * 130)/100) - (playerStats.player.defense * 90)/100) + ((playerStats.player.defense * 90)/100))
+                var MonsterHealth = Math.floor(Math.random() * (((playerStats.player.health * 130)/100) - (playerStats.player.health * 90)/100) + ((playerStats.player.health * 90)/100))
             }
 
             

@@ -124,9 +124,9 @@ module.exports.run = async (client, message, args) => {
                             .setTitle(`${client.users.cache.get(user.id).username}'s Stats`)
                             .setDescription(`**:crossed_swords: BATTLE**\n${user.username} 🆚 Monster\n`)
                             .addFields(
-                                { name: '**🪧 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${playerStats.player.health}\n `, inline: true },
-                                { name: '**🪧 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${monsterStats_hth}\n`, inline: true },
-                                { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER} times** and did **${ATK_SOMME_PLAYER}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${ATK_SOMME_MONSTER}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}** of the attacks of the monster, and dealt **${NB_CRIT}** critical hits!\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose **10%** of your ${EMOJICONFIG.coin} ( -**${numStr(losecoin)}**)...`, inline: false },
+                                { name: '**🪧 YOU :**\n', value: `**Attack** : ${playerStats.player.attack}\n**Defense** : ${playerStats.player.defense}\n**Health** : ${numStr(playerStats.player.health)}\n `, inline: true },
+                                { name: '**🪧 MONSTER :**\n', value: `**Attack** : ${monsterStats_atk}\n**Defense** : ${DEFENSE_MONSTER}\n**Health** : ${numStr(monsterStats_hth)}\n`, inline: true },
+                                { name: '**📊 STATS :**\n', value: `You attacked **${NB_ATTACK_PLAYER} times** and did **${numStr(ATK_SOMME_PLAYER)}** damage to the Monster\nThe Monster attacked **${NB_ATTACK_MONSTER} times** and did **${numStr(ATK_SOMME_MONSTER)}** damage to you\n:boxing_glove: You dodged **${NB_DODGE}** of the attacks of the monster, and dealt **${NB_CRIT}** critical hits!\n\n**${inlineCode('▶ 🪦 YOU LOSE...')}**\n${inlineCode('🎁')} You lose **10%** of your ${EMOJICONFIG.coin} ( -**${numStr(losecoin)}**)...`, inline: false },
                             )
                             .setTimestamp();
                         return battleEmbed
@@ -181,10 +181,28 @@ module.exports.run = async (client, message, args) => {
                 };
             };
             // [===== Function Battle End =====]
+            var MonsterLevel = Math.floor(Math.random() * 3) + 1
 
-            var MonsterAttack = Math.floor(Math.random() * ((playerStats.player.attack * 30)/100) + (playerStats.player.attack * 10)/100) + Math.floor((playerStats.player.attack * 86)/100)
-            var MonsterDefense = Math.floor(Math.random() * ((playerStats.player.defense * 30)/100) + (playerStats.player.defense * 10)/100) + Math.floor((playerStats.player.defense * 86)/100)
-            var MonsterHealth = Math.floor(Math.random() * ((playerStats.player.health * 30)/100) + (playerStats.player.health * 10)/100) + Math.floor((playerStats.player.health * 86)/100)
+            if(MonsterLevel <= 1){
+                MonsterLevel = 1
+                var MonsterAttack = Math.floor(Math.random() * ((playerStats.player.attack * 110)/100) + ((playerStats.player.attack * 90)/100)) + Math.floor((playerStats.player.attack * 90)/100)
+                var MonsterDefense = Math.floor(Math.random() * ((playerStats.player.defense * 110)/100) + (playerStats.player.defense * 90)/100) + Math.floor((playerStats.player.defense * 90)/100)
+                var MonsterHealth = Math.floor(Math.random() * ((playerStats.player.health * 110)/100) + (playerStats.player.health * 90)/100) + Math.floor((playerStats.player.health * 90)/100)
+            };
+            if(MonsterLevel == 2){
+                MonsterLevel = 2
+                var MonsterAttack = Math.floor(Math.random() * ((playerStats.player.attack * 120)/100) + (playerStats.player.attack * 90)/100) + Math.floor((playerStats.player.attack * 90)/100)
+                var MonsterDefense = Math.floor(Math.random() * ((playerStats.player.defense * 120)/100) + (playerStats.player.defense * 90)/100) + Math.floor((playerStats.player.defense * 90)/100)
+                var MonsterHealth = Math.floor(Math.random() * ((playerStats.player.health * 120)/100) + (playerStats.player.health * 90)/100) + Math.floor((playerStats.player.health * 90)/100)
+            };
+            if(MonsterLevel >= 3){
+                MonsterLevel = 3
+                var MonsterAttack = Math.floor(Math.random() * ((playerStats.player.attack * 130)/100) + (playerStats.player.attack * 90)/100) + Math.floor((playerStats.player.attack * 90)/100)
+                var MonsterDefense = Math.floor(Math.random() * ((playerStats.player.defense * 130)/100) + (playerStats.player.defense * 90)/100) + Math.floor((playerStats.player.defense * 90)/100)
+                var MonsterHealth = Math.floor(Math.random() * ((playerStats.player.health * 130)/100) + (playerStats.player.health * 90)/100) + Math.floor((playerStats.player.health * 90)/100)
+            }
+
+            
 
             var Player_Attack = playerStats.player.attack - MonsterDefense
             var Dodge_PLayer = dodgeFunction(playerStats.player.dodge)
@@ -241,15 +259,13 @@ module.exports.run = async (client, message, args) => {
 
             var monsterName = ["Lithowanderer", "Horned lizard", "Fire Beetle", "Lava Golem", "Golden Crab", "Lord", "Thunder Fenrir", "Molten Fiend", "Turtle"]
             var randomName = Math.floor(Math.random() * monsterName.length)
-            var randomLevel = Math.floor(Math.random() * 3) + 1
-
 
             const embedMessage = new MessageEmbed()
                 .setColor('#ce2dcb')
                 .setTitle('Monster Attack - Stats')
                 .addFields(
                     { name: '**📊 PLAYER :**\n', value: `${inlineCode("💥")}: ${playerStats.player.attack}\n${inlineCode("🛡️")}: ${playerStats.player.defense}\n${inlineCode("❤️")}: ${playerStats.player.health}`, inline: true},
-                    { name: `**🎯 MONSTER (${monsterName[randomName]}, lvl: ${randomLevel}) :**\n`, value: `${inlineCode("💥")}: ${MonsterAttack}\n${inlineCode("🛡️")}: ${MonsterDefense}\n${inlineCode("❤️")}: ${MonsterHealth}`, inline: true},
+                    { name: `**🎯 MONSTER (${monsterName[randomName]}, lvl: ${MonsterLevel}) :**\n`, value: `${inlineCode("💥")}: ${MonsterAttack}\n${inlineCode("🛡️")}: ${MonsterDefense}\n${inlineCode("❤️")}: ${MonsterHealth}`, inline: true},
                 )
                 .setTimestamp()
 

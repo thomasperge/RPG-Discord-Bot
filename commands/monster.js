@@ -303,7 +303,7 @@ module.exports.run = async (client, message, args) => {
                     collector.options.max = 2
 
                     await interaction.reply({ embeds: [winPercentage()], ephemeral: true });
-                }
+                };
                 if (interaction.customId === 'no') await interaction.reply({content: `${inlineCode("😶‍🌫️")} You prefer to dodge the monster...`, ephemeral: true});
             });
             // [=========== BUTTON END ===========]

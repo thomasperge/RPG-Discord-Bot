@@ -21,19 +21,20 @@ module.exports.run = async (client, message, args) => {
 
                     function task(i) {
                         setTimeout(function(){
-                            console.log(i)
                             msg.edit(`my other emoji with : ${i}`);
                         }, 5000 * i)
                     };
 
                     for (let i=0; i<10; i++) {
                         task(i);
-                    }
+                    };
+
+                    console.log(task(i))
                 });
                                 
             } else {
                 message.reply('You reacted with a thumbs down.');
-            }
+            };
         })
         .catch(collected => {
             message.reply('You reacted with neither a thumbs up, nor a thumbs down.');
